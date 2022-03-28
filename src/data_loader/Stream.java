@@ -5,6 +5,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 
+/*
+给定某一天的时间有序的位置点文本路径
+该文本每一行记录信息为 id date time lon lat timestamp, 以空格间隔
+如 00053 2008-02-08 00:00:00 116.410720 39.990820 0
+ */
 
 public class Stream {
 	// 当前读取的txt_path
@@ -23,7 +28,7 @@ public class Stream {
 	public Stream(String txt_path) {
 		this.txt_path = txt_path;
 		current_index = 0;
-		location_totalLocNum = Integer.parseInt(txt_path.split("_")[1].replace(".txt", ""));
+		location_totalLocNum = Integer.parseInt(txt_path.split("_")[2].replace(".txt", ""));
 		// TODO Auto-generated constructor stub
 		try {
 			File file = new File(txt_path);
@@ -37,20 +42,19 @@ public class Stream {
 	
 	/**
 	 *   读取一个时刻的位置点, 记录到ArrayList<Location> batch中并返回
-	 * @param txt_path  2_27886741.txt 后者记录了总的位置点数目
 	 */
 	public ArrayList<Location> read_batch()
 	{	
-		ArrayList<Location> batch = new ArrayList<Location>();
+		ArrayList<Location> location_batch = new ArrayList<>();
 		if (first_loc != null)
 		{	
-			batch.add(first_loc);
+			location_batch.add(first_loc);
 			first_loc = null;
 		}
 		// 记录当前的时间戳
 		int current_timestampe = -100;
 		try {
-			String lineString = null;
+			String lineString;
 			int count = 0;
 			while((lineString = reader.readLine()) != null)
 			{	
@@ -60,19 +64,21 @@ public class Stream {
 				float lon = Float.parseFloat(lineString.split(" ")[3]);
 				float lat = Float.parseFloat(lineString.split(" ")[4]);
 				int ts = Integer.parseInt(lineString.split(" ")[5]);
-				if(count == 0) current_timestampe = ts;
+				if(count == 0) {
+					current_timestampe = ts;
+				}
 				// 如果下一位置点读到的不再是当前时刻时间戳，直接跳出循环
 				if(ts != current_timestampe)
 				{
 					first_loc = new Location(id, date, time, lon, lat, ts);
 					break;
 				}else {
-					batch.add(new Location(id, date, time, lon, lat, ts));
+					location_batch.add(new Location(id, date, time, lon, lat, ts));
 					count++;
 				}
 			}
 			current_index += count;
-			if(batch.isEmpty())
+			if(location_batch.isEmpty())
 			{
 				current_index = 0;
 				reader.close();
@@ -81,10 +87,8 @@ public class Stream {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		return batch;
+		return location_batch;
 	}
-	
-	
 }
 
 
