@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="113.54.157.10" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="113.54.157.10">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/Like/java_workplace/contact_tracer" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
