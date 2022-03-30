@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="RemoteTargetsManager">
+    <option name="projectDefaultTargetUuid" value="e2e17e0e-7931-409e-a499-1e297c933f11" />
     <targets>
       <target name="Like@113.54.157.10:22" type="ssh/sftp" uuid="e2e17e0e-7931-409e-a499-1e297c933f11">
         <config>
