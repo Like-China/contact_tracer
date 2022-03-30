@@ -15,7 +15,7 @@ public class AGPTester {
 	
 	public static void main(String[] args) {
 		// 1. 获取该采样率下的所有轨迹点文件名
-		File[] files = new File("E:/data/contact_tracer/" + Settings.city_name + Settings.sr).listFiles();
+		File[] files = new File(Settings.dataPath).listFiles();
 		// 2. 创建一个Tracer实例对象，处理实时读取到的轨迹位置点
 		AGP_Tracer tracer = new AGP_Tracer(Settings.distance_threshold, Settings.duration_threshold, Settings.city_name);
 		// 3. 初始化一批query 

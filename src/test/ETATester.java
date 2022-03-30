@@ -14,7 +14,7 @@ public class ETATester {
 	
 	public static void main(String[] args) {
 		// 1. 获取该采样率下的所有轨迹点文件名
-		File[] files = new File("D:/data/"+"beijing"+Settings.sr).listFiles();
+		File[] files = new File(Settings.dataPath).listFiles();
 		// 2. 创建一个Tracer实例对象，处理实时读取到的轨迹位置点
 		ETA_Tracer tracer = new ETA_Tracer(Settings.distance_threshold, Settings.duration_threshold, Settings.city_name);
 		// 3. 初始化一批query 
@@ -32,7 +32,10 @@ public class ETATester {
 			ArrayList<Location> batch = stream.read_batch(); // 流式读取当天一个时刻的位置点
 			while (batch != null && !batch.isEmpty())
 			{  
-				if(batch == null || batch.isEmpty()) break; // 如果当天时间流已经结束，则跳出循环进行下一天的查询，感染时长仍然会累计
+				if(batch == null || batch.isEmpty())
+				{
+					break; // 如果当天时间流已经结束，则跳出循环进行下一天的查询，感染时长仍然会累计
+				}
 				if (batch.get(0).ts % Settings.sr != 0) continue; // 如果不在采样时间点上，不处理
 				location_num += batch.size();
 				System.out.printf("\n%s %s return locations %d\n", batch.get(0).date, batch.get(0).time, batch.size());

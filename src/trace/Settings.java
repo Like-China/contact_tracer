@@ -10,7 +10,8 @@ public class Settings {
 	public static int objectNum = (city_name == "beijing") ? 10000:1000000; // 初始化物体数目
 	public static int initPatientNum = (city_name == "beijing") ? 500:60000;// 初始化病人数目
 	public static boolean isRandom = false; // 病人的生成是否随机
-	
+	public static String dataPath = String.format("/home/Like/data/contact_tracer/beijing%s/", sr); // 存储位置流数据的目录
+
 	public Settings() {
 		// TODO Auto-generated constructor stub
 	}

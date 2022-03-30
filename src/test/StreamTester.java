@@ -1,6 +1,8 @@
 package test;
 import java.io.File;
 import java.util.ArrayList;
+
+import trace.Settings;
 import trace.Util;
 import data_loader.Location;
 import data_loader.Stream;
@@ -10,15 +12,10 @@ import data_loader.Stream;
  */
 
 public class StreamTester {
-	
 
-	
 	public static void main(String[] args) {
-		
-		
-		String path = "E:/data/contact_tracer/beijing50";
 		//  获取该采样率下的所有轨迹点文件名
-		File[] files = new File(path).listFiles();
+		File[] files = new File(Settings.dataPath).listFiles();
 		if (files == null)
 		{
 			System.out.println("No valid files found!!");
