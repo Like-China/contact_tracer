@@ -1,22 +1,3 @@
-1. 尝试使更多病人和普通人位于同一区域，近似算法会产生更好的效果
-2. 2022/1/26 将各种tracer类别分开
-
-without pre-checking
-共处理5578302个位置， 756个时刻 用时:  5950 平均用时:  7.87037037037037
-共发现cases of exposure: 8486
-
-minMBR = 4
-共处理5578302个位置， 756个时刻 用时:  14308 平均用时:  18.925925925925927
-共发现cases of exposure: 8486
-
-minMBR = 8
-共处理5578302个位置， 756个时刻 用时:  11313 平均用时:  14.964285714285714
-共发现cases of exposure: 8486
-
-minMBR = 16
-共处理5578302个位置， 756个时刻 用时:  8098 平均用时:  10.711640211640212
-共发现cases of exposure: 8486
-
-100
-共处理5578302个位置， 756个时刻 用时:  5837 平均用时:  7.720899470899471
-共发现cases of exposure: 8486
+# Contact tracer
+This implementation follows the content of the article
+"Towards Controlling the Transmission of Diseases: Continuous Exposure \\Discovery over Massive-Scale Moving Objects" Published in IJCAI2022

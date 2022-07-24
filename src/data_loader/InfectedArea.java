@@ -1,3 +1,10 @@
+/*
+ * @Author: your name
+ * @Date: 2022-03-30 12:02:24
+ * @LastEditTime: 2022-03-30 13:41:26
+ * @LastEditors: your name
+ * @FilePath: /contact_tracer/src/data_loader/InfectedArea.java
+ */
 package data_loader;
 
 

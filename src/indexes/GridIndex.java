@@ -14,11 +14,13 @@ public class GridIndex {
 	public int xmax;
 	public int ymax;
 	public int areaNum;
-	// 每个时刻，记录每个区域中包含的Location对象 ( 正常人)
 	public HashMap<Integer, ArrayList<Location>> ordinaryAreasLocations = new HashMap<Integer, ArrayList<Location>>();
-	// 每个时刻，记录每个区域中包含的Location对象 ( 正常人)
 	public HashMap<Integer, ArrayList<Location>> patientAreasLocations = new HashMap<Integer, ArrayList<Location>>();
-	
+	// 记录每个区域病人行程的MBR, Float[]分别记录minLon, maxLon, minLat, maxLat
+	public HashMap<Integer, Float[]> ordinaryAreasMBR = new HashMap<>();
+	// 记录每个区域正常人形成的MBR
+	public HashMap<Integer, Float[]> patientAreasMBR = new HashMap<>();
+
 	public HashMap<Integer, ArrayList<Location>> getPatientAreasLocations() {
 		return patientAreasLocations;
 	}
@@ -40,11 +42,11 @@ public class GridIndex {
 		this.scale = scale;
 		if (cityname == "beijing")
 		{
-			lonRange = new float[]{116.25f-0.1f, 116.55f+0.1f};
-			latRange = new float[]{39.83f-0.1f, 40.03f+0.1f};
+			lonRange = new float[]{116.25f-0.001f, 116.55f+0.001f};
+			latRange = new float[]{39.83f-0.001f, 40.03f+0.001f};
 		}else {
-			lonRange = new float[]{-8.735f, -8.156f};
-			latRange = new float[]{40.953f, 41.307f};
+			lonRange = new float[]{-8.735f-0.0015f, -8.156f+0.0015f};
+			latRange = new float[]{40.953f-0.0015f, 41.307f+0.0015f};
 		}
 		this.xmax = getX(lonRange[1]);
 		this.ymax = getY(latRange[1]);
@@ -56,7 +58,7 @@ public class GridIndex {
 	{	
 		if (lon<lonRange[0] || lon>lonRange[1])
 		{
-			System.out.println("X不在范围内");
+			System.out.println("X is out of range");
 			return -1;
 		}
 		return  (int)((lon - lonRange[0])/scale);
@@ -66,7 +68,7 @@ public class GridIndex {
 	{	
 		if (lat<latRange[0] || lat>latRange[1])
 		{
-			System.out.println("Y不在范围内");
+			System.out.println("Y is out of range");
 			return -1;
 		}
 		return  (int)((lat - latRange[0])/scale);
@@ -78,52 +80,18 @@ public class GridIndex {
 		int y = getY(lat);
 		return y*xmax+x;
 	}
-	
-	// 获取给定areaID周围的八个邻居AreaID
-	public int[] getNeighborAreas(int areaID)
+
+	public int id2x(int id)
 	{
-		int x = areaID % xmax;
-		int y = areaID / xmax;
-		int[] nn = new int[8];
-		Arrays.fill(nn, -1);
-		if(x-1>=0)
-		{
-			nn[0] = y*xmax+x-1;
-			if(y-1>=0)
-			{
-				nn[1] = (y-1)*xmax+x-1;
-			}
-			if(y+1<=ymax)
-			{
-				nn[2] = (y+1)*xmax+x-1;
-			}
-		}
-		if(x+1<=xmax)
-		{	
-			nn[3] = y*xmax+x+1;
-			if(y-1>=0)
-			{
-				nn[4] = (y-1)*xmax+x+1;
-			}
-			if(y+1<=ymax)
-			{
-				nn[5] = (y+1)*xmax+x+1;
-			}
-		}
-		if(y-1>=0)
-		{
-			nn[6] = (y-1)*xmax+x;
-		}
-		if(y+1<=ymax)
-		{
-			nn[7] = (y+1)*xmax+x;
-		}
-		
-		return nn;
-		
+		return id % xmax;
+	}
+
+	public int id2y(int id)
+	{
+		return id / xmax;
 	}
 	
-	// 获取给定区域可能感染的其他区域
+	// get influenced areas by infected area, including infeteced area itself
 	public int[] getAffectAreas(int areaID)
 	{	
 		
@@ -145,7 +113,7 @@ public class GridIndex {
 		nn[4] = -1;
 		nn[20] = -1;
 		nn[24] = -1;
-//		nn[12] = -1;
+		// nn[12] = -1; regard infected area as a case of influenced areas 
 		return nn;
 	}
 	

@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Random;
+import trace.Settings;
 
 /*
 给定某一天的时间有序的位置点文本路径
@@ -24,6 +26,11 @@ public class Stream {
 	BufferedReader reader;
 	// 由于顺序读取会少读每个时刻的第一个位置点，因此维护下一个第一个位置点
 	Location first_loc = null;
+	// 维护一个随机数
+	Random r = new Random(0);
+	// 记录最大ID，minID
+	public int minID = 10000;
+	public int maxID = -1;
 	
 	public Stream(String txt_path) {
 		this.txt_path = txt_path;
@@ -59,6 +66,8 @@ public class Stream {
 			while((lineString = reader.readLine()) != null)
 			{	
 				int id = Integer.parseInt(lineString.split(" ")[0]);
+				maxID = maxID>id?maxID:id;
+				minID = minID<id?minID:id;
 				String date = lineString.split(" ")[1];
 				String time = lineString.split(" ")[2];
 				float lon = Float.parseFloat(lineString.split(" ")[3]);
@@ -73,7 +82,17 @@ public class Stream {
 					first_loc = new Location(id, date, time, lon, lat, ts);
 					break;
 				}else {
+					// 扩张数据位置点规模 （2022/5/13）
+					// 添加原位置点
 					location_batch.add(new Location(id, date, time, lon, lat, ts));
+					// 添加扩张数据点
+					if(Settings.expNum>1)
+					{
+						for(int i=1;i<Settings.expNum;i++)
+						{
+							location_batch.add(new Location(2000000+id*Settings.expNum+i, date, time, (float)(lon+0.0005), (float)(lat+0.0005), ts));
+						}
+					}
 					count++;
 				}
 			}

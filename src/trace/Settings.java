@@ -1,16 +1,30 @@
-package trace;
+/*
+ * @Descripttion: 
+ * @version: 
+ * @Author: Paulzzzhang
+ * @Date: 2022-03-30 12:02:25
+ * @LastEditors: Like likemelikeyou@126.com
+ * @LastEditTime: 2022-06-13 11:41:47
+ */
 
+package trace;
 public class Settings {
-	
-	public static int maxProcessDays = 12; // 最大处理天数
-	public static int sr = 50; // 读取的轨迹采样率
-	public static int duration_threshold = 30; // 设定的感染时长
-	public static float distance_threshold = 1f; // 设定的感染距离
-	public static String city_name = "beijing";
-	public static int objectNum = (city_name.equals("beijing")) ? 10000:1000000; // 初始化物体数目
-	public static int initPatientNum = (city_name.equals("beijing")) ? 500:60000;// 初始化病人数目
-	public static boolean isRandom = false; // 病人的生成是否随机
-	public static String dataPath = String.format("/home/Like/data/contact_tracer/%s%s/", city_name, sr); // 存储位置流数据的目录
+
+	// default parameters settings
+	public static String city_name = "porto"; 
+	public static int maxProcessDays = 20; 
+	public static int maxETADays = 10; // to get eta mean runtime, 不测试所有的天数,beijing ETA不再实验
+	public static int sr = (city_name.equals("beijing")) ? 10:5; // sampling rate
+	public static int duration_threshold = (city_name.equals("beijing")) ? 15:15; // Beijing: default 15, [5,10,15,20,25]; Porto: [5,7,9,11], default 5
+	public static float distance_threshold = 2f; // Beijing, Porto: default 2, ranges [2,4,6,8,10]
+	public static int objectNum = (city_name.equals("beijing")) ? 10000 : 1000000; // initial number of all objects
+	public static int initPatientNum = (city_name.equals("beijing")) ? 200 : 60000;// initial number of query objects
+	public static boolean isRandom = false; 
+	public static String dataPath = String.format("/home/Like/data/contact_tracer/%s%s/", city_name, sr); // data path
+	public static boolean prechecking = true;
+	public static int m = 2; // how often use EGP for AGP algorithm
+	public static int minMBR = 20;
+	public static int expNum = 1;
 
 	public Settings() {
 		// TODO Auto-generated constructor stub
