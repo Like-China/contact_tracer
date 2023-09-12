@@ -1,11 +1,4 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: Paulzzzhang
- * @Date: 2022-03-30 12:02:25
- * @LastEditors: Paulzzzhang
- * @LastEditTime: 2022-03-30 21:12:54
- */
+
 package data_loader;
 
 public class Location {
@@ -17,10 +10,9 @@ public class Location {
 	public float lat = -1;
 	public int ts = -1;
 
-	// 是否是密切接触点
+	// contacted location or not
 	public boolean isContact = false;
 
-	// 所在的区域ID
 	public int areaID = -1;
 
 	public Location() {

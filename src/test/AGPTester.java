@@ -1,11 +1,3 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: Paulzzzhang
- * @Date: 2022-03-30 17:26:41
- * @LastEditors: Like likemelikeyou@126.com
- * @LastEditTime: 2022-06-09 11:40:32
- */
 package test;
 
 import java.io.File;
@@ -24,7 +16,8 @@ public class AGPTester {
 		// 1. get all files and sort by days
 		File[] files = Util.orderByName(Settings.dataPath);
 		// 2. create a Tracer object
-		AGP_Tracer tracer = new AGP_Tracer(Settings.distance_threshold, Settings.duration_threshold, Settings.city_name);
+		AGP_Tracer tracer = new AGP_Tracer(Settings.distance_threshold, Settings.duration_threshold,
+				Settings.city_name);
 		// 3. init a batch of patient ids
 		tracer.patientIDs = Util.initPatientIds(Settings.objectNum, Settings.initPatientNum, Settings.isRandom);
 		long runtime = 0;
@@ -77,10 +70,13 @@ public class AGPTester {
 		// System.out.println(AGP_cases);
 
 		String otherInfo = String.format("locations: %d , timestamps %d, runtime: %d, mean runtime: %f",
-		 locNum, tsNum, runtime, (double) runtime / tsNum);
+				locNum, tsNum, runtime, (double) runtime / tsNum);
 
-		 String setInfo = String.format("city_name: %s \t days: %d \t sr: %d \t duration_threshold: %d  \t distance_threshold: %f  \t initPatientNum: %d minMBR: %d", Settings.city_name,
-		Settings.maxProcessDays, Settings.sr, Settings.duration_threshold, Settings.distance_threshold, Settings.initPatientNum, Settings.minMBR);
+		String setInfo = String.format(
+				"city_name: %s \t days: %d \t sr: %d \t duration_threshold: %d  \t distance_threshold: %f  \t initPatientNum: %d minMBR: %d",
+				Settings.city_name,
+				Settings.maxProcessDays, Settings.sr, Settings.duration_threshold, Settings.distance_threshold,
+				Settings.initPatientNum, Settings.minMBR);
 		Util.writeFile("AGP", AGP_cases.size(), setInfo, otherInfo);
 
 	}

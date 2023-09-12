@@ -1,11 +1,3 @@
-/*
- * @Author: your name
- * @Date: 2022-03-30 17:25:08
- * @LastEditTime: 2022-04-08 11:32:18
- * @LastEditors: Please set LastEditors
- * @Description: 
- * @FilePath: /contact_tracer/src/test/ETATester.java
- */
 package test;
 
 import java.io.File;
@@ -76,10 +68,13 @@ public class ETATester {
 		System.out.println(ETA_cases);
 
 		String otherInfo = String.format("locations: %d , timestamps %d, runtime: %d, mean runtime: %f",
-		 locNum, tsNum, runtime, (double) runtime / tsNum);
-		 String setInfo = String.format("city_name: %s \t days: %d \t sr: %d \t duration_threshold: %d  \t distance_threshold: %f  \t initPatientNum: %d minMBR: %d", Settings.city_name,
-		 Settings.maxProcessDays, Settings.sr, Settings.duration_threshold, Settings.distance_threshold, Settings.initPatientNum, Settings.minMBR);
-		 Util.writeFile("ETA", ETA_cases.size(), setInfo, otherInfo);
+				locNum, tsNum, runtime, (double) runtime / tsNum);
+		String setInfo = String.format(
+				"city_name: %s \t days: %d \t sr: %d \t duration_threshold: %d  \t distance_threshold: %f  \t initPatientNum: %d minMBR: %d",
+				Settings.city_name,
+				Settings.maxProcessDays, Settings.sr, Settings.duration_threshold, Settings.distance_threshold,
+				Settings.initPatientNum, Settings.minMBR);
+		Util.writeFile("ETA", ETA_cases.size(), setInfo, otherInfo);
 
 	}
 
