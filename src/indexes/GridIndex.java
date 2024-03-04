@@ -8,15 +8,22 @@ import data_loader.Location;
 
 public class GridIndex {
 
+	// the scale (width) of each grad cell
 	public double scale;
+	// the min/max value of longitude/latitude the whole grid index, which is pre-defined
 	public float[] lonRange;
 	public float[] latRange;
+	// the min.max x coordinate 
 	public int xmax;
 	public int ymax;
-	public int areaNum;
+	// the number of grid cells
+	public int cellNB;
+	// the map from cell id to the ordinary (non-query) locations within this grid cell
 	public HashMap<Integer, ArrayList<Location>> ordinaryAreasLocations = new HashMap<Integer, ArrayList<Location>>();
+	// the map from cell id to the query locations within this grid cell
 	public HashMap<Integer, ArrayList<Location>> patientAreasLocations = new HashMap<Integer, ArrayList<Location>>();
 	// MBR: minLon, maxLon, minLat, maxLat
+	// MBR of all non-query/query locations within a grid cell
 	public HashMap<Integer, Float[]> ordinaryAreasMBR = new HashMap<>();
 	public HashMap<Integer, Float[]> patientAreasMBR = new HashMap<>();
 
@@ -47,7 +54,7 @@ public class GridIndex {
 		}
 		this.xmax = getX(lonRange[1]);
 		this.ymax = getY(latRange[1]);
-		areaNum = this.xmax * this.ymax - 1;
+		cellNB = this.xmax * this.ymax - 1;
 
 	}
 

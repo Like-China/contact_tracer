@@ -1,3 +1,11 @@
+/*
+ * @Descripttion: Rika's code
+ * @version: 1.0.0
+ * @Author: Rika
+ * @Date: 2024-03-04 19:00:49
+ * @LastEditors: Rika
+ * @LastEditTime: 2024-03-04 21:09:29
+ */
 package trace;
 
 import java.io.BufferedWriter;
@@ -48,7 +56,7 @@ public class Util {
 			// 这句话以前是为了减少不必要计算，如今发现存在错误：对于感染病例有的已经被标记为contacted,这部分病例会被忽略掉
 			// 解决方法：注释掉
 			// if (l.isContact)
-			// 	continue;
+			// continue;
 			minLon = Math.min(minLon, l.lon);
 			maxLon = Math.max(maxLon, l.lon);
 			minLat = Math.min(minLat, l.lat);
@@ -179,18 +187,18 @@ public class Util {
 	}
 
 	// Write results log
-	public static void writeFile(String algorithm, int caseNum, String setInfo, String otherInfo){
+	public static void writeFile(String algorithm, int caseNum, String setInfo, String otherInfo) {
 		try {
 			File writeName = new File("./out.txt");
 			writeName.createNewFile();
 			try (FileWriter writer = new FileWriter(writeName, true);
-				  BufferedWriter out = new BufferedWriter(writer)){
-				out.write("\nAlgorithm: " + algorithm); 
-				out.newLine();   
+					BufferedWriter out = new BufferedWriter(writer)) {
+				out.write("\nAlgorithm: " + algorithm);
+				out.newLine();
 				out.write(setInfo);
-				out.newLine();  
+				out.newLine();
 				out.write(otherInfo);
-				out.write(", Cases of exposures: "+caseNum);
+				out.write(", Cases of exposures: " + caseNum);
 				out.newLine();
 				out.flush();
 			}
@@ -200,22 +208,21 @@ public class Util {
 	}
 
 	// 米勒投影，经纬度转为直角坐标系
-	public static double[] MillierConvertion(double lat, double lon)  
-    {  
-         double L = 6381372 * Math.PI * 2;//地球周长  
-         double W=L;// 平面展开后，x轴等于周长  
-         double H=L/2;// y轴约等于周长一半  
-         double mill=2.3;// 米勒投影中的一个常数，范围大约在正负2.3之间  
-         double x = lon * Math.PI / 180;// 将经度从度数转换为弧度  
-         double y = lat * Math.PI / 180;// 将纬度从度数转换为弧度  
-         y=1.25 * Math.log( Math.tan( 0.25 * Math.PI + 0.4 * y ) );// 米勒投影的转换  
-         // 弧度转为实际距离  
-         x = ( W / 2 ) + ( W / (2 * Math.PI) ) * x;  
-         y = ( H / 2 ) - ( H / ( 2 * mill ) ) * y;  
-         double[] result=new double[2];  
-         result[0]=x;  
-         result[1]=y;  
-         return result;  
-    }
-	
+	public static double[] MillierConvertion(double lat, double lon) {
+		double L = 6381372 * Math.PI * 2;// 地球周长
+		double W = L;// 平面展开后，x轴等于周长
+		double H = L / 2;// y轴约等于周长一半
+		double mill = 2.3;// 米勒投影中的一个常数，范围大约在正负2.3之间
+		double x = lon * Math.PI / 180;// 将经度从度数转换为弧度
+		double y = lat * Math.PI / 180;// 将纬度从度数转换为弧度
+		y = 1.25 * Math.log(Math.tan(0.25 * Math.PI + 0.4 * y));// 米勒投影的转换
+		// 弧度转为实际距离
+		x = (W / 2) + (W / (2 * Math.PI)) * x;
+		y = (H / 2) - (H / (2 * mill)) * y;
+		double[] result = new double[2];
+		result[0] = x;
+		result[1] = y;
+		return result;
+	}
+
 }

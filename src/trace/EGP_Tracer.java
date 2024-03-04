@@ -1,3 +1,11 @@
+/*
+ * @Descripttion: Rika's code
+ * @version: 1.0.0
+ * @Author: Rika
+ * @Date: 2024-03-04 19:00:49
+ * @LastEditors: Rika
+ * @LastEditTime: 2024-03-04 21:09:16
+ */
 package trace;
 
 /**

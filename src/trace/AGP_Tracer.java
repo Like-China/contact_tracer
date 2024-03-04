@@ -1,3 +1,11 @@
+/*
+ * @Descripttion: Rika's code
+ * @version: 1.0.0
+ * @Author: Rika
+ * @Date: 2024-03-04 19:00:49
+ * @LastEditors: Rika
+ * @LastEditTime: 2024-03-04 21:09:38
+ */
 package trace;
 
 import java.util.ArrayList;
@@ -172,5 +180,4 @@ public class AGP_Tracer {
 		return res;
 	}
 
-	
 }

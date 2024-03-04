@@ -1,3 +1,11 @@
+/*
+ * @Descripttion: Rika's code
+ * @version: 1.0.0
+ * @Author: Rika
+ * @Date: 2024-03-04 19:00:49
+ * @LastEditors: Rika
+ * @LastEditTime: 2024-03-04 21:08:54
+ */
 package test;
 
 import java.io.File;
@@ -6,7 +14,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import data_loader.Location;
 import data_loader.Stream;
-import trace.ETA_Tracer;
+import trace.ET;
 import trace.Settings;
 import trace.Util;
 import trace.EGP_Tracer;
@@ -35,7 +43,7 @@ class Sequence {
 		// 1. get all files and sort by days
 		File[] files = Util.orderByName(String.format("/home/Like/data/contact_tracer/%s%s/", city_name, this.sr));
 		// 2. create a Tracer object
-		ETA_Tracer etaTracer = new ETA_Tracer(this.distance_threshold, this.duration_threshold,
+		ET etaTracer = new ET(this.distance_threshold, this.duration_threshold,
 				this.city_name);
 		// 3. init a batch of patient ids
 		etaTracer.patientIDs = (HashSet<Integer>) patientIDs.clone();
@@ -50,7 +58,7 @@ class Sequence {
 		}
 		for (File f : files) {
 			Stream stream = new Stream(f.toString());
-			ArrayList<Location> batch = stream.read_batch();
+			ArrayList<Location> batch = stream.batch();
 			while (batch != null && !batch.isEmpty()) {
 				if (batch.get(0).ts % this.sr != 0) {
 					continue;
@@ -65,7 +73,7 @@ class Sequence {
 					ETA_res.put(tsNum, ETA_cases);
 				}
 				tsNum += 1;
-				batch = stream.read_batch();
+				batch = stream.batch();
 			} // End 'While' Loop
 			dayNum += 1;
 			if (dayNum >= Settings.maxETADays) {
@@ -114,7 +122,7 @@ class Sequence {
 		}
 		for (File f : files) {
 			Stream stream = new Stream(f.toString());
-			ArrayList<Location> batch = stream.read_batch();
+			ArrayList<Location> batch = stream.batch();
 			while (batch != null && !batch.isEmpty()) {
 				if (batch.get(0).ts % this.sr != 0) {
 					continue; // If not sampled location, ignore
@@ -130,7 +138,7 @@ class Sequence {
 				// long endTime = System.currentTimeMillis();
 				// runtime += endTime - startTime;
 				tsNum += 1;
-				batch = stream.read_batch();
+				batch = stream.batch();
 			} // End 'While' Loop
 			dayNum += 1;
 			if (dayNum >= Settings.maxProcessDays) {
@@ -183,7 +191,7 @@ class Sequence {
 		}
 		for (File f : files) {
 			Stream stream = new Stream(f.toString());
-			ArrayList<Location> batch = stream.read_batch();
+			ArrayList<Location> batch = stream.batch();
 			while (batch != null && !batch.isEmpty()) {
 				if (batch.get(0).ts % this.sr != 0) {
 					continue;
@@ -195,7 +203,7 @@ class Sequence {
 					AGP_res.put(tsNum, AGP_cases);
 				}
 				tsNum += 1;
-				batch = stream.read_batch();
+				batch = stream.batch();
 			} // End 'While' Loop
 
 			dayNum += 1;

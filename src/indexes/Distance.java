@@ -1,15 +1,33 @@
+/*
+ * @Descripttion: Rika's code
+ * @version: 1.0.0
+ * @Author: Rika
+ * @Date: 2024-03-04 19:00:49
+ * @LastEditors: Rika
+ * @LastEditTime: 2024-03-04 20:22:17
+ */
 package indexes;
 
 public class Distance {
 
+	// once the function distance is triggered, the calcCount will be added by 1
 	public long calcCount = 0;
+	// the total runtime of multiple distance calculations
 	public long runtime = 0;
 
 	public Distance() {
 		// TODO Auto-generated constructor stub
 	}
 
-	// distance between two locations (meters)
+	/**
+	 * @name:
+	 * @msg:
+	 * @param {double} lat1 the latitude of source location
+	 * @param {double} lon1 the longtitude of source location
+	 * @param {double} lat2 the latitude of target location
+	 * @param {double} lon2 the longtitude of target location
+	 * @return {the tranfered distance between two locations (meters)*}
+	 */
 	public double distance(double lat1, double lon1, double lat2, double lon2) {
 		calcCount += 1;
 		long startTime = System.nanoTime();

@@ -1,3 +1,11 @@
+/*
+ * @Descripttion: Rika's code
+ * @version: 1.0.0
+ * @Author: Rika
+ * @Date: 2024-03-04 19:00:49
+ * @LastEditors: Rika
+ * @LastEditTime: 2024-03-04 21:10:01
+ */
 package test;
 
 import java.io.File;
@@ -32,7 +40,7 @@ public class AGPTester {
 		}
 		for (File f : files) {
 			Stream stream = new Stream(f.toString());
-			ArrayList<Location> batch = stream.read_batch();
+			ArrayList<Location> batch = stream.batch();
 			while (batch != null && !batch.isEmpty()) {
 				if (batch.get(0).ts % Settings.sr != 0) {
 					continue;
@@ -49,7 +57,7 @@ public class AGPTester {
 				long endTime = System.currentTimeMillis();
 				runtime += endTime - startTime;
 				tsNum += 1;
-				batch = stream.read_batch();
+				batch = stream.batch();
 			} // End 'While' Loop
 
 			dayNum += 1;
