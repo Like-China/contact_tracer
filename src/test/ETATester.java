@@ -4,7 +4,7 @@
  * @Author: Rika
  * @Date: 2024-03-04 19:00:49
  * @LastEditors: Rika
- * @LastEditTime: 2024-03-04 21:09:45
+ * @LastEditTime: 2024-03-06 12:37:15
  */
 package test;
 
@@ -24,7 +24,7 @@ public class ETATester {
 		// 1. get all files and sort by days
 		File[] files = Util.orderByName(Settings.dataPath);
 		// 2. create a Tracer object
-		ET etaTracer = new ET(Settings.distance_threshold, Settings.duration_threshold,
+		ET etaTracer = new ET(Settings.epsilon, Settings.k,
 				Settings.city_name);
 		// 3. init a batch of patient ids
 		etaTracer.patientIDs = Util.initPatientIds(Settings.objectNum, Settings.initPatientNum, Settings.isRandom);
@@ -78,9 +78,9 @@ public class ETATester {
 		String otherInfo = String.format("locations: %d , timestamps %d, runtime: %d, mean runtime: %f",
 				locNum, tsNum, runtime, (double) runtime / tsNum);
 		String setInfo = String.format(
-				"city_name: %s \t days: %d \t sr: %d \t duration_threshold: %d  \t distance_threshold: %f  \t initPatientNum: %d minMBR: %d",
+				"city_name: %s \t days: %d \t sr: %d \t k: %d  \t epsilon: %f  \t initPatientNum: %d minMBR: %d",
 				Settings.city_name,
-				Settings.maxProcessDays, Settings.sr, Settings.duration_threshold, Settings.distance_threshold,
+				Settings.maxProcessDays, Settings.sr, Settings.k, Settings.epsilon,
 				Settings.initPatientNum, Settings.minMBR);
 		Util.writeFile("ETA", ETA_cases.size(), setInfo, otherInfo);
 

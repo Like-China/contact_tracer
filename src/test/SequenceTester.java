@@ -17,8 +17,8 @@ import data_loader.Stream;
 import trace.ET;
 import trace.Settings;
 import trace.Util;
-import trace.EGP_Tracer;
-import trace.AGP_Tracer;
+import trace.EGP;
+import trace.AGP;
 
 class Sequence {
 	public String threadName;
@@ -107,7 +107,7 @@ class Sequence {
 		// 1. get all files and sort by days
 		File[] files = Util.orderByName(String.format("/home/Like/data/contact_tracer/%s%s/", city_name, this.sr));
 		// 2. create a Tracer object
-		EGP_Tracer tracer = new EGP_Tracer(this.distance_threshold, this.duration_threshold,
+		EGP tracer = new EGP(this.distance_threshold, this.duration_threshold,
 				this.city_name);
 		// 3. init a batch of patient ids
 		tracer.patientIDs = (HashSet<Integer>) patientIDs.clone();
@@ -177,7 +177,7 @@ class Sequence {
 		// 1. get all files and sort by days
 		File[] files = Util.orderByName(String.format("/home/Like/data/contact_tracer/%s%s/", city_name, this.sr));
 		// 2. create a Tracer object
-		AGP_Tracer tracer = new AGP_Tracer(this.distance_threshold, this.duration_threshold, this.city_name);
+		AGP tracer = new AGP(this.distance_threshold, this.duration_threshold, this.city_name);
 		// 3. init a batch of patient ids
 		tracer.patientIDs = (HashSet<Integer>) patientIDs.clone();
 		long locNum = 0;

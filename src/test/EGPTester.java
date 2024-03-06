@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import data_loader.Location;
 import data_loader.Stream;
-import trace.EGP_Tracer;
+import trace.EGP;
 import trace.Settings;
 import trace.Util;
 
@@ -26,7 +26,7 @@ public class EGPTester {
 		// 1. get all files and sort by days
 		File[] files = Util.orderByName(Settings.dataPath);
 		// 2. create a Tracer object
-		EGP_Tracer tracer = new EGP_Tracer(Settings.distance_threshold, Settings.duration_threshold,
+		EGP tracer = new EGP(Settings.epsilon, Settings.k,
 				Settings.city_name);
 		// 3. init a batch of patient ids
 		tracer.patientIDs = Util.initPatientIds(Settings.objectNum, Settings.initPatientNum, Settings.isRandom);
@@ -82,9 +82,9 @@ public class EGPTester {
 		String otherInfo = String.format("locations: %d , timestamps %d, runtime: %d, mean runtime: %f",
 				locNum, tsNum, runtime, (double) runtime / tsNum);
 		String setInfo = String.format(
-				"city_name: %s \t days: %d \t sr: %d \t duration_threshold: %d  \t distance_threshold: %f  \t initPatientNum: %d minMBR: %d",
+				"city_name: %s \t days: %d \t sr: %d \t k: %d  \t epsilon: %f  \t initPatientNum: %d minMBR: %d",
 				Settings.city_name,
-				Settings.maxProcessDays, Settings.sr, Settings.duration_threshold, Settings.distance_threshold,
+				Settings.maxProcessDays, Settings.sr, Settings.k, Settings.epsilon,
 				Settings.initPatientNum, Settings.minMBR);
 		if (Settings.prechecking) {
 			Util.writeFile("EGP", EGP_cases.size(), setInfo, otherInfo);
@@ -92,7 +92,8 @@ public class EGPTester {
 			Util.writeFile("EGP#", EGP_cases.size(), setInfo, otherInfo);
 		}
 
-		// 输出总的precheck次数和有效的prechecking次数
+		// the total number of pre-checking operations / the number of valid
+		// pre-checking operations
 		System.out.printf("%d / %d", tracer.totalCheckNums, tracer.validCheckNums);
 		System.out.println("time_consuming: " + (System.currentTimeMillis() - start_time));
 	}

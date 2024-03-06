@@ -4,10 +4,13 @@
  * @Author: Rika
  * @Date: 2024-03-04 19:00:49
  * @LastEditors: Rika
- * @LastEditTime: 2024-03-04 21:09:38
+ * @LastEditTime: 2024-03-05 13:53:12
  */
 package trace;
 
+/**
+ * AGP implementation
+ */
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -15,28 +18,45 @@ import data_loader.Location;
 import indexes.Distance;
 import indexes.GridIndex;
 
-public class AGP_Tracer {
-	public double distance_threshold;
-	public int duration_threshold;
-	// record all cases of exposures, init == query patients
+public class AGP {
+	// the distance threshold
+	public double epsilon;
+	// the duration threshold
+	public int k;
+	// patient ids that consist of already infected objects and new discoverd cases
+	// of exposure
 	public HashSet<Integer> patientIDs;
-	// infected area ids of current timestamp
+	// grid cells that at least one patients in it
 	public HashSet<Integer> areas;
+	// the map from moving object to its conduct duration with query objects
 	public HashMap<Integer, Integer> objectMapDuration = new HashMap<Integer, Integer>();
-	public HashMap<Integer, Boolean> isInfect = new HashMap<Integer, Boolean>();
+	// record each object contacts with at least one query object at current
+	// timestamp or not
+	public HashMap<Integer, Boolean> isContactMap = new HashMap<Integer, Boolean>();
 	public GridIndex g;
+
+	// the minimal objects within a MBR, or we do not apply MBR for pre-checking
 	public int minMBR = Settings.minMBR;
+
 	public Distance D = new Distance();
 
-	public AGP_Tracer(double distance_threshold, int duration_threshold, String cityname) {
-		super();
-		this.distance_threshold = distance_threshold;
-		double scale = (distance_threshold / 10000 / Math.sqrt(2));
-		this.duration_threshold = duration_threshold;
-		// this.duration_threshold = duration_threshold/ Settings.m;
+	/*
+	 * the value of k in AGP is k//m exactly
+	 */
+	public AGP(double epsilon, int k, String cityname) {
+		this.epsilon = epsilon;
+		double scale = (epsilon / 10000 / Math.sqrt(2));
+		this.k = k;
 		g = new GridIndex(scale, cityname);
 	}
 
+	/**
+	 * Given a set of locations, mark grid cells that contains cases of exposure
+	 * Meanwhile, we establish non-query location group/query location group for
+	 * each grid cell
+	 * 
+	 * @param batch
+	 */
 	public void findInfectedArea(ArrayList<Location> batch) {
 		areas = new HashSet<Integer>();
 		// record ordinary locations of each grid cell
@@ -73,7 +93,7 @@ public class AGP_Tracer {
 		// get each patient area and its covered locations "g.patientAreasLocations"
 		// get each ordinary area and its covered locations "g.ordinaryAreasLocations"
 		findInfectedArea(batch);
-		ArrayList<Integer> res = new ArrayList<Integer>();
+		ArrayList<Integer> updateCE = new ArrayList<Integer>();
 
 		// for influenced areas of infected areas (included the infected area itself),
 		// we check objects within influenced areas are infected or not
@@ -92,10 +112,10 @@ public class AGP_Tracer {
 						continue;
 					for (Location l2 : patientLocations) {
 						double dis = D.distance(l1.lat, l1.lon, l2.lat, l2.lon);
-						if (dis <= distance_threshold) {
+						if (dis <= epsilon) {
 							// mark this location as detected
 							l1.isContact = true;
-							isInfect.put(l1.id, true);
+							isContactMap.put(l1.id, true);
 							// initial a key value in the dictionary
 							if (!objectMapDuration.containsKey(l1.id)) {
 								objectMapDuration.put(l1.id, 0);
@@ -103,9 +123,9 @@ public class AGP_Tracer {
 							int duration = objectMapDuration.get(l1.id) + 1;
 							objectMapDuration.put(l1.id, duration);
 							// find new case of exposure
-							if (duration >= duration_threshold) {
+							if (duration >= k) {
 								patientIDs.add(l1.id);
-								res.add(l1.id);
+								updateCE.add(l1.id);
 							}
 							break;
 						}
@@ -116,21 +136,28 @@ public class AGP_Tracer {
 
 		// reset infected duration for these objects not infected at current timestamp
 		for (Integer id : objectMapDuration.keySet()) {
-			if (!isInfect.containsKey(id))
+			if (!isContactMap.containsKey(id))
 				objectMapDuration.put(id, 0);
 		}
-		isInfect.clear();
-		return res;
+		isContactMap.clear();
+		return updateCE;
 	}
 
-	// 1. for specific timestampe we run EGP
-	// 2. otherwise, add the infected duration of all moving objects by 1
+	/**
+	 * continuously search updated cases of exposes with ET algorithm
+	 * update patientIDs and return updated cases of exposes
+	 * for specific timestampe we run EGP
+	 * otherwise, add the infected duration of all moving objects by 1
+	 * 
+	 * @param batch a list of location at the same timesampe
+	 * @return updated cases of exposes
+	 */
 	public ArrayList<Integer> trace(ArrayList<Location> batch, int ts) {
 
-		ArrayList<Integer> res = new ArrayList<Integer>();
+		ArrayList<Integer> updateCE = new ArrayList<Integer>();
 		// periodically apply EGP algorithm for exact detection
-		if (ts % Settings.m == 0 || ts % duration_threshold == 0 || ts % (duration_threshold / 2) == 0) {
-			// || ts % duration_threshold == 0 || ts % (duration_threshold / 2) == 0) {
+		if (ts % Settings.m == 0 || ts % k == 0 || ts % (k / 2) == 0) {
+			// || ts % k == 0 || ts % (k / 2) == 0) {
 			// System.out.println("ts->EGP: "+ts);
 			return EGP_trace(batch);
 		}
@@ -159,25 +186,25 @@ public class AGP_Tracer {
 						int period = objectMapDuration.get(l.id) + 1;
 						objectMapDuration.put(l.id, period);
 						// find new cases of exposure
-						if (period >= this.duration_threshold) {
+						if (period >= this.k) {
 							patientIDs.add(l.id);
-							res.add(l.id);
+							updateCE.add(l.id);
 						}
 					}
 					// mark this location as detected
 					l.isContact = true;
-					isInfect.put(l.id, true);
+					isContactMap.put(l.id, true);
 				}
 			}
 		} // End 2
 
 		// reset infected duration of specific objects
 		for (Integer id : objectMapDuration.keySet()) {
-			if (!isInfect.containsKey(id))
+			if (!isContactMap.containsKey(id))
 				objectMapDuration.put(id, 0);
 		}
-		isInfect.clear();
-		return res;
+		isContactMap.clear();
+		return updateCE;
 	}
 
 }

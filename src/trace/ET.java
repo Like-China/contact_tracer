@@ -4,7 +4,7 @@
  * @Author: Rika
  * @Date: 2024-03-04 19:00:49
  * @LastEditors: Rika
- * @LastEditTime: 2024-03-04 21:08:22
+ * @LastEditTime: 2024-03-05 12:23:06
  */
 package trace;
 
@@ -16,9 +16,9 @@ import data_loader.Location;
 import indexes.Distance;
 
 public class ET {
-	// the distance thupdatedCEhold
+	// the distance threshold
 	public double epsilon;
-	// the duration thupdatedCEhold
+	// the duration threshold
 	public int k;
 	// patient ids that consist of already infected objects and new discoverd cases
 	// of exposure
@@ -39,7 +39,8 @@ public class ET {
 	}
 
 	/**
-	 * continuously search updated cases of exposes with exact traversal algorithm
+	 * continuously search updated cases of exposes with ET algorithm
+	 * update patientIDs and return updated cases of exposes
 	 * 
 	 * @param batch a list of location at the same timesampe
 	 * @return updated cases of exposes
@@ -67,7 +68,7 @@ public class ET {
 						objectMapDuration.put(l1.id, 0);
 					int duration = objectMapDuration.get(l1.id) + 1;
 					objectMapDuration.put(l1.id, duration);
-					// duration exceeds thupdatedCEhold, add it to query object
+					// duration exceeds threshold, add it to updated query object
 					if (duration >= k) {
 						patientIDs.add(l1.id);
 						updatedCE.add(l1.id);
