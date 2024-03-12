@@ -28,17 +28,29 @@ public class StreamTester {
 		for (File f : files) {
 			long t1 = System.currentTimeMillis();
 			Stream stream = new Stream(f.toString());
-			ArrayList<Location> batch = stream.batch(); 
-			System.out.println("First location of current day: " + batch.get(0));
+			ArrayList<Location> batch = stream.batch();
+			double lon1 = batch.get(0).lon;
+			double lat1 = batch.get(0).lat;
 			while (!batch.isEmpty()) {
-				System.out.println("Number of locations at current timestamp: " + batch.size());
-				System.out.println("First location of current timestamp: \n" + batch.get(0));
-				System.out.println("Last location of current timestamp: \n" + batch.get(batch.size() - 1));
-				System.out.println("******************");
+				if (batch.size() > 3000) {
+					// batch = stream.batch();
+					// continue;
+					// }
+					// System.out.println("Number of locations at current timestamp: " +
+					// batch.size());
+					// System.out.println("First location of current timestamp: \n" + batch.get(0));
+					// System.out.println("Last location of current timestamp: \n" +
+					// batch.get(batch.size() - 1));
+					// System.out.println("******************");
+				}
 				batch = stream.batch();
-				Util.sleep(1);
+				System.out.println("First location of current timestamp: " + batch.get(0));
+				System.out.println(batch.get(0).lon - lon1);
+				System.out.println(batch.get(0).lat - lat1);
+				// Util.sleep(5000);
 			}
 			long t2 = System.currentTimeMillis();
+			System.out.println("ID ranges: " + stream.minID + "---" + stream.maxID);
 			System.out.println("time cost: ");
 			System.out.println(t2 - t1);
 			if (batch.isEmpty()) {

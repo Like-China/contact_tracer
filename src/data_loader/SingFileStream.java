@@ -22,13 +22,12 @@ Given a txt file with Line infromation: id date time lon lat timestamp
 example: 00053 2008-02-08 00:00:00 116.410720 39.990820 0
  */
 
-public class Stream {
+public class SingFileStream {
 	// the file path that records all location information
 	String filePath;
 	// the current already loaded number of lines of the file
 	public int loadLineNB;
 	// the total number of locations, which is noted by the filename
-	public int totalLocNB;
 	// the file reader
 	BufferedReader reader;
 	// the first line location that begins from
@@ -44,10 +43,9 @@ public class Stream {
 	 * 
 	 * @param filePath the file path that records all location information
 	 */
-	public Stream(String filePath) {
+	public SingFileStream(String filePath) {
 		this.filePath = filePath;
 		loadLineNB = 0;
-		totalLocNB = Integer.parseInt(filePath.split("_")[2].replace(".txt", ""));
 		// TODO Auto-generated constructor stub
 		try {
 			File file = new File(filePath);
@@ -64,14 +62,8 @@ public class Stream {
 	 * @return {a list of locations at the same timestamp (curTS)*}
 	 */
 
-	public ArrayList<Location> batch() {
+	public ArrayList<Location> batch(int readObjNB) {
 		ArrayList<Location> locBatch = new ArrayList<>();
-		// the first location of each timestamp may be loaded at last timestamp, thus we
-		// need to add it
-		if (firstLocation != null) {
-			locBatch.add(firstLocation);
-			firstLocation = null;
-		}
 		// the current timestamp of loading locations
 		int curTS = -100;
 		try {
@@ -81,28 +73,19 @@ public class Stream {
 				int id = Integer.parseInt(lineString.split(" ")[0]);
 				minID = minID < id ? minID : id;
 				maxID = maxID < id ? id : maxID;
-				String date = lineString.split(" ")[1];
-				String time = lineString.split(" ")[2];
-				float lon = Float.parseFloat(lineString.split(" ")[3]);
-				float lat = Float.parseFloat(lineString.split(" ")[4]);
-				int ts = Integer.parseInt(lineString.split(" ")[5]);
+				float lon = Float.parseFloat(lineString.split(" ")[1]);
+				float lat = Float.parseFloat(lineString.split(" ")[2]);
+				int ts = Integer.parseInt(lineString.split(" ")[3]);
 				if (count == 0) {
 					curTS = ts;
 				}
 				// if two adjacent lines record two different timestamps, then
 				if (ts != curTS) {
-					firstLocation = new Location(id, date, time, lon, lat, ts);
 					break;
 				} else {
-					locBatch.add(new Location(id, date, time, lon, lat, ts));
-					// manually add some virtual locations to increase data volume
-					if (Settings.expTimes > 1) {
-						for (int i = 1; i < Settings.expTimes; i++) {
-							locBatch.add(new Location(2000000 + id * Settings.expTimes + i, date, time,
-									(float) (lon + 0.0005), (float) (lat + 0.0005), ts));
-						}
+					if (count++ < readObjNB) {
+						locBatch.add(new Location(id, " ", " ", lon, lat, ts));
 					}
-					count++;
 				}
 			}
 			loadLineNB += count;

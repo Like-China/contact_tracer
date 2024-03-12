@@ -11,8 +11,8 @@ public class GridIndex {
 	// the scale (width) of each grad cell
 	public double scale;
 	// the min/max value of longitude/latitude the whole grid index, which is pre-defined
-	public float[] lonRange;
-	public float[] latRange;
+	public double[] lonRange;
+	public double[] latRange;
 	// the min.max x coordinate 
 	public int xmax;
 	public int ymax;
@@ -24,8 +24,8 @@ public class GridIndex {
 	public HashMap<Integer, ArrayList<Location>> patientAreasLocations = new HashMap<Integer, ArrayList<Location>>();
 	// MBR: minLon, maxLon, minLat, maxLat
 	// MBR of all non-query/query locations within a grid cell
-	public HashMap<Integer, Float[]> ordinaryAreasMBR = new HashMap<>();
-	public HashMap<Integer, Float[]> patientAreasMBR = new HashMap<>();
+	public HashMap<Integer, double[]> ordinaryAreasMBR = new HashMap<>();
+	public HashMap<Integer, double[]> patientAreasMBR = new HashMap<>();
 
 	public HashMap<Integer, ArrayList<Location>> getPatientAreasLocations() {
 		return patientAreasLocations;
@@ -46,11 +46,11 @@ public class GridIndex {
 	public GridIndex(double scale, String cityname) {
 		this.scale = scale;
 		if (cityname == "beijing") {
-			lonRange = new float[] { 116.25f - 0.001f, 116.55f + 0.001f };
-			latRange = new float[] { 39.83f - 0.001f, 40.03f + 0.001f };
+			lonRange = new double[] { 116.25f - 0.001f, 116.55f + 0.001f };
+			latRange = new double[] { 39.83f - 0.001f, 40.03f + 0.001f };
 		} else {
-			lonRange = new float[] { -8.735f - 0.0015f, -8.156f + 0.0015f };
-			latRange = new float[] { 40.953f - 0.0015f, 41.307f + 0.0015f };
+			lonRange = new double[] { -8.735f - 0.0015f, -8.156f + 0.0015f };
+			latRange = new double[] { 40.953f - 0.0015f, 41.307f + 0.0015f };
 		}
 		this.xmax = getX(lonRange[1]);
 		this.ymax = getY(latRange[1]);
@@ -58,7 +58,7 @@ public class GridIndex {
 
 	}
 
-	public int getX(float lon) {
+	public int getX(double lon) {
 		if (lon < lonRange[0] || lon > lonRange[1]) {
 			System.out.println("X is out of range");
 			return -1;
@@ -66,7 +66,7 @@ public class GridIndex {
 		return (int) ((lon - lonRange[0]) / scale);
 	}
 
-	public int getY(float lat) {
+	public int getY(double lat) {
 		if (lat < latRange[0] || lat > latRange[1]) {
 			System.out.println("Y is out of range");
 			return -1;
@@ -74,7 +74,7 @@ public class GridIndex {
 		return (int) ((lat - latRange[0]) / scale);
 	}
 
-	public int getID(float lon, float lat) {
+	public int getID(double lon, double lat) {
 		int x = getX(lon);
 		int y = getY(lat);
 		return y * xmax + x;

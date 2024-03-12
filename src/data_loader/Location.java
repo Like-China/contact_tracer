@@ -14,8 +14,8 @@ public class Location {
 	public int id = -1;
 	public String date = "2020-20-20";
 	public String time = "-1:-1:-1";
-	public float lon = -1;
-	public float lat = -1;
+	public double lon = -1;
+	public double lat = -1;
 	public int ts = -1;
 	// contacted timestamped location or not
 	public boolean isContact = false;
@@ -26,7 +26,7 @@ public class Location {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Location(int id, String date, String time, float lon, float lat, int ts) {
+	public Location(int id, String date, String time, double lon, double lat, int ts) {
 		this.id = id;
 		this.date = date;
 		this.time = time;
@@ -38,8 +38,8 @@ public class Location {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		String res = this.id + " " + this.date + " " + this.time + " " + this.lon + " " + this.lat + " " + " " + this.ts
-				+ "\n";
+		String res = this.id + " " + this.date + " " + this.time + " " + this.lon + " " + this.lat + " " + " "
+				+ this.ts;
 		return res;
 	}
 

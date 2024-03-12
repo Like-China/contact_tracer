@@ -18,14 +18,14 @@ import trace.ET;
 import trace.Settings;
 import trace.Util;
 
-public class ETATester {
+public class ETTester {
 
 	public static void main(String[] args) {
 		// 1. get all files and sort by days
 		File[] files = Util.orderByName(Settings.dataPath);
 		// 2. create a Tracer object
 		ET etaTracer = new ET(Settings.epsilon, Settings.k,
-				Settings.city_name);
+				Settings.name);
 		// 3. init a batch of patient ids
 		etaTracer.patientIDs = Util.initPatientIds(Settings.objectNum, Settings.initPatientNum, Settings.isRandom);
 		long runtime = 0;
@@ -34,10 +34,6 @@ public class ETATester {
 		int tsNum = 0;
 		HashMap<Integer, ArrayList<Integer>> ETA_res = new HashMap<>();
 		// 4. start query
-		if (files == null) {
-			System.out.println("No valid files found!!");
-			return;
-		}
 		for (File f : files) {
 			Stream stream = new Stream(f.toString());
 			ArrayList<Location> batch = stream.batch();
@@ -46,7 +42,10 @@ public class ETATester {
 					continue;
 				}
 				locNum += batch.size();
-				System.out.printf("\n%s %s return locations %d\n", batch.get(0).date, batch.get(0).time, batch.size());
+				if (tsNum % 1000 == 0) {
+					System.out.printf("\n%s %s return locations %d\n", batch.get(0).date,
+							batch.get(0).time, batch.size());
+				}
 				// ETA query
 				long startTime = System.currentTimeMillis();
 				ArrayList<Integer> ETA_cases = etaTracer.trace(batch);
@@ -65,21 +64,21 @@ public class ETATester {
 		} // End 'For' Loop
 
 		// show results
-		System.out.printf("%d locations, %d timestamps ", locNum, tsNum);
-		System.out.println("runtime:  " + runtime + " mean runtime:  " + (double) runtime / tsNum);
+		System.out.printf("total %d locations, %d timestamps\n", locNum, tsNum);
+		System.out.println("runtime: " + runtime + ",mean runtime: " + (double) runtime / tsNum);
 		HashSet<Integer> ETA_cases = new HashSet<>();
 		for (Integer key : ETA_res.keySet()) {
 			ETA_cases.addAll(ETA_res.get(key));
 		}
 		System.out.println("total cases of exposure: " + ETA_cases.size());
-		System.out.println("cases of exposure:");
-		System.out.println(ETA_cases);
+		// System.out.println("cases of exposure:");
+		// System.out.println(ETA_cases);
 
 		String otherInfo = String.format("locations: %d , timestamps %d, runtime: %d, mean runtime: %f",
 				locNum, tsNum, runtime, (double) runtime / tsNum);
 		String setInfo = String.format(
-				"city_name: %s \t days: %d \t sr: %d \t k: %d  \t epsilon: %f  \t initPatientNum: %d minMBR: %d",
-				Settings.city_name,
+				"name: %s \t days: %d \t sr: %d \t k: %d  \t epsilon: %f  \t initPatientNum: %d minMBR: %d",
+				Settings.name,
 				Settings.maxProcessDays, Settings.sr, Settings.k, Settings.epsilon,
 				Settings.initPatientNum, Settings.minMBR);
 		Util.writeFile("ETA", ETA_cases.size(), setInfo, otherInfo);

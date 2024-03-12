@@ -15,11 +15,11 @@ import java.util.HashMap;
 import java.util.HashSet;
 import data_loader.Location;
 import data_loader.Stream;
-import trace.EGP;
+import trace.QGP;
 import trace.Settings;
 import trace.Util;
 
-public class EGPTester {
+public class QGPTester {
 
 	public static void main(String[] args) {
 		long start_time = System.currentTimeMillis();
@@ -27,8 +27,7 @@ public class EGPTester {
 		File[] files = Util.orderByName(Settings.dataPath);
 		System.out.println("The total number of days: " + files.length);
 		// 2. create a Tracer object
-		EGP tracer = new EGP(Settings.epsilon, Settings.k,
-				Settings.name);
+		QGP tracer = new QGP(Settings.epsilon, Settings.k, Settings.name);
 		// 3. init a batch of patient ids
 		tracer.patientIDs = Util.initPatientIds(Settings.objectNum, Settings.initPatientNum, Settings.isRandom);
 		System.out.println(
@@ -37,7 +36,7 @@ public class EGPTester {
 		long locNum = 0;
 		int dayNum = 0;
 		int tsNum = 0;
-		HashMap<Integer, ArrayList<Integer>> EGP_res = new HashMap<>();
+		HashMap<Integer, ArrayList<Integer>> QGPRes = new HashMap<>();
 		// 4. start query
 		for (File f : files) {
 			Stream stream = new Stream(f.toString());
@@ -54,10 +53,10 @@ public class EGPTester {
 				}
 
 				long startTime = System.currentTimeMillis();
-				ArrayList<Integer> EGP_cases = new ArrayList<Integer>();
-				EGP_cases = tracer.trace(batch, Settings.prechecking);
-				if (!EGP_cases.isEmpty())
-					EGP_res.put(tsNum, EGP_cases);
+				ArrayList<Integer> QGPCases = new ArrayList<Integer>();
+				QGPCases = tracer.trace(batch);
+				if (!QGPCases.isEmpty())
+					QGPRes.put(tsNum, QGPCases);
 				long endTime = System.currentTimeMillis();
 				runtime += endTime - startTime;
 				tsNum += 1;
@@ -69,21 +68,21 @@ public class EGPTester {
 			}
 		} // End 'For' Loop
 
-		System.out.println("totalQueryNB/totalCheckNB");
-		System.out.println(tracer.totalQueryNB + "/" + tracer.totalCheckNB);
+		System.out.println("totalQueryNB/totalCheckNB/totalLeafNB:");
+		System.out.println(tracer.totalQueryNB + "/" + tracer.totalCheckNB + "/" + tracer.totalLeafNB);
 		System.out.println("cTime/fTime/sTime");
 		System.out.println(tracer.cTime + "/" + tracer.fTime + "/" + tracer.sTime);
 		// show results
 		System.out.printf("total %d locations, %d timestamps\n", locNum, tsNum);
 		System.out.println("runtime: " + runtime + ",mean runtime:  " + (double) runtime / tsNum);
-		// System.out.println(EGP_res);
-		HashSet<Integer> EGP_cases = new HashSet<>();
-		for (Integer key : EGP_res.keySet()) {
-			EGP_cases.addAll(EGP_res.get(key));
+		// System.out.println(QGPRes);
+		HashSet<Integer> QGPCases = new HashSet<>();
+		for (Integer key : QGPRes.keySet()) {
+			QGPCases.addAll(QGPRes.get(key));
 		}
-		System.out.println("total cases of exposure: " + EGP_cases.size());
+		System.out.println("total cases of exposure: " + QGPCases.size());
 		// System.out.println("cases of exposure:");
-		// System.out.println(EGP_cases);
+		// System.out.println(QGPCases);
 
 		String otherInfo = String.format("locations: %d , timestamps %d, runtime: %d, mean runtime: %f",
 				locNum, tsNum, runtime, (double) runtime / tsNum);
@@ -92,16 +91,10 @@ public class EGPTester {
 				Settings.name,
 				Settings.maxProcessDays, Settings.sr, Settings.k, Settings.epsilon,
 				Settings.initPatientNum, Settings.minMBR);
-		if (Settings.prechecking) {
-			Util.writeFile("EGP", EGP_cases.size(), setInfo, otherInfo);
-		} else {
-			Util.writeFile("EGP#", EGP_cases.size(), setInfo, otherInfo);
-		}
+		Util.writeFile("QGP", QGPCases.size(), setInfo, otherInfo);
 
 		// the total number of pre-checking operations / the number of valid
 		// pre-checking operations
-		System.out.printf("total number of pre-checking operations / the number of valid: %d / %d\n",
-				tracer.totalCheckNums, tracer.validCheckNums);
 		System.out.println("total time consuming: " + (System.currentTimeMillis() - start_time));
 	}
 

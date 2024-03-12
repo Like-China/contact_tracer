@@ -25,7 +25,7 @@ public class AGPTester {
 		File[] files = Util.orderByName(Settings.dataPath);
 		// 2. create a Tracer object
 		AGP tracer = new AGP(Settings.epsilon, Settings.k,
-				Settings.city_name);
+				Settings.name);
 		// 3. init a batch of patient ids
 		tracer.patientIDs = Util.initPatientIds(Settings.objectNum, Settings.initPatientNum, Settings.isRandom);
 		long runtime = 0;
@@ -34,10 +34,6 @@ public class AGPTester {
 		int tsNum = 0;
 		HashMap<Integer, ArrayList<Integer>> AGP_res = new HashMap<>();
 		// 4. start query
-		if (files == null) {
-			System.out.println("No valid files found!!");
-			return;
-		}
 		for (File f : files) {
 			Stream stream = new Stream(f.toString());
 			ArrayList<Location> batch = stream.batch();
@@ -69,7 +65,7 @@ public class AGPTester {
 		} // End 'For' Loop
 
 		// show results
-		System.out.printf("%d locations, %d timestamps ", locNum, tsNum);
+		System.out.printf("%d locations, %d timestamps\n", locNum, tsNum);
 		System.out.println("runtime:  " + runtime + " mean runtime:  " + (double) runtime / tsNum);
 		HashSet<Integer> AGPCases = new HashSet<>();
 		for (Integer key : AGP_res.keySet()) {
@@ -80,8 +76,8 @@ public class AGPTester {
 				locNum, tsNum, runtime, (double) runtime / tsNum);
 
 		String setInfo = String.format(
-				"city_name: %s \t days: %d \t sr: %d \t k: %d  \t epsilon: %f  \t initPatientNum: %d minMBR: %d",
-				Settings.city_name,
+				"name: %s \t days: %d \t sr: %d \t k: %d  \t epsilon: %f  \t initPatientNum: %d minMBR: %d",
+				Settings.name,
 				Settings.maxProcessDays, Settings.sr, Settings.k, Settings.epsilon,
 				Settings.initPatientNum, Settings.minMBR);
 		Util.writeFile("AGP", AGPCases.size(), setInfo, otherInfo);

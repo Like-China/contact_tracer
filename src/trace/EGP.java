@@ -41,6 +41,13 @@ public class EGP {
 	public int validCheckNums = 0;
 	public Distance D = new Distance();
 
+	public long cTime = 0;
+	public long fTime = 0;
+	public long sTime = 0;
+
+	public int totalQueryNB = 0;
+	public int totalCheckNB = 0;
+
 	public EGP(double epsilon, int k, String cityname) {
 		this.epsilon = epsilon;
 		double scale = (epsilon / 10000 / Math.sqrt(2));
@@ -54,7 +61,7 @@ public class EGP {
 	 * @param initMBR the MBR of a set of locations before adding location l
 	 * @param l       new location
 	 */
-	public void updateMBR(Float[] initMBR, Location l) {
+	public void updateMBR(double[] initMBR, Location l) {
 		initMBR[0] = initMBR[0] > l.lon ? l.lon : initMBR[0];
 		initMBR[1] = initMBR[1] < l.lon ? l.lon : initMBR[1];
 		initMBR[2] = initMBR[2] > l.lat ? l.lat : initMBR[2];
@@ -75,31 +82,31 @@ public class EGP {
 		HashMap<Integer, ArrayList<Location>> ordinaryAreasLocations = new HashMap<Integer, ArrayList<Location>>();
 		// each area and its covered query locations at current timestamp
 		HashMap<Integer, ArrayList<Location>> patientAreasLocations = new HashMap<Integer, ArrayList<Location>>();
-		HashMap<Integer, Float[]> ordinaryAreasMBR = new HashMap<>();
-		HashMap<Integer, Float[]> patientAreasMBR = new HashMap<>();
+		HashMap<Integer, double[]> ordinaryAreasMBR = new HashMap<>();
+		HashMap<Integer, double[]> patientAreasMBR = new HashMap<>();
 		for (Location l : batch) {
 			int areaID = g.getID(l.lon, l.lat);
 			l.setAreaID(areaID);
 			if (!ordinaryAreasLocations.containsKey(areaID)) {
 				ordinaryAreasLocations.put(areaID, new ArrayList<Location>());
-				ordinaryAreasMBR.put(areaID, new Float[] { 1000f, -1000f, 1000f, -1000f });
+				ordinaryAreasMBR.put(areaID, new double[] { 1000f, -1000f, 1000f, -1000f });
 			}
 			if (!patientAreasLocations.containsKey(areaID)) {
 				patientAreasLocations.put(areaID, new ArrayList<Location>());
-				patientAreasMBR.put(areaID, new Float[] { 1000f, -1000f, 1000f, -1000f });
+				patientAreasMBR.put(areaID, new double[] { 1000f, -1000f, 1000f, -1000f });
 			}
 			if (patientIDs.contains(l.id)) {
 				// add the grid cell id to area set
 				areas.add(areaID);
 				patientAreasLocations.get(areaID).add(l);
 				// get the MBR of all query locations in this grid cell before adding location
-				Float[] rawMBR = patientAreasMBR.get(areaID);
+				double[] rawMBR = patientAreasMBR.get(areaID);
 				// update the MBR if location l is outside MBR
 				updateMBR(rawMBR, l);
 			} else {
 				// get the MBR of all query locations in this grid cell before adding location
 				ordinaryAreasLocations.get(areaID).add(l);
-				Float[] rawMBR = ordinaryAreasMBR.get(areaID);
+				double[] rawMBR = ordinaryAreasMBR.get(areaID);
 				updateMBR(rawMBR, l);
 			}
 		}
@@ -123,14 +130,22 @@ public class EGP {
 		// 1. get infected "areas"
 		// get each patient area and its covered locations "g.patientAreasLocations"
 		// get each ordinary area and its covered locations "g.ordinaryAreasLocations"
+		long t1 = System.currentTimeMillis();
 		findInfectedArea(batch);
+		totalQueryNB += areas.size();
+		long t2 = System.currentTimeMillis();
+		cTime += (t2 - t1);
 		ArrayList<Integer> updateCE = new ArrayList<Integer>();
 
 		// 2. for influenced grid cells of infected areas (include infected area
 		// itself), we check objects within them are infected or not
+		t1 = System.currentTimeMillis();
 		for (Integer areaID : areas) {
 			// 2.1 find influenced areas' ids
+			t1 = System.currentTimeMillis();
 			int[] nnIDs = g.getAffectAreas(areaID);
+			t2 = System.currentTimeMillis();
+			fTime += (t2 - t1);
 			// 2.2 find query locations at infected area, and get its MBR
 			ArrayList<Location> patientLocations = g.patientAreasLocations.get(areaID);
 			// 2.3 check objects within these influenced area
@@ -143,34 +158,25 @@ public class EGP {
 				ArrayList<Location> ordinaryLocations = g.ordinaryAreasLocations.get(nn);
 				if (ordinaryLocations == null || ordinaryLocations.isEmpty())
 					continue;
-				// omit non-query locations that objects have been marked as contacted at
-				// current timestamp
-				ArrayList<Location> unchecked_ordinaryLocations = new ArrayList<>();
-				for (Location l1 : ordinaryLocations) {
-					if (!l1.isContact) {
-						unchecked_ordinaryLocations.add(l1);
-					}
-				}
-				ordinaryLocations = unchecked_ordinaryLocations;
 				// get query locations within this grid cell at curent timestamp
-				Float[] patientMBR = g.patientAreasMBR.get(areaID);
+				double[] patientMBR = g.patientAreasMBR.get(areaID);
 				// get four MBR vertexes
-				Float[][] patientMBRVertexs = new Float[4][2];
-				patientMBRVertexs[0] = new Float[] { patientMBR[0], patientMBR[2] };
-				patientMBRVertexs[1] = new Float[] { patientMBR[0], patientMBR[3] };
-				patientMBRVertexs[2] = new Float[] { patientMBR[1], patientMBR[2] };
-				patientMBRVertexs[3] = new Float[] { patientMBR[1], patientMBR[3] };
+				double[][] patientMBRVertexs = new double[4][2];
+				patientMBRVertexs[0] = new double[] { patientMBR[0], patientMBR[2] };
+				patientMBRVertexs[1] = new double[] { patientMBR[0], patientMBR[3] };
+				patientMBRVertexs[2] = new double[] { patientMBR[1], patientMBR[2] };
+				patientMBRVertexs[3] = new double[] { patientMBR[1], patientMBR[3] };
 				// start pre-checking if objects within MBR exceed specific number
 				// if the number of locations within this grid cell is small, then no
 				// pre-checking
 				if (isPreCheck && nn != areaID && patientLocations.size() * ordinaryLocations.size() >= minMBR) {
 					totalCheckNums += 1;
-					Float[] ordinaryMBR = g.ordinaryAreasMBR.get(nn);
-					Float[][] ordinaryMBRVertexs = new Float[4][2];
-					ordinaryMBRVertexs[0] = new Float[] { ordinaryMBR[0], ordinaryMBR[2] };
-					ordinaryMBRVertexs[1] = new Float[] { ordinaryMBR[0], ordinaryMBR[3] };
-					ordinaryMBRVertexs[2] = new Float[] { ordinaryMBR[1], ordinaryMBR[2] };
-					ordinaryMBRVertexs[3] = new Float[] { ordinaryMBR[1], ordinaryMBR[3] };
+					double[] ordinaryMBR = g.ordinaryAreasMBR.get(nn);
+					double[][] ordinaryMBRVertexs = new double[4][2];
+					ordinaryMBRVertexs[0] = new double[] { ordinaryMBR[0], ordinaryMBR[2] };
+					ordinaryMBRVertexs[1] = new double[] { ordinaryMBR[0], ordinaryMBR[3] };
+					ordinaryMBRVertexs[2] = new double[] { ordinaryMBR[1], ordinaryMBR[2] };
+					ordinaryMBRVertexs[3] = new double[] { ordinaryMBR[1], ordinaryMBR[3] };
 					double min_dist = 10000;
 					// double max_dist = -100;
 					// 4 vertexes * 4 vertexes calculation to get min distance between two MBRs
@@ -271,8 +277,8 @@ public class EGP {
 						// ordinaryMBRVertexs[0][0]);
 						// max_dist = Math.min(max_dist1, max_dist2);
 					} else {
-						for (Float[] lonlat : patientMBRVertexs) {
-							for (Float[] lonlat1 : ordinaryMBRVertexs) {
+						for (double[] lonlat : patientMBRVertexs) {
+							for (double[] lonlat1 : ordinaryMBRVertexs) {
 								double dist = D.distance(lonlat[1], lonlat[0], lonlat1[1], lonlat1[0]);
 								// if(dist>max_dist) max_dist=dist;
 								if (dist < min_dist)
@@ -291,6 +297,7 @@ public class EGP {
 				// after pre-checking, calculate remaining pairwise exact-distance among each
 				// two
 				// ordinary lcation and patient location
+				totalCheckNB += ordinaryLocations.size();
 				for (Location l1 : ordinaryLocations) {
 					if (l1.isContact)
 						continue;
@@ -315,6 +322,8 @@ public class EGP {
 				}
 			}
 		} // End 2
+		t2 = System.currentTimeMillis();
+		sTime += (t2 - t1);
 
 		// 3. reset infected duration of specific objects
 		for (Integer id : objectMapDuration.keySet()) {

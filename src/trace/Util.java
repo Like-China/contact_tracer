@@ -45,22 +45,22 @@ public class Util {
 	 * @param locations
 	 * @return
 	 */
-	public static float[][] getMBR(ArrayList<Location> locations) {
-		float minLon = 1000f;
-		float maxLon = -1000f;
-		float minLat = 1000f;
-		float maxLat = -1000f;
-		float[][] res = new float[4][2];
+	public static double[][] getMBR(ArrayList<Location> locations) {
+		double minLon = 1000f;
+		double maxLon = -1000f;
+		double minLat = 1000f;
+		double maxLat = -1000f;
+		double[][] res = new double[4][2];
 		for (Location l : locations) {
 			minLon = Math.min(minLon, l.lon);
 			maxLon = Math.max(maxLon, l.lon);
 			minLat = Math.min(minLat, l.lat);
 			maxLat = Math.max(maxLat, l.lat);
 		}
-		res[0] = new float[] { minLon, minLat };
-		res[1] = new float[] { minLon, maxLat };
-		res[2] = new float[] { maxLon, minLat };
-		res[3] = new float[] { maxLon, maxLat };
+		res[0] = new double[] { minLon, minLat };
+		res[1] = new double[] { minLon, maxLat };
+		res[2] = new double[] { maxLon, minLat };
+		res[3] = new double[] { maxLon, maxLat };
 		return res;
 	}
 

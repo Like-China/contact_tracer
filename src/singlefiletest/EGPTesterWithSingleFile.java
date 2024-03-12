@@ -7,67 +7,58 @@
  * @LastEditTime: 2024-03-04 21:09:51
  */
 
-package test;
+package singlefiletest;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import data_loader.Location;
-import data_loader.Stream;
+import data_loader.SingFileStream;
 import trace.EGP;
 import trace.Settings;
 import trace.Util;
 
-public class EGPTester {
+public class EGPTesterWithSingleFile {
 
 	public static void main(String[] args) {
 		long start_time = System.currentTimeMillis();
-		// 1. get all files and sort by days
-		File[] files = Util.orderByName(Settings.dataPath);
-		System.out.println("The total number of days: " + files.length);
-		// 2. create a Tracer object
+		// 1. create a Tracer object
 		EGP tracer = new EGP(Settings.epsilon, Settings.k,
 				Settings.name);
-		// 3. init a batch of patient ids
+		// 2. init a batch of patient ids
 		tracer.patientIDs = Util.initPatientIds(Settings.objectNum, Settings.initPatientNum, Settings.isRandom);
 		System.out.println(
 				"Init Patients finished, number: " + Settings.initPatientNum + " isRandom: " + Settings.isRandom);
 		long runtime = 0;
 		long locNum = 0;
-		int dayNum = 0;
 		int tsNum = 0;
 		HashMap<Integer, ArrayList<Integer>> EGP_res = new HashMap<>();
-		// 4. start query
-		for (File f : files) {
-			Stream stream = new Stream(f.toString());
-			ArrayList<Location> batch = stream.batch();
-			while (batch != null && !batch.isEmpty()) {
-				// If not sampled location, ignore
-				if (batch.get(0).ts % Settings.sr != 0) {
-					continue;
-				}
-				locNum += batch.size();
-				if (tsNum % 1000 == 0) {
-					System.out.printf("\n%s %s return locations %d\n", batch.get(0).date,
-							batch.get(0).time, batch.size());
-				}
-
-				long startTime = System.currentTimeMillis();
-				ArrayList<Integer> EGP_cases = new ArrayList<Integer>();
-				EGP_cases = tracer.trace(batch, Settings.prechecking);
-				if (!EGP_cases.isEmpty())
-					EGP_res.put(tsNum, EGP_cases);
-				long endTime = System.currentTimeMillis();
-				runtime += endTime - startTime;
-				tsNum += 1;
-				batch = stream.batch();
-			} // End 'While' Loop
-			dayNum += 1;
-			if (dayNum >= Settings.maxProcessDays) {
+		// 3. start query
+		SingFileStream stream = new SingFileStream("/home/like/data/contact_tracer/beijing100_1000000.txt");
+		ArrayList<Location> batch = stream.batch(Settings.objectNum);
+		if (batch.size() < Settings.objectNum) {
+			System.out.println("lacked data!!");
+			return;
+		}
+		System.out.println(batch.size());
+		while (batch != null && !batch.isEmpty()) {
+			// If not sampled location, ignore
+			System.out.printf("\nTimestamp %d return locations %d", batch.get(0).ts, batch.size());
+			System.out.println("\t The first loc: " + batch.get(0));
+			long startTime = System.currentTimeMillis();
+			ArrayList<Integer> EGP_cases = new ArrayList<Integer>();
+			EGP_cases = tracer.trace(batch, Settings.prechecking);
+			if (!EGP_cases.isEmpty())
+				EGP_res.put(tsNum, EGP_cases);
+			long endTime = System.currentTimeMillis();
+			runtime += endTime - startTime;
+			tsNum += 1;
+			if (tsNum >= Settings.maxTSNB) {
 				break;
 			}
-		} // End 'For' Loop
+			locNum += batch.size();
+			batch = stream.batch(Settings.objectNum);
+		} // End 'While' Loop
 
 		System.out.println("totalQueryNB/totalCheckNB");
 		System.out.println(tracer.totalQueryNB + "/" + tracer.totalCheckNB);
