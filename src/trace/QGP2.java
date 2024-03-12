@@ -9,7 +9,7 @@
 package trace;
 
 /**
- * QGP implementation, qiery?db????????
+ * QGP implementation, construct two quadtree (query/database)
  */
 import java.util.ArrayList;
 import java.util.HashMap;

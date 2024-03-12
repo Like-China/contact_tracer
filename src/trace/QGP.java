@@ -22,6 +22,10 @@ import indexes.GridIndex;
 import indexes.QuadTree;
 import indexes.QuadTree.CoordHolder;
 
+/**
+ * QGP implementation, construct a quadtree for database, use gridindex for
+ * query locations
+ */
 public class QGP {
 	// the distance threshold
 	public double epsilon;

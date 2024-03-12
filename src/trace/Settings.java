@@ -16,7 +16,7 @@ public class Settings {
 	// sampling interval
 	public static int sr = (name.equals("beijing")) ? 10 : 5;
 	// data path
-	public static String dataPath = String.format("/home/like/data/contact_tracer/%s%s/", name, sr);
+	public static String dataPath = "/home/like/data/contact_tracer/beijing100_1000000.txt";
 	public static int maxProcessDays = 1;
 	// due to the rime-consuming of ET algorithm, we do not evalute all timestamps
 	// for ET. Rather, we set a smaller value of evaluted timestamps.
@@ -32,7 +32,7 @@ public class Settings {
 	// initial number of all objects
 	public static int objectNum = (name.equals("beijing")) ? 100000 : 1000000;
 	// initial number of query objects
-	public static int initPatientNum = (name.equals("beijing")) ? 20000 : 60000;
+	public static int initPatientNum = (name.equals("beijing")) ? 200 : 60000;
 	public static boolean isRandom = false;
 	// use pre-check or not
 	public static boolean prechecking = true;

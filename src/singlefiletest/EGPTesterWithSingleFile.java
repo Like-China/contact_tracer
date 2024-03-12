@@ -34,7 +34,7 @@ public class EGPTesterWithSingleFile {
 		int tsNum = 0;
 		HashMap<Integer, ArrayList<Integer>> EGP_res = new HashMap<>();
 		// 3. start query
-		SingFileStream stream = new SingFileStream("/home/like/data/contact_tracer/beijing100_1000000.txt");
+		SingFileStream stream = new SingFileStream(Settings.dataPath);
 		ArrayList<Location> batch = stream.batch(Settings.objectNum);
 		if (batch.size() < Settings.objectNum) {
 			System.out.println("lacked data!!");
@@ -42,7 +42,7 @@ public class EGPTesterWithSingleFile {
 		}
 		System.out.println(batch.size());
 		while (batch != null && !batch.isEmpty()) {
-			// If not sampled location, ignore
+			locNum += batch.size();
 			System.out.printf("\nTimestamp %d return locations %d", batch.get(0).ts, batch.size());
 			System.out.println("\t The first loc: " + batch.get(0));
 			long startTime = System.currentTimeMillis();
@@ -56,7 +56,6 @@ public class EGPTesterWithSingleFile {
 			if (tsNum >= Settings.maxTSNB) {
 				break;
 			}
-			locNum += batch.size();
 			batch = stream.batch(Settings.objectNum);
 		} // End 'While' Loop
 

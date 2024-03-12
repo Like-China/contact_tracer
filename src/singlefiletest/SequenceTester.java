@@ -6,14 +6,14 @@
  * @LastEditors: Rika
  * @LastEditTime: 2024-03-04 21:08:54
  */
-package test;
+package singlefiletest;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import data_loader.Location;
-import data_loader.Stream;
+import data_loader.SingFileStream;
 import trace.ET;
 import trace.Settings;
 import trace.Util;
@@ -54,16 +54,16 @@ class Sequence {
 		HashMap<Integer, ArrayList<Integer>> ETA_res = new HashMap<>();
 		// 4. start query
 		for (File f : files) {
-			Stream stream = new Stream(f.toString());
-			ArrayList<Location> batch = stream.batch();
+			SingFileStream stream = new SingFileStream(Settings.dataPath);
+			ArrayList<Location> batch = stream.batch(Settings.objectNum);
 			while (batch != null && !batch.isEmpty()) {
 				if (batch.get(0).ts % this.sr != 0) {
 					continue;
 				}
 				locNum += batch.size();
 				// if (tsNum % 10000 == 0) {
-				// 	System.out.printf("\n%s %s return locations %d\n", batch.get(0).date,
-				// 			batch.get(0).time, batch.size());
+				// System.out.printf("\n%s %s return locations %d\n", batch.get(0).date,
+				// batch.get(0).time, batch.size());
 				// }
 				// ETA query
 				ArrayList<Integer> ETA_cases = etaTracer.trace(batch);
@@ -71,7 +71,7 @@ class Sequence {
 					ETA_res.put(tsNum, ETA_cases);
 				}
 				tsNum += 1;
-				batch = stream.batch();
+				batch = stream.batch(Settings.objectNum);
 			} // End 'While' Loop
 			dayNum += 1;
 			if (dayNum >= Settings.maxETADays) {
@@ -115,16 +115,16 @@ class Sequence {
 		HashMap<Integer, ArrayList<Integer>> EGP_res = new HashMap<>();
 		// 4. start query
 		for (File f : files) {
-			Stream stream = new Stream(f.toString());
-			ArrayList<Location> batch = stream.batch();
+			SingFileStream stream = new SingFileStream(Settings.dataPath);
+			ArrayList<Location> batch = stream.batch(Settings.objectNum);
 			while (batch != null && !batch.isEmpty()) {
 				if (batch.get(0).ts % this.sr != 0) {
 					continue; // If not sampled location, ignore
 				}
 				locNum += batch.size();
 				// if (tsNum % 1000 == 0) {
-				// 	System.out.printf("\n%s %s return locations %d\n", batch.get(0).date,
-				// 			batch.get(0).time, batch.size());
+				// System.out.printf("\n%s %s return locations %d\n", batch.get(0).date,
+				// batch.get(0).time, batch.size());
 				// }
 				ArrayList<Integer> EGP_cases = new ArrayList<Integer>();
 				EGP_cases = tracer.trace(batch, prechecking);
@@ -132,7 +132,7 @@ class Sequence {
 				if (!EGP_cases.isEmpty())
 					EGP_res.put(tsNum, EGP_cases);
 				tsNum += 1;
-				batch = stream.batch();
+				batch = stream.batch(Settings.objectNum);
 			} // End 'While' Loop
 			dayNum += 1;
 			if (dayNum >= Settings.maxProcessDays) {
@@ -180,8 +180,8 @@ class Sequence {
 		HashMap<Integer, ArrayList<Integer>> AGP_res = new HashMap<>();
 		// 4. start query
 		for (File f : files) {
-			Stream stream = new Stream(f.toString());
-			ArrayList<Location> batch = stream.batch();
+			SingFileStream stream = new SingFileStream(Settings.dataPath);
+			ArrayList<Location> batch = stream.batch(Settings.objectNum);
 			while (batch != null && !batch.isEmpty()) {
 				if (batch.get(0).ts % this.sr != 0) {
 					continue;
@@ -193,7 +193,7 @@ class Sequence {
 					AGP_res.put(tsNum, AGPCases);
 				}
 				tsNum += 1;
-				batch = stream.batch();
+				batch = stream.batch(Settings.objectNum);
 			} // End 'While' Loop
 
 			dayNum += 1;

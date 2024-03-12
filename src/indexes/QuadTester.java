@@ -6,33 +6,21 @@ import java.io.File;
 import java.util.ArrayList;
 
 import trace.Settings;
-import trace.Util;
 import data_loader.Location;
-import data_loader.Stream;
+import data_loader.SingFileStream;
 
 public class QuadTester {
 
     public static void test() {
         // load locations
-        File[] files = Util.orderByName(Settings.dataPath);
-        ArrayList<Location> allLocs = new ArrayList<>();
         long t1 = System.currentTimeMillis();
-        for (File f : files) {
-            Stream stream = new Stream(f.toString());
-            ArrayList<Location> batch = stream.batch();
-            allLocs.addAll(batch);
-            while (!batch.isEmpty()) {
-                batch = stream.batch();
-                allLocs.addAll(batch);
-                if (allLocs.size() > 10000)
-                    break;
-            }
-            if (batch.isEmpty()) {
-                break;
-            }
-        }
+        SingFileStream stream = new SingFileStream(Settings.dataPath);
+        ArrayList<Location> batch = stream.batch(1000);
+
+        ArrayList<Location> allLocs = new ArrayList<>();
+        allLocs.addAll(batch);
         long t2 = System.currentTimeMillis();
-        System.out.println("time cost of loading locations: " + (t2 - t1));
+        System.out.println("time cost of loading locations (ms): " + (t2 - t1));
         int n = allLocs.size();
         System.out.println("Location size: " + n);
 
@@ -59,7 +47,7 @@ public class QuadTester {
             queryRectangle[i] = new double[] { x1, y1, x1 + r.nextDouble() * (maxLat - minLat) * 0.05,
                     y1 + r.nextDouble() * (maxLon - minLon) * 0.05 };
         }
-        List<QuadTree.CoordHolder> res;
+        List<QuadTree.CoordHolder> res = new ArrayList<>();
         /*
          * Create a tree with a dynamic leaf size that reflects the square root of the
          * size of the growing tree.
@@ -77,10 +65,12 @@ public class QuadTester {
                 res = qDynamic.findAll(query[0], query[1],
                         query[2],
                         query[3]);
+                count += res.size();
             }
-            qDynamic.getAllLeafs();
+            // qDynamic.getAllLeafs();
         }
         t2 = System.currentTimeMillis();
+        System.out.println(count);
         System.out.println("Dynamic Index Time consume:" + (t2 - t1));
         // bruteful
         count = 0;

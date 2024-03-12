@@ -32,43 +32,44 @@ public class ETTesterWithSingleFile {
 		long runtime = 0;
 		long locNum = 0;
 		int tsNum = 0;
-		HashMap<Integer, ArrayList<Integer>> ETRes = new HashMap<>();
+		HashMap<Integer, ArrayList<Integer>> EGP_res = new HashMap<>();
 		// 3. start query
-		SingFileStream stream = new SingFileStream("/home/like/data/contact_tracer/beijing100_1000000.txt");
-		ArrayList<Location> batch = stream.batch();
+		SingFileStream stream = new SingFileStream(Settings.dataPath);
+		ArrayList<Location> batch = stream.batch(Settings.objectNum);
 		if (batch.size() < Settings.objectNum) {
 			System.out.println("lacked data!!");
 			return;
 		}
-		batch = (ArrayList<Location>) batch.subList(0, Settings.objectNum);
+		System.out.println(batch.size());
 		while (batch != null && !batch.isEmpty()) {
+			locNum += batch.size();
 			System.out.printf("\nTimestamp %d return locations %d", batch.get(0).ts, batch.size());
+			System.out.println("\t The first loc: " + batch.get(0));
 			long startTime = System.currentTimeMillis();
-			ArrayList<Integer> ETCases = new ArrayList<Integer>();
-			ETCases = tracer.trace(batch);
-			if (!ETCases.isEmpty())
-				ETRes.put(tsNum, ETCases);
+			ArrayList<Integer> EGP_cases = new ArrayList<Integer>();
+			EGP_cases = tracer.trace(batch);
+			if (!EGP_cases.isEmpty())
+				EGP_res.put(tsNum, EGP_cases);
 			long endTime = System.currentTimeMillis();
 			runtime += endTime - startTime;
 			tsNum += 1;
-			if (tsNum > Settings.maxTSNB) {
+			if (tsNum >= Settings.maxTSNB) {
 				break;
 			}
-			locNum += batch.size();
-			batch = stream.batch();
+			batch = stream.batch(Settings.objectNum);
 		} // End 'While' Loop
 
 		// show results
 		System.out.printf("total %d locations, %d timestamps\n", locNum, tsNum);
 		System.out.println("runtime: " + runtime + ",mean runtime:  " + (double) runtime / tsNum);
-		// System.out.println(ETRes);
-		HashSet<Integer> ETCases = new HashSet<>();
-		for (Integer key : ETRes.keySet()) {
-			ETCases.addAll(ETRes.get(key));
+		// System.out.println(EGP_res);
+		HashSet<Integer> EGP_cases = new HashSet<>();
+		for (Integer key : EGP_res.keySet()) {
+			EGP_cases.addAll(EGP_res.get(key));
 		}
-		System.out.println("total cases of exposure: " + ETCases.size());
+		System.out.println("total cases of exposure: " + EGP_cases.size());
 		// System.out.println("cases of exposure:");
-		// System.out.println(ETCases);
+		// System.out.println(EGP_cases);
 
 		String otherInfo = String.format("locations: %d , timestamps %d, runtime: %d, mean runtime: %f",
 				locNum, tsNum, runtime, (double) runtime / tsNum);
@@ -78,12 +79,13 @@ public class ETTesterWithSingleFile {
 				Settings.maxProcessDays, Settings.sr, Settings.k, Settings.epsilon,
 				Settings.initPatientNum, Settings.minMBR);
 		if (Settings.prechecking) {
-			Util.writeFile("EGP", ETCases.size(), setInfo, otherInfo);
+			Util.writeFile("EGP", EGP_cases.size(), setInfo, otherInfo);
 		} else {
-			Util.writeFile("EGP#", ETCases.size(), setInfo, otherInfo);
+			Util.writeFile("EGP#", EGP_cases.size(), setInfo, otherInfo);
 		}
 
 		// the total number of pre-checking operations / the number of valid
+		// pre-checking operations
 		System.out.println("total time consuming: " + (System.currentTimeMillis() - start_time));
 	}
 
