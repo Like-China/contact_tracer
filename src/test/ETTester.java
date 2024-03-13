@@ -7,18 +7,18 @@
  * @LastEditTime: 2024-03-04 21:09:51
  */
 
-package singlefiletest;
+package test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import data_loader.Location;
-import data_loader.SingFileStream;
+import data_loader.Stream;
 import trace.ET;
 import trace.Settings;
 import trace.Util;
 
-public class ETTesterWithSingleFile {
+public class ETTester {
 
 	public static void main(String[] args) {
 		long start_time = System.currentTimeMillis();
@@ -28,28 +28,27 @@ public class ETTesterWithSingleFile {
 		// 2. init a batch of patient ids
 		tracer.patientIDs = Util.initPatientIds(Settings.objectNum, Settings.initPatientNum, Settings.isRandom);
 		System.out.println(
-				"Init Patients finished, number: " + Settings.initPatientNum + " isRandom: " + Settings.isRandom);
+				"Init Patients size: " + Settings.initPatientNum + "Random: " + Settings.isRandom);
 		long runtime = 0;
 		long locNum = 0;
 		int tsNum = 0;
-		HashMap<Integer, ArrayList<Integer>> EGP_res = new HashMap<>();
+		HashMap<Integer, ArrayList<Integer>> ETRes = new HashMap<>();
 		// 3. start query
-		SingFileStream stream = new SingFileStream(Settings.dataPath);
+		Stream stream = new Stream(Settings.dataPath);
 		ArrayList<Location> batch = stream.batch(Settings.objectNum);
 		if (batch.size() < Settings.objectNum) {
 			System.out.println("lacked data!!");
 			return;
 		}
-		System.out.println(batch.size());
 		while (batch != null && !batch.isEmpty()) {
 			locNum += batch.size();
-			System.out.printf("\nTimestamp %d return locations %d", batch.get(0).ts, batch.size());
+			System.out.printf("Timestamp %d return locations %d", batch.get(0).ts, batch.size());
 			System.out.println("\t The first loc: " + batch.get(0));
 			long startTime = System.currentTimeMillis();
-			ArrayList<Integer> EGP_cases = new ArrayList<Integer>();
-			EGP_cases = tracer.trace(batch);
-			if (!EGP_cases.isEmpty())
-				EGP_res.put(tsNum, EGP_cases);
+			ArrayList<Integer> ETCases = new ArrayList<Integer>();
+			ETCases = tracer.trace(batch);
+			if (!ETCases.isEmpty())
+				ETRes.put(tsNum, ETCases);
 			long endTime = System.currentTimeMillis();
 			runtime += endTime - startTime;
 			tsNum += 1;
@@ -58,34 +57,22 @@ public class ETTesterWithSingleFile {
 			}
 			batch = stream.batch(Settings.objectNum);
 		} // End 'While' Loop
-
-		// show results
-		System.out.printf("total %d locations, %d timestamps\n", locNum, tsNum);
+			// show results
+		System.out.println("totalcheckNB: " + tracer.totalCheckNB);
+		System.out.printf("total %3d locations, %d timestamps\n", locNum, tsNum);
 		System.out.println("runtime: " + runtime + ",mean runtime:  " + (double) runtime / tsNum);
-		// System.out.println(EGP_res);
-		HashSet<Integer> EGP_cases = new HashSet<>();
-		for (Integer key : EGP_res.keySet()) {
-			EGP_cases.addAll(EGP_res.get(key));
+		HashSet<Integer> ETCases = new HashSet<>();
+		for (Integer key : ETRes.keySet()) {
+			ETCases.addAll(ETRes.get(key));
 		}
-		System.out.println("total cases of exposure: " + EGP_cases.size());
-		// System.out.println("cases of exposure:");
-		// System.out.println(EGP_cases);
-
+		System.out.println("total cases of exposure: " + ETCases.size());
 		String otherInfo = String.format("locations: %d , timestamps %d, runtime: %d, mean runtime: %f",
 				locNum, tsNum, runtime, (double) runtime / tsNum);
 		String setInfo = String.format(
-				"name: %s \t days: %d \t sr: %d \t k: %d  \t epsilon: %f  \t initPatientNum: %d minMBR: %d",
-				Settings.name,
-				Settings.maxProcessDays, Settings.sr, Settings.k, Settings.epsilon,
+				"name: %s \t sr: %d \t k: %d  \t epsilon: %f  \t initPatientNum: %d minMBR: %d",
+				Settings.name, Settings.sr, Settings.k, Settings.epsilon,
 				Settings.initPatientNum, Settings.minMBR);
-		if (Settings.prechecking) {
-			Util.writeFile("EGP", EGP_cases.size(), setInfo, otherInfo);
-		} else {
-			Util.writeFile("EGP#", EGP_cases.size(), setInfo, otherInfo);
-		}
-
-		// the total number of pre-checking operations / the number of valid
-		// pre-checking operations
+		Util.writeFile("ET", ETCases.size(), setInfo, otherInfo);
 		System.out.println("total time consuming: " + (System.currentTimeMillis() - start_time));
 	}
 

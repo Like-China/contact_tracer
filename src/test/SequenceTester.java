@@ -6,14 +6,14 @@
  * @LastEditors: Rika
  * @LastEditTime: 2024-03-04 21:08:54
  */
-package singlefiletest;
+package test;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import data_loader.Location;
-import data_loader.SingFileStream;
+import data_loader.Stream;
 import trace.ET;
 import trace.Settings;
 import trace.Util;
@@ -54,7 +54,7 @@ class Sequence {
 		HashMap<Integer, ArrayList<Integer>> ETA_res = new HashMap<>();
 		// 4. start query
 		for (File f : files) {
-			SingFileStream stream = new SingFileStream(Settings.dataPath);
+			Stream stream = new Stream(Settings.dataPath);
 			ArrayList<Location> batch = stream.batch(Settings.objectNum);
 			while (batch != null && !batch.isEmpty()) {
 				if (batch.get(0).ts % this.sr != 0) {
@@ -74,9 +74,6 @@ class Sequence {
 				batch = stream.batch(Settings.objectNum);
 			} // End 'While' Loop
 			dayNum += 1;
-			if (dayNum >= Settings.maxETADays) {
-				break;
-			}
 		} // End 'For' Loop
 
 		// show results
@@ -94,9 +91,8 @@ class Sequence {
 		String otherInfo = String.format("locations: %d , timestamps %d, runtime: %d, mean runtime: %f, calcCount: %d",
 				locNum, tsNum, etaTracer.D.runtime, (double) etaTracer.D.runtime / tsNum, etaTracer.D.calcCount);
 		String setInfo = String.format(
-				"name: %s \t days: %d \t sr: %d \t k: %d  \t epsilon: %f  \t initPatientNum: %d minMBR: %d",
-				this.name,
-				Settings.maxProcessDays, this.sr, this.k, this.epsilon, this.initPatientNum,
+				"name: %s \t sr: %d \t k: %d  \t epsilon: %f  \t initPatientNum: %d minMBR: %d",
+				this.name, this.sr, this.k, this.epsilon, this.initPatientNum,
 				Settings.minMBR);
 		Util.writeFile("ETA", ETA_cases.size(), setInfo, otherInfo);
 	}
@@ -115,7 +111,7 @@ class Sequence {
 		HashMap<Integer, ArrayList<Integer>> EGP_res = new HashMap<>();
 		// 4. start query
 		for (File f : files) {
-			SingFileStream stream = new SingFileStream(Settings.dataPath);
+			Stream stream = new Stream(Settings.dataPath);
 			ArrayList<Location> batch = stream.batch(Settings.objectNum);
 			while (batch != null && !batch.isEmpty()) {
 				if (batch.get(0).ts % this.sr != 0) {
@@ -135,9 +131,7 @@ class Sequence {
 				batch = stream.batch(Settings.objectNum);
 			} // End 'While' Loop
 			dayNum += 1;
-			if (dayNum >= Settings.maxProcessDays) {
-				break;
-			}
+
 		} // End 'For' Loop
 
 		// show results
@@ -156,9 +150,9 @@ class Sequence {
 				locNum, tsNum, tracer.D.runtime, (double) tracer.D.runtime / tsNum, tracer.totalCheckNums,
 				tracer.validCheckNums, tracer.D.calcCount);
 		String setInfo = String.format(
-				"name: %s \t days: %d \t sr: %d \t k: %d  \t epsilon: %f  \t initPatientNum: %d minMBR: %d",
+				"name: %s \t sr: %d \t k: %d  \t epsilon: %f  \t initPatientNum: %d minMBR: %d",
 				this.name,
-				Settings.maxProcessDays, this.sr, this.k, this.epsilon, this.initPatientNum,
+				this.sr, this.k, this.epsilon, this.initPatientNum,
 				Settings.minMBR);
 		if (prechecking) {
 			Util.writeFile("EGP", EGP_cases.size(), setInfo, otherInfo);
@@ -180,7 +174,7 @@ class Sequence {
 		HashMap<Integer, ArrayList<Integer>> AGP_res = new HashMap<>();
 		// 4. start query
 		for (File f : files) {
-			SingFileStream stream = new SingFileStream(Settings.dataPath);
+			Stream stream = new Stream(Settings.dataPath);
 			ArrayList<Location> batch = stream.batch(Settings.objectNum);
 			while (batch != null && !batch.isEmpty()) {
 				if (batch.get(0).ts % this.sr != 0) {
@@ -197,9 +191,7 @@ class Sequence {
 			} // End 'While' Loop
 
 			dayNum += 1;
-			if (dayNum >= Settings.maxProcessDays) {
-				break;
-			}
+
 		} // End 'For' Loop
 
 		// show results
@@ -216,9 +208,9 @@ class Sequence {
 		String otherInfo = String.format("locations: %d , timestamps %d, runtime: %d, mean runtime: %f, calcCount: %d",
 				locNum, tsNum, tracer.D.runtime, (double) tracer.D.runtime / tsNum, tracer.D.calcCount);
 		String setInfo = String.format(
-				"name: %s \t days: %d \t sr: %d \t k: %d  \t epsilon: %f  \t initPatientNum: %d minMBR: %d",
+				"name: %s \t sr: %d \t k: %d  \t epsilon: %f  \t initPatientNum: %d minMBR: %d",
 				this.name,
-				Settings.maxProcessDays, this.sr, this.k, this.epsilon, this.initPatientNum,
+				this.sr, this.k, this.epsilon, this.initPatientNum,
 				Settings.minMBR);
 		Util.writeFile("AGP", AGPCases.size(), setInfo, otherInfo);
 	}
@@ -237,9 +229,9 @@ class Sequence {
 		this.egp(patientIDs, true);
 		t2 = System.currentTimeMillis();
 		info = String.format(
-				"name: %s \t days: %d \t sr: %d \t k: %d  \t epsilon: %f  \t initPatientNum: %d minMBR: %d",
+				"name: %s \t sr: %d \t k: %d  \t epsilon: %f  \t initPatientNum: %d minMBR: %d",
 				this.name,
-				Settings.maxProcessDays, this.sr, this.k, this.epsilon, this.initPatientNum,
+				this.sr, this.k, this.epsilon, this.initPatientNum,
 				Settings.minMBR);
 		System.out.println(info);
 		System.out.println("egp time consuming: " + (t2 - t1));
@@ -251,9 +243,9 @@ class Sequence {
 		this.egp(patientIDs, false);
 		t2 = System.currentTimeMillis();
 		info = String.format(
-				"name: %s \t days: %d \t sr: %d \t k: %d  \t epsilon: %f  \t initPatientNum: %d minMBR: %d",
+				"name: %s \t sr: %d \t k: %d  \t epsilon: %f  \t initPatientNum: %d minMBR: %d",
 				this.name,
-				Settings.maxProcessDays, this.sr, this.k, this.epsilon, this.initPatientNum,
+				this.sr, this.k, this.epsilon, this.initPatientNum,
 				Settings.minMBR);
 		System.out.println(info);
 		System.out.println("egp* time consuming: " + (t2 - t1));
@@ -265,9 +257,9 @@ class Sequence {
 		this.agp(patientIDs);
 		t2 = System.currentTimeMillis();
 		info = String.format(
-				"name: %s \t days: %d \t sr: %d \t k: %d  \t epsilon: %f  \t initPatientNum: %d minMBR: %d",
+				"name: %s \t sr: %d \t k: %d  \t epsilon: %f  \t initPatientNum: %d minMBR: %d",
 				this.name,
-				Settings.maxProcessDays, this.sr, this.k, this.epsilon, this.initPatientNum,
+				this.sr, this.k, this.epsilon, this.initPatientNum,
 				Settings.minMBR);
 		System.out.println(info);
 		System.out.println("agp time_consuming: " + (t2 - t1));
@@ -279,9 +271,9 @@ class Sequence {
 		this.eta(patientIDs);
 		t2 = System.currentTimeMillis();
 		info = String.format(
-				"name: %s \t days: %d \t sr: %d \t k: %d  \t epsilon: %f  \t initPatientNum: %d minMBR: %d",
+				"name: %s \t sr: %d \t k: %d  \t epsilon: %f  \t initPatientNum: %d minMBR: %d",
 				this.name,
-				Settings.maxProcessDays, this.sr, this.k, this.epsilon,
+				this.sr, this.k, this.epsilon,
 				this.initPatientNum, Settings.minMBR);
 		System.out.println(info);
 		System.out.println("eta time_consuming: " + (t2 - t1));

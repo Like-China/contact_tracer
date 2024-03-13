@@ -37,6 +37,8 @@ public class AGP {
 
 	// the minimal objects within a MBR, or we do not apply MBR for pre-checking
 	public int minMBR = Settings.minMBR;
+	public int totalQueryNB = 0;
+	public int totalCheckNB = 0;
 
 	public Distance D = new Distance();
 

@@ -22,7 +22,7 @@ Given a txt file with Line infromation: id date time lon lat timestamp
 example: 00053 2008-02-08 00:00:00 116.410720 39.990820 0
  */
 
-public class SingFileStream {
+public class Stream {
 	// the file path that records all location information
 	String filePath;
 	// the current already loaded number of lines of the file
@@ -43,7 +43,7 @@ public class SingFileStream {
 	 * 
 	 * @param filePath the file path that records all location information
 	 */
-	public SingFileStream(String filePath) {
+	public Stream(String filePath) {
 		this.filePath = filePath;
 		loadLineNB = 0;
 		// TODO Auto-generated constructor stub
@@ -69,6 +69,10 @@ public class SingFileStream {
 		try {
 			String lineString;
 			int count = 0;
+			if (firstLocation != null) {
+				locBatch.add(firstLocation);
+				firstLocation = null;
+			}
 			while ((lineString = reader.readLine()) != null) {
 				int id = Integer.parseInt(lineString.split(" ")[0]);
 				minID = minID < id ? minID : id;
@@ -81,10 +85,11 @@ public class SingFileStream {
 				}
 				// if two adjacent lines record two different timestamps, then
 				if (ts != curTS) {
+					firstLocation = new Location(id, lon, lat, ts);
 					break;
 				} else {
-					if (count++ < readObjNB) {
-						locBatch.add(new Location(id, " ", " ", lon, lat, ts));
+					if (count++ < readObjNB && id < readObjNB) {
+						locBatch.add(new Location(id, lon, lat, ts));
 					}
 				}
 			}

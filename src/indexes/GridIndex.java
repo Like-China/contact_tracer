@@ -5,20 +5,23 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import data_loader.Location;
+import trace.Settings;
 
 public class GridIndex {
 
 	// the scale (width) of each grad cell
 	public double scale;
-	// the min/max value of longitude/latitude the whole grid index, which is pre-defined
-	public double[] lonRange;
-	public double[] latRange;
-	// the min.max x coordinate 
+	// the min/max value of longitude/latitude the whole grid index, which is
+	// pre-defined
+	public double[] lonRange = Settings.lonRange;
+	public double[] latRange = Settings.latRange;
+	// the min.max x coordinate
 	public int xmax;
 	public int ymax;
 	// the number of grid cells
 	public int cellNB;
-	// the map from cell id to the ordinary (non-query) locations within this grid cell
+	// the map from cell id to the ordinary (non-query) locations within this grid
+	// cell
 	public HashMap<Integer, ArrayList<Location>> ordinaryAreasLocations = new HashMap<Integer, ArrayList<Location>>();
 	// the map from cell id to the query locations within this grid cell
 	public HashMap<Integer, ArrayList<Location>> patientAreasLocations = new HashMap<Integer, ArrayList<Location>>();
@@ -45,13 +48,13 @@ public class GridIndex {
 
 	public GridIndex(double scale, String cityname) {
 		this.scale = scale;
-		if (cityname == "beijing") {
-			lonRange = new double[] { 116.25f - 0.001f, 116.55f + 0.001f };
-			latRange = new double[] { 39.83f - 0.001f, 40.03f + 0.001f };
-		} else {
-			lonRange = new double[] { -8.735f - 0.0015f, -8.156f + 0.0015f };
-			latRange = new double[] { 40.953f - 0.0015f, 41.307f + 0.0015f };
-		}
+		// if (cityname == "beijing") {
+		// lonRange = new double[] { 116.25f - 0.001f, 116.55f + 0.001f };
+		// latRange = new double[] { 39.83f - 0.001f, 40.03f + 0.001f };
+		// } else {
+		// lonRange = new double[] { -8.735f - 0.0015f, -8.156f + 0.0015f };
+		// latRange = new double[] { 40.953f - 0.0015f, 41.307f + 0.0015f };
+		// }
 		this.xmax = getX(lonRange[1]);
 		this.ymax = getY(latRange[1]);
 		cellNB = this.xmax * this.ymax - 1;

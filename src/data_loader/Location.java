@@ -9,11 +9,12 @@
 
 package data_loader;
 
+import indexes.MyRectangle;
+import trace.Settings;
+
 public class Location {
 	// basic location info
 	public int id = -1;
-	public String date = "2020-20-20";
-	public String time = "-1:-1:-1";
 	public double lon = -1;
 	public double lat = -1;
 	public int ts = -1;
@@ -21,25 +22,26 @@ public class Location {
 	public boolean isContact = false;
 	// the belonging cell id
 	public int areaID = -1;
+	// influenced rectangle
+	public MyRectangle infRec;
 
 	public Location() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Location(int id, String date, String time, double lon, double lat, int ts) {
+	public Location(int id, double lon, double lat, int ts) {
 		this.id = id;
-		this.date = date;
-		this.time = time;
 		this.lon = lon;
 		this.lat = lat;
 		this.ts = ts;
+		double expandScale = Settings.epsilon / 10000;
+		this.infRec = new MyRectangle(this,  lon - expandScale, lat - expandScale, 2 * expandScale, 2 * expandScale);
 	}
 
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		String res = this.id + " " + this.date + " " + this.time + " " + this.lon + " " + this.lat + " " + " "
-				+ this.ts;
+		String res = this.id + " " + this.lon + " " + this.lat + " " + this.ts;
 		return res;
 	}
 

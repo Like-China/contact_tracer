@@ -297,11 +297,11 @@ public class EGP {
 				// after pre-checking, calculate remaining pairwise exact-distance among each
 				// two
 				// ordinary lcation and patient location
-				totalCheckNB += ordinaryLocations.size();
 				for (Location l1 : ordinaryLocations) {
 					if (l1.isContact)
 						continue;
 					for (Location l2 : patientLocations) {
+						totalCheckNB += 1;
 						double dis = D.distance(l1.lat, l1.lon, l2.lat, l2.lon);
 						if (dis <= epsilon) {
 							// mark this location as detected

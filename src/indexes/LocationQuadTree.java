@@ -15,18 +15,18 @@ import data_loader.Location;
  * leaf (splitting occurs with overflow);
  * - DYNAMIC_MAX_OBJECTS (default false) tells whether adjusting
  * LEAF_MAX_OBJECTS automatically is enabled;
- * - MAX_OBJ_TARGET_EXPONENT (default 0.33333) is used in dynamically adjusting
+ * - MAX_OBJ_TARGET_EXPONENT  is used in dynamically adjusting
  * LEAF_MAX_OBJECTS, if that is enabled ¡§C
  * LEAF_MAX_OBJECTS is calculated by the formula SIZE ^ MAX_OBJ_TARGET_EXPONENT,
  * and a lower minimum of 7 is applied on top of that.
  *
  * @author pvto https://github.com/pvto
  */
-public class QuadTree {
+public class LocationQuadTree {
 
     public int LEAF_MAX_OBJECTS = 10;
     public boolean DYNAMIC_MAX_OBJECTS = false;
-    public double MAX_OBJ_TARGET_EXPONENT = 0.333333;
+    public double MAX_OBJ_TARGET_EXPONENT = 0.6;
     // the total number of points
     public int size = 0;
     public ListProvider<CoordHolder> LIST_PROVIDER = ListProvider.LP_LINKEDLIST;

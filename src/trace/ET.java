@@ -31,6 +31,8 @@ public class ET {
 	// timestamp or not
 	public HashMap<Integer, Boolean> isContact = new HashMap<Integer, Boolean>();
 	public Distance D = new Distance();
+	public int totalQueryNB = 0;
+	public int totalCheckNB = 0;
 
 	public ET(double epsilon, int k, String cityname) {
 		super();
@@ -62,6 +64,7 @@ public class ET {
 		// 2. calculate exact distance among each two query and non-query locations
 		for (Location l1 : otherLocations) {
 			for (Location l2 : queryLocations) {
+				totalCheckNB += 1;
 				double dis = D.distance(l1.lat, l1.lon, l2.lat, l2.lon);
 				if (dis <= epsilon) {
 					if (!objectMapDuration.containsKey(l1.id))

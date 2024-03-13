@@ -14,19 +14,17 @@ package trace;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
-
 import data_loader.Location;
 import indexes.Distance;
 import indexes.GridIndex;
-import indexes.QuadTree;
-import indexes.QuadTree.CoordHolder;
+import indexes.MyRectangle;
+import indexes.RectangleQuadTree;
 
 /**
  * QGP implementation, construct a quadtree for database, use gridindex for
  * query locations
  */
-public class QGP {
+public class RectangleQGP {
 	// the distance threshold
 	public double epsilon;
 	// the duration threshold
@@ -39,7 +37,7 @@ public class QGP {
 	// record each object contacts with at least one query object at current
 	// timestamp or not
 	public HashMap<Integer, Boolean> isContactMap = new HashMap<Integer, Boolean>();
-	public QuadTree dbQuadTree;
+	public RectangleQuadTree dbQuadTree;
 	// the total pre-checking number / valid pre-checking number
 	public Distance D = new Distance();
 	double scale;
@@ -58,13 +56,10 @@ public class QGP {
 	public long fTime = 0;
 	public long sTime = 0;
 
-	public QGP(double epsilon, int k, String cityname) {
+	public RectangleQGP(double epsilon, int k, String cityname) {
 		this.epsilon = epsilon;
 		this.k = k;
 		this.scale = (epsilon / 10000 / Math.sqrt(2));
-		dbQuadTree = new QuadTree();
-		dbQuadTree.DYNAMIC_MAX_OBJECTS = true;
-		dbQuadTree.MAX_OBJ_TARGET_EXPONENT = 0.5;
 		g = new GridIndex(scale, cityname);
 		// System.out.println(g.cellNB);
 	}
@@ -82,9 +77,8 @@ public class QGP {
 	 * @param batch
 	 */
 	public void constructIndex(ArrayList<Location> batch) {
-		dbQuadTree = new QuadTree();
-		dbQuadTree.DYNAMIC_MAX_OBJECTS = true;
-		dbQuadTree.MAX_OBJ_TARGET_EXPONENT = 0.5;
+		dbQuadTree = new RectangleQuadTree(0, new MyRectangle(null, Settings.lonRange[0], Settings.latRange[0],
+				Settings.lonRange[1] - Settings.lonRange[0], Settings.latRange[1] - Settings.latRange[0]));
 		// init infected grid cell set at current timestamp
 		areas = new HashSet<Integer>();
 		// each area and its covered non-query locations at current timestamp
@@ -106,7 +100,7 @@ public class QGP {
 				// update the MBR if location l is outside MBR
 				updateMBR(rawMBR, l);
 			} else {
-				dbQuadTree.place(l.lat, l.lon, l);
+				dbQuadTree.insert(l.infRec);
 			}
 		}
 		// update grid index
@@ -128,30 +122,29 @@ public class QGP {
 		constructIndex(batch);
 		totalQueryNB += areas.size();
 		long t2 = System.currentTimeMillis();
-		totalLeafNB += dbQuadTree.getAllLeafs().size();
 		cTime += (t2 - t1);
 		ArrayList<Integer> updateCE = new ArrayList<Integer>();
 		// 2. for each leaf node of queryTree, find its intersection in dbTree
 		// List<Quad> leafs = qQuadTree.getAllLeafs();
 		for (Integer areaID : areas) {
 			ArrayList<Location> patientLocations = g.patientAreasLocations.get(areaID);
-			// System.out.println(patientLocations.size());
-			// if (patientLocations.size() > 10) {
 			double[] patientMBR = g.patientAreasMBR.get(areaID);
 			t1 = System.currentTimeMillis();
-			List<CoordHolder> influenced = dbQuadTree.findAll(patientMBR[2] - epsilon / 10000,
-					patientMBR[3] + epsilon / 10000,
-					patientMBR[0] - epsilon / 10000, patientMBR[1] + epsilon / 10000);
-			totalCheckNB += influenced.size();
+
+			MyRectangle queryRec = new MyRectangle(null, patientMBR[0], patientMBR[2], patientMBR[1] - patientMBR[0],
+					patientMBR[3] - patientMBR[2]);
+			HashSet<MyRectangle> returnObjects = new HashSet<>();
+			dbQuadTree.retrieve(returnObjects, queryRec);
 			t2 = System.currentTimeMillis();
 			fTime += (t2 - t1);
 
 			t1 = System.currentTimeMillis();
-			for (CoordHolder db_ch : influenced) {
-				Location l1 = db_ch.o;
+			for (MyRectangle rec : returnObjects) {
+				Location l1 = rec.loc;
 				if (l1.isContact)
 					continue;
 				for (Location l2 : patientLocations) {
+					totalCheckNB += 1;
 					double dis = D.distance(l1.lat, l1.lon, l2.lat, l2.lon);
 					if (dis <= epsilon) {
 						// mark this location as detected
@@ -172,9 +165,6 @@ public class QGP {
 			}
 			t2 = System.currentTimeMillis();
 			sTime += (t2 - t1);
-			// }else{
-			// for(Location l1: )
-			// }
 
 		}
 
