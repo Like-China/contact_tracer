@@ -16,15 +16,13 @@ import java.util.HashMap;
 import java.util.HashSet;
 import data_loader.Location;
 import indexes.Distance;
-import indexes.GridIndex;
 import indexes.MyRectangle;
 import indexes.RectangleQuadTree;
 
 /**
- * QGP implementation, construct a quadtree for database, use gridindex for
- * query locations
+ * QGP implementation, quadtree for database,  gridindex for query locations
  */
-public class RectangleQGP2 {
+public class QGP2 {
 	// the distance threshold
 	public double epsilon;
 	// the duration threshold
@@ -55,7 +53,7 @@ public class RectangleQGP2 {
 	public long fTime = 0;
 	public long sTime = 0;
 
-	public RectangleQGP2(double epsilon, int k, String cityname) {
+	public QGP2(double epsilon, int k, String cityname) {
 		this.epsilon = epsilon;
 		this.k = k;
 	}
@@ -113,17 +111,20 @@ public class RectangleQGP2 {
 				if (l1.isContact)
 					continue;
 				totalCheckNB += 1;
-				// mark this location as detected
-				l1.isContact = true;
-				isContactMap.put(l1.id, true);
-				if (!objectMapDuration.containsKey(l1.id))
-					objectMapDuration.put(l1.id, 0);
-				int duration = objectMapDuration.get(l1.id) + 1;
-				objectMapDuration.put(l1.id, duration);
-				// new updated case of exposure
-				if (duration >= k) {
-					patientIDs.add(l1.id);
-					updateCE.add(l1.id);
+				double dis = D.distance(l1.lat, l1.lon, l2.lat, l2.lon);
+				if (dis <= epsilon) {
+					// mark this location as detected
+					l1.isContact = true;
+					isContactMap.put(l1.id, true);
+					if (!objectMapDuration.containsKey(l1.id))
+						objectMapDuration.put(l1.id, 0);
+					int duration = objectMapDuration.get(l1.id) + 1;
+					objectMapDuration.put(l1.id, duration);
+					// new updated case of exposure
+					if (duration >= k) {
+						patientIDs.add(l1.id);
+						updateCE.add(l1.id);
+					}
 				}
 			}
 			t2 = System.currentTimeMillis();

@@ -28,7 +28,7 @@ public class ETTester {
 		// 2. init a batch of patient ids
 		tracer.patientIDs = Util.initPatientIds(Settings.objectNum, Settings.initPatientNum, Settings.isRandom);
 		System.out.println(
-				"Init Patients size: " + Settings.initPatientNum + "Random: " + Settings.isRandom);
+				"InitPatientSize: " + Settings.initPatientNum + " Random: " + Settings.isRandom);
 		long runtime = 0;
 		long locNum = 0;
 		int tsNum = 0;

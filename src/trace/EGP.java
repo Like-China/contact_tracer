@@ -139,13 +139,14 @@ public class EGP {
 
 		// 2. for influenced grid cells of infected areas (include infected area
 		// itself), we check objects within them are infected or not
-		t1 = System.currentTimeMillis();
+
 		for (Integer areaID : areas) {
 			// 2.1 find influenced areas' ids
 			t1 = System.currentTimeMillis();
 			int[] nnIDs = g.getAffectAreas(areaID);
 			t2 = System.currentTimeMillis();
 			fTime += (t2 - t1);
+			t1 = System.currentTimeMillis();
 			// 2.2 find query locations at infected area, and get its MBR
 			ArrayList<Location> patientLocations = g.patientAreasLocations.get(areaID);
 			// 2.3 check objects within these influenced area
@@ -321,9 +322,9 @@ public class EGP {
 					}
 				}
 			}
+			t2 = System.currentTimeMillis();
+			sTime += (t2 - t1);
 		} // End 2
-		t2 = System.currentTimeMillis();
-		sTime += (t2 - t1);
 
 		// 3. reset infected duration of specific objects
 		for (Integer id : objectMapDuration.keySet()) {

@@ -24,7 +24,7 @@ import indexes.RectangleQuadTree;
  * QGP implementation, construct a quadtree for database, use gridindex for
  * query locations
  */
-public class RectangleQGP {
+public class QGP {
 	// the distance threshold
 	public double epsilon;
 	// the duration threshold
@@ -56,7 +56,7 @@ public class RectangleQGP {
 	public long fTime = 0;
 	public long sTime = 0;
 
-	public RectangleQGP(double epsilon, int k, String cityname) {
+	public QGP(double epsilon, int k, String cityname) {
 		this.epsilon = epsilon;
 		this.k = k;
 		this.scale = (epsilon / 10000 / Math.sqrt(2));

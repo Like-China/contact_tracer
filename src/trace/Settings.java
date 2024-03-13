@@ -30,7 +30,7 @@ public class Settings {
 	// initial number of all objects
 	public static int objectNum = (name.equals("beijing")) ? 1000000 : 1000000;
 	// initial number of query objects
-	public static int initPatientNum = (name.equals("beijing")) ? 2000 : 60000;
+	public static int initPatientNum = (name.equals("beijing")) ? 20000 : 60000;
 	public static boolean isRandom = false;
 	// use pre-check or not
 	public static boolean prechecking = false;

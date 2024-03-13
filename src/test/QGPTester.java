@@ -14,21 +14,21 @@ import java.util.HashMap;
 import java.util.HashSet;
 import data_loader.Location;
 import data_loader.Stream;
-import trace.LocationQGP;
+import trace.QGP2;
 import trace.Settings;
 import trace.Util;
 
-public class LocQGPTester {
+public class QGPTester {
 
 	public static void main(String[] args) {
 		long start_time = System.currentTimeMillis();
 		// 1. create a Tracer object
-		LocationQGP tracer = new LocationQGP(Settings.epsilon, Settings.k,
+		QGP2 tracer = new QGP2(Settings.epsilon, Settings.k,
 				Settings.name);
 		// 2. init a batch of patient ids
 		tracer.patientIDs = Util.initPatientIds(Settings.objectNum, Settings.initPatientNum, Settings.isRandom);
 		System.out.println(
-				"Init Patients size: " + Settings.initPatientNum + "Random: " + Settings.isRandom);
+				"InitPatientSize: " + Settings.initPatientNum + " Random: " + Settings.isRandom);
 		long runtime = 0;
 		long locNum = 0;
 		int tsNum = 0;

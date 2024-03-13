@@ -12,7 +12,7 @@ import java.util.HashSet;
 
 public class RectangleQuadTree {
     // how many objects a node can hold before it splits
-    public int MAX_OBJECTS = 20;
+    public int MAX_OBJECTS = 10;
     // the deepest level subnode
     public int MAX_LEVELS = 5;
     // the current node level (0 being the topmost node)
