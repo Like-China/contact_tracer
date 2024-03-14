@@ -18,7 +18,7 @@ import data_loader.Location;
 import indexes.Distance;
 import indexes.GridIndex;
 import indexes.MyRectangle;
-import indexes.RectangleQuadTree;
+import indexes.QuadTree;
 
 /**
  * QGP implementation, construct a quadtree for database, use gridindex for
@@ -37,7 +37,7 @@ public class QGP {
 	// record each object contacts with at least one query object at current
 	// timestamp or not
 	public HashMap<Integer, Boolean> isContactMap = new HashMap<Integer, Boolean>();
-	public RectangleQuadTree dbQuadTree;
+	public QuadTree dbQuadTree;
 	// the total pre-checking number / valid pre-checking number
 	public Distance D = new Distance();
 	double scale;
@@ -59,7 +59,8 @@ public class QGP {
 	public QGP(double epsilon, int k, String cityname) {
 		this.epsilon = epsilon;
 		this.k = k;
-		this.scale = (epsilon / 10000 / Math.sqrt(2));
+		// this.scale = (epsilon / 10000 / Math.sqrt(2));
+		this.scale = epsilon / 10000 * 2;
 		g = new GridIndex(scale, cityname);
 		// System.out.println(g.cellNB);
 	}
@@ -72,12 +73,12 @@ public class QGP {
 	}
 
 	/**
-	 * Given a set of locations, construct two quadtree indexes
+	 * QGP implementation, quadtree for database, gridindex for query locations
 	 * 
 	 * @param batch
 	 */
 	public void constructIndex(ArrayList<Location> batch) {
-		dbQuadTree = new RectangleQuadTree(0, new MyRectangle(null, Settings.lonRange[0], Settings.latRange[0],
+		dbQuadTree = new QuadTree(0, new MyRectangle(-1, Settings.lonRange[0], Settings.latRange[0],
 				Settings.lonRange[1] - Settings.lonRange[0], Settings.latRange[1] - Settings.latRange[0]));
 		// init infected grid cell set at current timestamp
 		areas = new HashSet<Integer>();
@@ -120,27 +121,28 @@ public class QGP {
 		// 1. index construction
 		long t1 = System.currentTimeMillis();
 		constructIndex(batch);
+		// dbQuadTree.dfs();
+		// System.exit(0);
 		totalQueryNB += areas.size();
 		long t2 = System.currentTimeMillis();
 		cTime += (t2 - t1);
 		ArrayList<Integer> updateCE = new ArrayList<Integer>();
 		// 2. for each leaf node of queryTree, find its intersection in dbTree
-		// List<Quad> leafs = qQuadTree.getAllLeafs();
 		for (Integer areaID : areas) {
 			ArrayList<Location> patientLocations = g.patientAreasLocations.get(areaID);
-			double[] patientMBR = g.patientAreasMBR.get(areaID);
-			t1 = System.currentTimeMillis();
 
-			MyRectangle queryRec = new MyRectangle(null, patientMBR[0], patientMBR[2], patientMBR[1] - patientMBR[0],
+			t1 = System.currentTimeMillis();
+			double[] patientMBR = g.patientAreasMBR.get(areaID);
+			MyRectangle queryRec = new MyRectangle(-1, patientMBR[0], patientMBR[2], patientMBR[1] - patientMBR[0],
 					patientMBR[3] - patientMBR[2]);
-			HashSet<MyRectangle> returnObjects = new HashSet<>();
+			HashSet<Integer> returnObjects = new HashSet<>();
 			dbQuadTree.retrieve(returnObjects, queryRec);
 			t2 = System.currentTimeMillis();
 			fTime += (t2 - t1);
-
 			t1 = System.currentTimeMillis();
-			for (MyRectangle rec : returnObjects) {
-				Location l1 = rec.loc;
+			// for (MyRectangle rec : returnObjects) {
+			for (int id : returnObjects) {
+				Location l1 = batch.get(id);
 				if (l1.isContact)
 					continue;
 				for (Location l2 : patientLocations) {

@@ -180,7 +180,11 @@ public class EGP {
 					ordinaryMBRVertexs[3] = new double[] { ordinaryMBR[1], ordinaryMBR[3] };
 					double min_dist = 10000;
 					// double max_dist = -100;
-					// 4 vertexes * 4 vertexes calculation to get min distance between two MBRs
+					// 4 vertexes * 4 vertexes calculation to get min distance between two MBRs\
+					// double m1 = Math.abs(ordinaryMBR[0]-patientMBR[0]);
+					// double m2 = Math.abs(ordinaryMBR[0]-patientMBR[1]);
+					// double m3 = Math.abs(ordinaryMBR[0]-patientMBR[0]);
+					// double m4 = Math.abs(ordinaryMBR[0]-patientMBR[0]);
 					if (ordinaryMBR[0] > patientMBR[1] && ordinaryMBR[3] < patientMBR[2]) {
 						// case 1: left-top
 						min_dist = D.distance(patientMBRVertexs[2][1], patientMBRVertexs[2][0],

@@ -26,6 +26,72 @@ import data_loader.Location;
 
 public class Util {
 
+	public static double distance(double[] mbr1, double[] mbr2) {
+		double shortestDistance = Double.MAX_VALUE;
+
+		// 计算每个矩形的4个顶点到另一个矩形的距离
+		for (int i = 0; i < 4; i++) {
+			double x1 = i % 2 == 0 ? mbr1[0] : mbr1[2];
+			double y1 = i < 2 ? mbr1[1] : mbr1[3];
+
+			for (int j = 0; j < 4; j++) {
+				double x2 = j % 2 == 0 ? mbr2[0] : mbr2[2];
+				double y2 = j < 2 ? mbr2[1] : mbr2[3];
+
+				double dist = Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+				shortestDistance = Math.min(shortestDistance, dist);
+			}
+		}
+
+		// 计算两个矩形之间有交集的边的距离
+		for (int i = 0; i < 4; i++) {
+			double x1 = i % 2 == 0 ? mbr1[0] : mbr1[2];
+			double y1 = i < 2 ? mbr1[1] : mbr1[3];
+			double x2 = (i + 1) % 2 == 0 ? mbr1[0] : mbr1[2];
+			double y2 = (i + 1) % 2 < 2 ? mbr1[1] : mbr1[3];
+
+			for (int j = 0; j < 4; j++) {
+				double x3 = j % 2 == 0 ? mbr2[0] : mbr2[2];
+				double y3 = j < 2 ? mbr2[1] : mbr2[3];
+				double x4 = (j + 1) % 2 == 0 ? mbr2[0] : mbr2[2];
+				double y4 = (j + 1) % 2 < 2 ? mbr2[1] : mbr2[3];
+
+				double dist = distancePointToSegment(x1, y1, x3, y3, x4, y4);
+				shortestDistance = Math.min(shortestDistance, dist);
+			}
+		}
+
+		return shortestDistance;
+	}
+
+	private static double distancePointToSegment(double x, double y, double x1, double y1, double x2, double y2) {
+		double A = x - x1;
+		double B = y - y1;
+		double C = x2 - x1;
+		double D = y2 - y1;
+
+		double dot = A * C + B * D;
+		double len_sq = C * C + D * D;
+		double param = -1;
+		if (len_sq != 0) // in case of 0 length line
+			param = dot / len_sq;
+
+		double xx, yy;
+
+		if (param < 0) {
+			xx = x1;
+			yy = y1;
+		} else if (param > 1) {
+			xx = x2;
+			yy = y2;
+		} else {
+			xx = x1 + param * C;
+			yy = y1 + param * D;
+		}
+
+		return Math.sqrt((x - xx) * (x - xx) + (y - yy) * (y - yy));
+	}
+
 	public static void sleep(long duration) {
 		try {
 			Thread.sleep(duration);
@@ -147,7 +213,7 @@ public class Util {
 		for (int i = 0; i < num2.length; i++) {
 			num2[i] = i + 1;
 		}
-		Random r = new Random();
+		Random r = new Random(1);
 		int index = -1;
 		for (int i = 0; i < num1.length; i++) {
 			index = r.nextInt(num2.length - i);

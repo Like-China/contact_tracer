@@ -14,7 +14,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import data_loader.Location;
 import data_loader.Stream;
-import trace.QGP2;
+import trace.QGPNoGridIndex;
+import trace.QGP;
 import trace.Settings;
 import trace.Util;
 
@@ -23,8 +24,10 @@ public class QGPTester {
 	public static void main(String[] args) {
 		long start_time = System.currentTimeMillis();
 		// 1. create a Tracer object
-		QGP2 tracer = new QGP2(Settings.epsilon, Settings.k,
+		QGPNoGridIndex tracer = new QGPNoGridIndex(Settings.epsilon, Settings.k,
 				Settings.name);
+		// QGP tracer = new QGP(Settings.epsilon, Settings.k,
+		// Settings.name);
 		// 2. init a batch of patient ids
 		tracer.patientIDs = Util.initPatientIds(Settings.objectNum, Settings.initPatientNum, Settings.isRandom);
 		System.out.println(
@@ -75,7 +78,7 @@ public class QGPTester {
 				"name: %s \t sr: %d \t k: %d  \t epsilon: %f  \t initPatientNum: %d minMBR: %d",
 				Settings.name, Settings.sr, Settings.k, Settings.epsilon,
 				Settings.initPatientNum, Settings.minMBR);
-		// Util.writeFile("QGP", QGPCases.size(), setInfo, otherInfo);
+		// Util.writeFile("QGP2", QGPCases.size(), setInfo, otherInfo);
 		System.out.println("total time consuming: " + (System.currentTimeMillis() - start_time));
 	}
 

@@ -12,11 +12,12 @@ package trace;
 public class Settings {
 
 	// default parameters settings
-	public static String name = "beijing";
+	public static String name = "porto";
 	// sampling interval
-	public static int sr = (name.equals("beijing")) ? 10 : 5;
+	public static int sr = (name.equals("beijing")) ? 10 : 15;
 	// data path
-	public static String dataPath = "/home/like/data/contact_tracer/beijing100_1000000.txt";
+	public static String dataPath = (name.equals("beijing")) ? "/home/like/data/contact_tracer/beijing100_1000000.txt"
+			: "/home/like/data/contact_tracer/porto20_100000.txt";
 	// due to the rime-consuming of ET algorithm, we do not evalute all timestamps
 	// for ET. Rather, we set a smaller value of evaluted timestamps.
 	public static int maxTSNB = 10;
@@ -26,12 +27,12 @@ public class Settings {
 	// Porto: [5,7,9,11], default 5
 	public static int k = (name.equals("beijing")) ? 5 : 5;
 	// distance threshold, default 2, ranges [2,4,6,8,10]
-	public static float epsilon = 2f;
+	public static float epsilon = 1f;
 	// initial number of all objects
-	public static int objectNum = (name.equals("beijing")) ? 1000000 : 1000000;
+	public static int objectNum = (name.equals("beijing")) ? 1000000 : 100000;
 	// initial number of query objects
-	public static int initPatientNum = (name.equals("beijing")) ? 20000 : 60000;
-	public static boolean isRandom = false;
+	public static int initPatientNum = (name.equals("beijing")) ? 50000 : 6000;
+	public static boolean isRandom = true;
 	// use pre-check or not
 	public static boolean prechecking = false;
 	// the hop interval in AGP algorithm

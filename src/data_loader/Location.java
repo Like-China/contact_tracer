@@ -35,7 +35,7 @@ public class Location {
 		this.lat = lat;
 		this.ts = ts;
 		double expandScale = Settings.epsilon / 10000;
-		this.infRec = new MyRectangle(this,  lon - expandScale, lat - expandScale, 2 * expandScale, 2 * expandScale);
+		this.infRec = new MyRectangle(id,  lon - expandScale, lat - expandScale, 2 * expandScale, 2 * expandScale);
 	}
 
 	@Override

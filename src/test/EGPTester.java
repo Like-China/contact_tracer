@@ -40,7 +40,6 @@ public class EGPTester {
 			System.out.println("lacked data!!");
 			return;
 		}
-		System.out.println(batch.size());
 		while (batch != null && !batch.isEmpty()) {
 			locNum += batch.size();
 			System.out.printf("Timestamp %3d return locations %d", batch.get(0).ts, batch.size());

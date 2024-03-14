@@ -1,21 +1,28 @@
 package indexes;
 
-import data_loader.Location;
-
 public class MyRectangle {
     private double x;
     private double y;
     private double width;
     private double height;
-    public int objID;
-    public Location loc;
+    // moving object id
+    public int id;
 
-    public MyRectangle(Location loc, double x, double y, double width, double height) {
-        this.loc = loc;
+    public MyRectangle(int id, double x, double y, double width, double height) {
+        this.id = id;
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+    }
+
+    public boolean isCover(double x, double y) {
+        if (x < this.x || x > this.x + width || y < this.y || y > this.y + height) {
+            return false;
+        } else {
+            return true;
+        }
+
     }
 
     public double getX() {

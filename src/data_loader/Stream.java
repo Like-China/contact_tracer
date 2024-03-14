@@ -13,9 +13,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Random;
-
-import trace.Settings;
 
 /*
 Given a txt file with Line infromation: id date time lon lat timestamp
@@ -32,11 +29,6 @@ public class Stream {
 	BufferedReader reader;
 	// the first line location that begins from
 	Location firstLocation = null;
-	// random seed
-	Random r = new Random(0);
-	// the min/max id among all moving objects
-	public int minID = 10000;
-	public int maxID = -1;
 
 	/**
 	 * Load locations in a stream manner
@@ -75,8 +67,6 @@ public class Stream {
 			}
 			while ((lineString = reader.readLine()) != null) {
 				int id = Integer.parseInt(lineString.split(" ")[0]);
-				minID = minID < id ? minID : id;
-				maxID = maxID < id ? id : maxID;
 				float lon = Float.parseFloat(lineString.split(" ")[1]);
 				float lat = Float.parseFloat(lineString.split(" ")[2]);
 				int ts = Integer.parseInt(lineString.split(" ")[3]);

@@ -17,12 +17,12 @@ import java.util.HashSet;
 import data_loader.Location;
 import indexes.Distance;
 import indexes.MyRectangle;
-import indexes.RectangleQuadTree;
+import indexes.QuadTree;
 
 /**
- * QGP implementation, quadtree for database,  gridindex for query locations
+ * QGP implementation, quadtree for database, non-index for query locations
  */
-public class QGP2 {
+public class QGPNoGridIndex {
 	// the distance threshold
 	public double epsilon;
 	// the duration threshold
@@ -35,7 +35,7 @@ public class QGP2 {
 	// record each object contacts with at least one query object at current
 	// timestamp or not
 	public HashMap<Integer, Boolean> isContactMap = new HashMap<Integer, Boolean>();
-	public RectangleQuadTree dbQuadTree;
+	public QuadTree dbQuadTree;
 	// the total pre-checking number / valid pre-checking number
 	public Distance D = new Distance();
 	double scale;
@@ -53,7 +53,7 @@ public class QGP2 {
 	public long fTime = 0;
 	public long sTime = 0;
 
-	public QGP2(double epsilon, int k, String cityname) {
+	public QGPNoGridIndex(double epsilon, int k, String cityname) {
 		this.epsilon = epsilon;
 		this.k = k;
 	}
@@ -64,8 +64,9 @@ public class QGP2 {
 	 * @param batch
 	 */
 	public void constructIndex(ArrayList<Location> batch) {
-		dbQuadTree = new RectangleQuadTree(0, new MyRectangle(null, Settings.lonRange[0], Settings.latRange[0],
-				Settings.lonRange[1] - Settings.lonRange[0], Settings.latRange[1] - Settings.latRange[0]));
+		dbQuadTree = new QuadTree(0, new MyRectangle(-1, Settings.lonRange[0], Settings.latRange[0],
+				Settings.lonRange[1] - Settings.lonRange[0] + 2 * Settings.epsilon / 10000,
+				Settings.latRange[1] - Settings.latRange[0] + 2 * Settings.epsilon / 10000));
 		// init infected grid cell set at current timestamp
 		areas = new HashSet<Integer>();
 		// each area and its covered non-query locations at current timestamp
@@ -92,6 +93,11 @@ public class QGP2 {
 		// 1. index construction
 		long t1 = System.currentTimeMillis();
 		constructIndex(batch);
+		// ArrayList<MyRectangle> recList = new ArrayList<>();
+		// dbQuadTree.dfs(recList);
+		// System.out.println("total number of objects in borderline: " +
+		// recList.size());
+		// System.exit(0);
 		long t2 = System.currentTimeMillis();
 		cTime += (t2 - t1);
 		ArrayList<Integer> updateCE = new ArrayList<Integer>();
@@ -99,33 +105,33 @@ public class QGP2 {
 		for (Location l2 : patientLoctions) {
 			t1 = System.currentTimeMillis();
 			totalQueryNB += 1;
-			MyRectangle queryRec = new MyRectangle(null, l2.lon, l2.lat, 0,
-					0);
+			// MyRectangle queryRec = new MyRectangle(-1, l2.lon, l2.lat, 0,
+			// 0);
 			HashSet<MyRectangle> returnObjects = new HashSet<>();
-			dbQuadTree.retrieve(returnObjects, queryRec);
+			dbQuadTree.retrieveByLocation(returnObjects, l2.lon, l2.lat);
 			t2 = System.currentTimeMillis();
 			fTime += (t2 - t1);
 			t1 = System.currentTimeMillis();
 			for (MyRectangle rec : returnObjects) {
-				Location l1 = rec.loc;
+				Location l1 = batch.get(rec.id);
 				if (l1.isContact)
 					continue;
 				totalCheckNB += 1;
-				double dis = D.distance(l1.lat, l1.lon, l2.lat, l2.lon);
-				if (dis <= epsilon) {
-					// mark this location as detected
-					l1.isContact = true;
-					isContactMap.put(l1.id, true);
-					if (!objectMapDuration.containsKey(l1.id))
-						objectMapDuration.put(l1.id, 0);
-					int duration = objectMapDuration.get(l1.id) + 1;
-					objectMapDuration.put(l1.id, duration);
-					// new updated case of exposure
-					if (duration >= k) {
-						patientIDs.add(l1.id);
-						updateCE.add(l1.id);
-					}
+				// double dis = D.distance(l1.lat, l1.lon, l2.lat, l2.lon);
+				// if (dis <= epsilon) {
+				// mark this location as detected
+				l1.isContact = true;
+				isContactMap.put(l1.id, true);
+				if (!objectMapDuration.containsKey(l1.id))
+					objectMapDuration.put(l1.id, 0);
+				int duration = objectMapDuration.get(l1.id) + 1;
+				objectMapDuration.put(l1.id, duration);
+				// new updated case of exposure
+				if (duration >= k) {
+					patientIDs.add(l1.id);
+					updateCE.add(l1.id);
 				}
+				// }
 			}
 			t2 = System.currentTimeMillis();
 			sTime += (t2 - t1);

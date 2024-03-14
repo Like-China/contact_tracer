@@ -90,3 +90,37 @@ total time consuming: 45482
 2024/3/10 检查beijng days=1, 2，4，6下的ET和EGP输出相同无误
 
 // 模拟一大批轨迹,试验QGP和EGP的表现，再想如何更新数据集
+
+2024/3/13 新增以矩形为输入单元的四叉树，修改该四叉树的retrieve函数
+EGP的pre-checking可能会删除一些原本可能感染的样例
+
+2024/3/14 EGP 50000-100000实验指标，QGP需要超过这个指标才行(QGP超不过，QGP2可以)
+totalQueryNB/totalCheckNB
+420070/1386054
+cTime/fTime/sTime
+425/24/1215
+runtime: 1712,mean runtime:  171.2
+      EGP 5w-100w
+totalQueryNB/totalCheckNB
+464498/35684522
+cTime/fTime/sTime
+6345/29/20916
+total 10000000 locations, 10 timestamps
+runtime: 27421,mean runtime:  2742.1
+total cases of exposure: 78826
+total number of pre-checking operations / the number of valid: 0 / 0
+total time consuming: 37307
+    EGP 5w-100w 1meters
+totalQueryNB/totalCheckNB
+483622/15335317
+cTime/fTime/sTime
+6637/24/9740
+total 10000000 locations, 10 timestamps
+runtime: 16491,mean runtime:  1649.1
+total cases of exposure: 42759
+total number of pre-checking operations / the number of valid: 0 / 0
+total time consuming: 26774
+
+// 需要注意划分多层后，划分四叉树不再有效果
+// 四叉树可能适合更大的图
+
