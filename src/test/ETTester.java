@@ -23,8 +23,7 @@ public class ETTester {
 	public static void main(String[] args) {
 		long start_time = System.currentTimeMillis();
 		// 1. create a Tracer object
-		ET tracer = new ET(Settings.epsilon, Settings.k,
-				Settings.name);
+		ET tracer = new ET(Settings.epsilon, Settings.k);
 		// 2. init a batch of patient ids
 		tracer.patientIDs = Util.initPatientIds(Settings.objectNum, Settings.initPatientNum, Settings.isRandom);
 		System.out.println(

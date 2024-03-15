@@ -48,11 +48,11 @@ public class EGP {
 	public int totalQueryNB = 0;
 	public int totalCheckNB = 0;
 
-	public EGP(double epsilon, int k, String cityname) {
+	public EGP(double epsilon, int k) {
 		this.epsilon = epsilon;
 		double scale = (epsilon / 10000 / Math.sqrt(2));
 		this.k = k;
-		g = new GridIndex(scale, cityname);
+		g = new GridIndex(scale);
 	}
 
 	/**

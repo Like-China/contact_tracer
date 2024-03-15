@@ -49,7 +49,7 @@ public class AGP {
 		this.epsilon = epsilon;
 		double scale = (epsilon / 10000 / Math.sqrt(2));
 		this.k = k;
-		g = new GridIndex(scale, cityname);
+		g = new GridIndex(scale);
 	}
 
 	/**

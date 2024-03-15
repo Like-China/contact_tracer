@@ -48,7 +48,7 @@ public class QueryQGP {
 	public long fTime = 0;
 	public long sTime = 0;
 
-	public QueryQGP(double epsilon, int k, String cityname) {
+	public QueryQGP(double epsilon, int k) {
 		this.epsilon = epsilon;
 		this.k = k;
 	}

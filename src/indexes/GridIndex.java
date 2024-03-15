@@ -46,15 +46,8 @@ public class GridIndex {
 		this.ordinaryAreasLocations = ordinaryAreasLocations;
 	}
 
-	public GridIndex(double scale, String cityname) {
+	public GridIndex(double scale) {
 		this.scale = scale;
-		// if (cityname == "beijing") {
-		// lonRange = new double[] { 116.25f - 0.001f, 116.55f + 0.001f };
-		// latRange = new double[] { 39.83f - 0.001f, 40.03f + 0.001f };
-		// } else {
-		// lonRange = new double[] { -8.735f - 0.0015f, -8.156f + 0.0015f };
-		// latRange = new double[] { 40.953f - 0.0015f, 41.307f + 0.0015f };
-		// }
 		this.xmax = getX(lonRange[1]);
 		this.ymax = getY(latRange[1]);
 		cellNB = this.xmax * this.ymax - 1;

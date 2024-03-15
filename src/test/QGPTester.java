@@ -14,9 +14,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import data_loader.Location;
 import data_loader.Stream;
-import trace.QGPNoGridIndex;
 import trace.QueryQGP;
-import trace.QGP;
 import trace.Settings;
 import trace.Util;
 
@@ -25,12 +23,7 @@ public class QGPTester {
 	public static void main(String[] args) {
 		long start_time = System.currentTimeMillis();
 		// 1. create a Tracer object
-		QGPNoGridIndex tracer = new QGPNoGridIndex(Settings.epsilon, Settings.k,
-				Settings.name);
-		// QueryQGP tracer = new QueryQGP(Settings.epsilon, Settings.k,
-		// Settings.name);
-		// QGP tracer = new QGP(Settings.epsilon, Settings.k,
-		// Settings.name);
+		QueryQGP tracer = new QueryQGP(Settings.epsilon, Settings.k);
 		// 2. init a batch of patient ids
 		tracer.patientIDs = Util.initPatientIds(Settings.objectNum, Settings.initPatientNum, Settings.isRandom);
 		System.out.println(

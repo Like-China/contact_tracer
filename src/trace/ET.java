@@ -34,8 +34,7 @@ public class ET {
 	public int totalQueryNB = 0;
 	public int totalCheckNB = 0;
 
-	public ET(double epsilon, int k, String cityname) {
-		super();
+	public ET(double epsilon, int k) {
 		this.epsilon = epsilon;
 		this.k = k;
 	}

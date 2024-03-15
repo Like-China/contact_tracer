@@ -16,8 +16,7 @@ public class Settings {
 	// sampling interval
 	public static int sr = (name.equals("beijing")) ? 10 : 15;
 	// data path
-	public static String dataPath = (name.equals("beijing")) ? "/home/like/data/contact_tracer/beijing100_1000000.txt"
-			: "/home/like/data/contact_tracer/porto20_100000.txt";
+	public static String dataPath = "/home/like/data/contact_tracer/" + name + ".txt";
 	// due to the rime-consuming of ET algorithm, we do not evalute all timestamps
 	// for ET. Rather, we set a smaller value of evaluted timestamps.
 	public static int maxTSNB = 10;
@@ -29,7 +28,7 @@ public class Settings {
 	// distance threshold, default 2, ranges [2,4,6,8,10]
 	public static float epsilon = 2f;
 	// initial number of all objects
-	public static int objectNum = (name.equals("beijing")) ? 100000 : 100000;
+	public static int objectNum = (name.equals("beijing")) ? 10000 : 100000;
 	// initial number of query objects
 	public static int initPatientNum = (name.equals("beijing")) ? 10000 : 1000;
 	public static boolean isRandom = true;
