@@ -15,6 +15,7 @@ import java.util.HashSet;
 import data_loader.Location;
 import data_loader.Stream;
 import trace.QGPNoGridIndex;
+import trace.QueryQGP;
 import trace.QGP;
 import trace.Settings;
 import trace.Util;
@@ -26,6 +27,8 @@ public class QGPTester {
 		// 1. create a Tracer object
 		QGPNoGridIndex tracer = new QGPNoGridIndex(Settings.epsilon, Settings.k,
 				Settings.name);
+		// QueryQGP tracer = new QueryQGP(Settings.epsilon, Settings.k,
+		// Settings.name);
 		// QGP tracer = new QGP(Settings.epsilon, Settings.k,
 		// Settings.name);
 		// 2. init a batch of patient ids
@@ -61,7 +64,7 @@ public class QGPTester {
 			batch = stream.batch(Settings.objectNum);
 		} // End 'While' Loop
 		System.out.println("totalQueryNB/totalCheckNB/leafNB");
-		System.out.println(tracer.totalQueryNB + "/" + tracer.totalCheckNB + "/" + tracer.totalLeafNB);
+		System.out.println(tracer.totalQueryNB + "/" + tracer.quadTree.totalCheckNB);
 		System.out.println("cTime/fTime/sTime");
 		System.out.println(tracer.cTime + "/" + tracer.fTime + "/" + tracer.sTime);
 		// show results

@@ -124,3 +124,6 @@ total time consuming: 26774
 // 需要注意划分多层后，划分四叉树不再有效果
 // 四叉树可能适合更大的图
 
+2024/3/15 发现直接query做quadtree，普通用户直接索引效果更好，采用
+queryQuadTree>QGPNoGridIndex>QGP+GridIndex
+

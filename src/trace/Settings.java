@@ -27,11 +27,11 @@ public class Settings {
 	// Porto: [5,7,9,11], default 5
 	public static int k = (name.equals("beijing")) ? 5 : 5;
 	// distance threshold, default 2, ranges [2,4,6,8,10]
-	public static float epsilon = 1f;
+	public static float epsilon = 2f;
 	// initial number of all objects
-	public static int objectNum = (name.equals("beijing")) ? 1000000 : 100000;
+	public static int objectNum = (name.equals("beijing")) ? 100000 : 100000;
 	// initial number of query objects
-	public static int initPatientNum = (name.equals("beijing")) ? 50000 : 6000;
+	public static int initPatientNum = (name.equals("beijing")) ? 10000 : 1000;
 	public static boolean isRandom = true;
 	// use pre-check or not
 	public static boolean prechecking = false;

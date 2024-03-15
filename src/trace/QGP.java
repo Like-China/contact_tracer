@@ -8,9 +8,6 @@
  */
 package trace;
 
-/**
- * EGP implementation
- */
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -37,7 +34,7 @@ public class QGP {
 	// record each object contacts with at least one query object at current
 	// timestamp or not
 	public HashMap<Integer, Boolean> isContactMap = new HashMap<Integer, Boolean>();
-	public QuadTree dbQuadTree;
+	public QuadTree quadTree;
 	// the total pre-checking number / valid pre-checking number
 	public Distance D = new Distance();
 	double scale;
@@ -78,7 +75,7 @@ public class QGP {
 	 * @param batch
 	 */
 	public void constructIndex(ArrayList<Location> batch) {
-		dbQuadTree = new QuadTree(0, new MyRectangle(-1, Settings.lonRange[0], Settings.latRange[0],
+		quadTree = new QuadTree(0, new MyRectangle(-1, Settings.lonRange[0], Settings.latRange[0],
 				Settings.lonRange[1] - Settings.lonRange[0], Settings.latRange[1] - Settings.latRange[0]));
 		// init infected grid cell set at current timestamp
 		areas = new HashSet<Integer>();
@@ -101,7 +98,7 @@ public class QGP {
 				// update the MBR if location l is outside MBR
 				updateMBR(rawMBR, l);
 			} else {
-				dbQuadTree.insert(l.infRec);
+				quadTree.insert(l.infRec);
 			}
 		}
 		// update grid index
@@ -121,7 +118,7 @@ public class QGP {
 		// 1. index construction
 		long t1 = System.currentTimeMillis();
 		constructIndex(batch);
-		// dbQuadTree.dfs();
+		// quadTree.dfs();
 		// System.exit(0);
 		totalQueryNB += areas.size();
 		long t2 = System.currentTimeMillis();
@@ -136,7 +133,7 @@ public class QGP {
 			MyRectangle queryRec = new MyRectangle(-1, patientMBR[0], patientMBR[2], patientMBR[1] - patientMBR[0],
 					patientMBR[3] - patientMBR[2]);
 			HashSet<Integer> returnObjects = new HashSet<>();
-			dbQuadTree.retrieve(returnObjects, queryRec);
+			quadTree.retrieve(returnObjects, queryRec);
 			t2 = System.currentTimeMillis();
 			fTime += (t2 - t1);
 			t1 = System.currentTimeMillis();

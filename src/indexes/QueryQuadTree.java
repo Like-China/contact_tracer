@@ -13,7 +13,7 @@ import java.util.Iterator;
 
 import trace.Settings;
 
-public class QuadTree {
+public class QueryQuadTree {
     // how many objects a node can hold before it splits, this is useless when
     // preSplit() is employed
     public int MAX_OBJECTS = 10;
@@ -27,19 +27,19 @@ public class QuadTree {
     // the 2D space that the node occupies MyRectangle(min_x, min_y, width, height)
     public MyRectangle bounds;
     // the four subnodes
-    public QuadTree[] nodes;
+    public QueryQuadTree[] nodes;
     public Distance D = new Distance();
-    // the number of refine calculation
+
     public static int totalCheckNB = 0;
 
     /*
      * Constructor
      */
-    public QuadTree(int pLevel, MyRectangle pBounds) {
+    public QueryQuadTree(int pLevel, MyRectangle pBounds) {
         level = pLevel;
         objects = new ArrayList<>();
         bounds = pBounds;
-        nodes = new QuadTree[4];
+        nodes = new QueryQuadTree[4];
         preSplit();
     }
 
@@ -80,10 +80,10 @@ public class QuadTree {
         double subHeight = bounds.getHeight() / 2;
         double x = bounds.getX();
         double y = bounds.getY();
-        nodes[0] = new QuadTree(level + 1, new MyRectangle(-1, x + subWidth, y, subWidth, subHeight));
-        nodes[1] = new QuadTree(level + 1, new MyRectangle(-1, x, y, subWidth, subHeight));
-        nodes[2] = new QuadTree(level + 1, new MyRectangle(-1, x, y + subHeight, subWidth, subHeight));
-        nodes[3] = new QuadTree(level + 1,
+        nodes[0] = new QueryQuadTree(level + 1, new MyRectangle(-1, x + subWidth, y, subWidth, subHeight));
+        nodes[1] = new QueryQuadTree(level + 1, new MyRectangle(-1, x, y, subWidth, subHeight));
+        nodes[2] = new QueryQuadTree(level + 1, new MyRectangle(-1, x, y + subHeight, subWidth, subHeight));
+        nodes[3] = new QueryQuadTree(level + 1,
                 new MyRectangle(-1, x + subWidth, y + subHeight, subWidth, subHeight));
     }
 
@@ -152,45 +152,9 @@ public class QuadTree {
         return index;
     }
 
-    /*
-     * Insert the object into the quadtree. If the node exceeds the capacity, it
-     * will split and add all objects to their corresponding nodes.
-     */
-    public void insert1(MyRectangle pRect) {
-        // nodes[0] is not -1 iff nodes has been split
-        if (nodes[0] != null) {
-            int index = getIndex(pRect);
-            if (index != -1) {
-                nodes[index].insert(pRect);
-                return;
-            }
-        }
-        // if object cannot completely fit within a child node and is part of the parent
-        // node, store it in the parent node
-        objects.add(pRect);
-        // When reaching the max capacity, split and assign each recrangle into
-        // corresponding subnode
-        if (objects.size() > MAX_OBJECTS && level < MAX_LEVELS) {
-            if (nodes[0] == null) {
-                split();
-            }
-            // Reinsert objects into appropriate child nodes
-            Iterator<MyRectangle> iterator = objects.iterator();
-            while (iterator.hasNext()) {
-                MyRectangle rect = iterator.next();
-                int index = getIndex(rect);
-                if (index != -1) {
-                    nodes[index].insert(rect);
-                    iterator.remove();
-                }
-            }
-
-        }
-    }
-
     // iterative insertion
     public void insert(MyRectangle pRect) {
-        QuadTree current = this;
+        QueryQuadTree current = this;
         while (true) {
             // reach leaf nodes
             if (current.nodes[0] == null) {
@@ -209,42 +173,6 @@ public class QuadTree {
             }
         }
 
-    }
-
-    /*
-     * Return all objects that could collide with the given object
-     * It returns all objects in all nodes that the given object could potentially
-     * collide with. This method is what helps to reduce the number of pairs to
-     * check collision against.
-     */
-    public void retrieve(HashSet<Integer> returnObjects, MyRectangle pRect) {
-        int index = getIndex(pRect);
-        // check if object is totally covered by the subnode
-        if (index != -1 && nodes[0] != null) {
-            nodes[index].retrieve(returnObjects, pRect);
-            for (MyRectangle rec : objects) {
-                if (rec.intersects(pRect)) {
-                    returnObjects.add(rec.id);
-                }
-            }
-            return;
-        }
-        // modified (2024/3/13)
-        for (MyRectangle rec : objects) {
-            if (rec.intersects(pRect)) {
-                returnObjects.add(rec.id);
-            }
-        }
-        // returnObjects.addAll(objects);
-        // check if object overlaps the subnode, not within the subnode£¨i.e., -1
-        // status)
-        if (index == -1 && nodes[0] != null) {
-            for (QuadTree node : nodes) {
-                if (node.bounds.intersects(pRect)) {
-                    node.retrieve(returnObjects, pRect);
-                }
-            }
-        }
     }
 
     /*
@@ -273,15 +201,13 @@ public class QuadTree {
                 totalCheckNB += 1;
                 if (dis <= Settings.epsilon) {
                     returnObjects.add(rec);
-                    iterator.remove();
+                    return;
                 }
             }
         }
-        // modified (2024/3/13)
-        // returnObjects.addAll(objects);
         // check if object overlaps the subnode, not within the subnode return., -1
         if (index == -1 && nodes[0] != null) {
-            for (QuadTree node : nodes) {
+            for (QueryQuadTree node : nodes) {
                 if (node.bounds.isCover(x, y)) {
                     node.retrieveByLocation(returnObjects, x, y);
                 }
@@ -301,7 +227,7 @@ public class QuadTree {
         recList.addAll(this.objects);
 
         System.out.println("\nChild Node");
-        for (QuadTree node : this.nodes) {
+        for (QueryQuadTree node : this.nodes) {
             System.out.printf("Level = %d [X1=%06.5f Y1=%06.5f] \t[X2=%06.5f Y2=%06.5f] eleCount = %d\n",
                     node.level, node.bounds.getX(), node.bounds.getY(),
                     node.bounds.getX() + node.bounds.getWidth(), node.bounds.getY() + node.bounds.getHeight(),

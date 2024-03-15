@@ -8,21 +8,18 @@
  */
 package trace;
 
-/**
- * EGP implementation
- */
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import data_loader.Location;
 import indexes.Distance;
 import indexes.MyRectangle;
-import indexes.QuadTree;
+import indexes.QueryQuadTree;
 
 /**
  * QGP implementation, quadtree for database, non-index for query locations
  */
-public class QGPNoGridIndex {
+public class QueryQGP {
 	// the distance threshold
 	public double epsilon;
 	// the duration threshold
@@ -35,7 +32,7 @@ public class QGPNoGridIndex {
 	// record each object contacts with at least one query object at current
 	// timestamp or not
 	public HashMap<Integer, Boolean> isContactMap = new HashMap<Integer, Boolean>();
-	public QuadTree quadTree;
+	public QueryQuadTree quadTree;
 	// the total pre-checking number / valid pre-checking number
 	public Distance D = new Distance();
 	double scale;
@@ -44,15 +41,14 @@ public class QGPNoGridIndex {
 	public HashSet<Integer> areas = new HashSet<>();
 	// the number of query grid cells of query locations
 	public int totalQueryNB = 0;
-	// the number of refine calculation
 	// the number of leaf nodes
 	public int totalLeafNB = 0;
-	public ArrayList<Location> patientLoctions = new ArrayList<Location>();
+	public ArrayList<Location> ordinrayLocations = new ArrayList<Location>();
 	public long cTime = 0;
 	public long fTime = 0;
 	public long sTime = 0;
 
-	public QGPNoGridIndex(double epsilon, int k, String cityname) {
+	public QueryQGP(double epsilon, int k, String cityname) {
 		this.epsilon = epsilon;
 		this.k = k;
 	}
@@ -63,22 +59,21 @@ public class QGPNoGridIndex {
 	 * @param batch
 	 */
 	public void constructIndex(ArrayList<Location> batch) {
-		quadTree = new QuadTree(0, new MyRectangle(-1, Settings.lonRange[0], Settings.latRange[0],
+		quadTree = new QueryQuadTree(0, new MyRectangle(-1, Settings.lonRange[0], Settings.latRange[0],
 				Settings.lonRange[1] - Settings.lonRange[0] + 2 * Settings.epsilon / 10000,
 				Settings.latRange[1] - Settings.latRange[0] + 2 * Settings.epsilon / 10000));
 		// init infected grid cell set at current timestamp
 		areas = new HashSet<Integer>();
 		// each area and its covered non-query locations at current timestamp
-		patientLoctions = new ArrayList<Location>();
+		ordinrayLocations = new ArrayList<Location>();
 		for (Location l : batch) {
-			if (patientIDs.contains(l.id)) {
+			if (!patientIDs.contains(l.id)) {
 				// add the grid cell id to area set
-				patientLoctions.add(l);
+				ordinrayLocations.add(l);
 			} else {
 				quadTree.insert(l.infRec);
 			}
 		}
-		// update grid index
 	}
 
 	/**
@@ -101,33 +96,26 @@ public class QGPNoGridIndex {
 		cTime += (t2 - t1);
 		ArrayList<Integer> updateCE = new ArrayList<Integer>();
 		// 2. for each leaf node of queryTree, find its intersection in dbTree
-		for (Location l2 : patientLoctions) {
+		for (Location l2 : ordinrayLocations) {
 			t1 = System.currentTimeMillis();
 			totalQueryNB += 1;
-			// MyRectangle queryRec = new MyRectangle(-1, l2.lon, l2.lat, 0,
-			// 0);
 			HashSet<MyRectangle> returnObjects = new HashSet<>();
 			quadTree.retrieveByLocation(returnObjects, l2.lon, l2.lat);
 			t2 = System.currentTimeMillis();
 			fTime += (t2 - t1);
 			t1 = System.currentTimeMillis();
-			for (MyRectangle rec : returnObjects) {
-				Location l1 = batch.get(rec.id);
-				if (l1.isContact)
-					continue;
-				// double dis = D.distance(l1.lat, l1.lon, l2.lat, l2.lon);
-				// if (dis <= epsilon) {
+			if (returnObjects.size() > 0) {
 				// mark this location as detected
-				l1.isContact = true;
-				isContactMap.put(l1.id, true);
-				if (!objectMapDuration.containsKey(l1.id))
-					objectMapDuration.put(l1.id, 0);
-				int duration = objectMapDuration.get(l1.id) + 1;
-				objectMapDuration.put(l1.id, duration);
+				l2.isContact = true;
+				isContactMap.put(l2.id, true);
+				if (!objectMapDuration.containsKey(l2.id))
+					objectMapDuration.put(l2.id, 0);
+				int duration = objectMapDuration.get(l2.id) + 1;
+				objectMapDuration.put(l2.id, duration);
 				// new updated case of exposure
 				if (duration >= k) {
-					patientIDs.add(l1.id);
-					updateCE.add(l1.id);
+					patientIDs.add(l2.id);
+					updateCE.add(l2.id);
 				}
 				// }
 			}
