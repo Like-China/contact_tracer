@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import data_loader.Location;
+import loader.Location;
 import trace.Settings;
 
 public class GridIndex {

@@ -1,371 +1,395 @@
-
-Algorithm: EGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 100 minMBR: 20
-locations: 27886741 , timestamps 3775, runtime: 24443014, mean runtime: 6474.970596, checkNum: 0, validNum: 0, calcCount: 75829, Cases of exposures: 23
-
+# new output
 Algorithm: EGP#
-name: beijing 	 days: 1 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 100 minMBR: 20
-locations: 27886741 , timestamps 3775, runtime: 23862643, mean runtime: 6321.229934, checkNum: 0, validNum: 0, calcCount: 75829, Cases of exposures: 23
-
-Algorithm: AGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 100 minMBR: 20
-locations: 27886741 , timestamps 3775, runtime: 16063076, mean runtime: 4255.119470, calcCount: 50687, Cases of exposures: 46
-
-Algorithm: ETA
-name: beijing 	 days: 1 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 200 minMBR: 20
-locations: 27886741 , timestamps 3775, runtime: 1354129, mean runtime: 358.709669, Cases of exposures: 33
-
-Algorithm: EGP#
-name: beijing 	 days: 1 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 200 minMBR: 20
-locations: 27886741 , timestamps 3775, runtime: 12651, mean runtime: 3.351258, Cases of exposures: 33
-
-Algorithm: EGP#
-name: porto 	 days: 1 	 sr: 5 	 k: 15  	 epsilon: 2.000000  	 initPatientNum: 60000 minMBR: 20
-locations: 22288090 , timestamps 20700, runtime: 7531, mean runtime: 0.363816, Cases of exposures: 0
-
-Algorithm: EGP
-name: porto 	 days: 1 	 sr: 5 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 60000 minMBR: 20
-locations: 22288090 , timestamps 20700, runtime: 7881, mean runtime: 0.380725, Cases of exposures: 0
-
-Algorithm: EGP
-name: porto 	 days: 10 	 sr: 5 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 60000 minMBR: 20
-locations: 200923114 , timestamps 213248, runtime: 73323, mean runtime: 0.343839, Cases of exposures: 1220
-
-Algorithm: ETA
-name: porto 	 days: 10 	 sr: 5 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 60000 minMBR: 20
-locations: 200923114 , timestamps 213248, runtime: 1962206, mean runtime: 9.201521, Cases of exposures: 1222
-
-Algorithm: EGP#
-name: porto 	 days: 10 	 sr: 5 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 60000 minMBR: 20
-locations: 200923114 , timestamps 213248, runtime: 76008, mean runtime: 0.356430, Cases of exposures: 1221
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 1667, mean runtime: 83.4, cTime/fTime/sTime: 22.6/0.2/59.2, Cases of exposures: 358
 
 Algorithm: QGP
-name: porto 	 days: 10 	 sr: 5 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 60000 minMBR: 20
-locations: 200923114 , timestamps 213248, runtime: 728441, mean runtime: 3.415934, Cases of exposures: 1049
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 1485, mean runtime: 74.3, cTime/fTime/sTime: 3.7/60.8/3.5, Cases of exposures: 358
 
 Algorithm: EGP#
-name: beijing 	 days: 1 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 200 minMBR: 20
-locations: 27886741 , timestamps 3775, runtime: 11329, mean runtime: 3.001060, Cases of exposures: 33
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 2665, mean runtime: 133.3, cTime/fTime/sTime: 19.4/0.1/112.3, Cases of exposures: 1009
 
 Algorithm: QGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 200 minMBR: 20
-locations: 27886741 , timestamps 3775, runtime: 334018, mean runtime: 88.481589, Cases of exposures: 33
-
-
-Algorithm: EGP#
-name: porto 	 days: 1 	 sr: 5 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 60000 minMBR: 20
-locations: 22288090 , timestamps 20700, runtime: 6585, mean runtime: 0.318116, Cases of exposures: 0
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 2352, mean runtime: 117.6, cTime/fTime/sTime: 3.2/104.6/2.8, Cases of exposures: 1009
 
 Algorithm: EGP#
-name: beijing 	 days: 1 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
-locations: 27886741 , timestamps 3775, runtime: 14105, mean runtime: 3.736424, Cases of exposures: 299
-
-Algorithm: EGP#
-name: beijing 	 days: 1 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
-locations: 278833444 , timestamps 3775, runtime: 39688, mean runtime: 10.513377, Cases of exposures: 959
-
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 3000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 3731, mean runtime: 186.6, cTime/fTime/sTime: 21.1/0.1/163.7, Cases of exposures: 1771
 
 Algorithm: QGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 200 minMBR: 20
-locations: 27886741 , timestamps 3775, runtime: 339444, mean runtime: 89.918940, Cases of exposures: 33
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 3000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 3268, mean runtime: 163.4, cTime/fTime/sTime: 3.6/149.2/3.9, Cases of exposures: 1771
+
+Algorithm: EGP#
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 4000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 4712, mean runtime: 235.6, cTime/fTime/sTime: 19.7/0.1/213.9, Cases of exposures: 2622
 
 Algorithm: QGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 200 minMBR: 20
-locations: 27886741 , timestamps 3775, runtime: 335594, mean runtime: 88.899073, Cases of exposures: 33
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 4000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 4161, mean runtime: 208.1, cTime/fTime/sTime: 3.8/193.0/4.2, Cases of exposures: 2622
 
-Algorithm: EGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 200 minMBR: 20
-locations: 27886741 , timestamps 3775, runtime: 11394, mean runtime: 3.018278, Cases of exposures: 33
+Algorithm: EGP#
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 5000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 5662, mean runtime: 283.1, cTime/fTime/sTime: 19.7/0.8/259.9, Cases of exposures: 3634
 
 Algorithm: QGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 200 minMBR: 20
-locations: 27886741 , timestamps 3775, runtime: 338459, mean runtime: 89.658013, Cases of exposures: 33
-
-Algorithm: QGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 200 minMBR: 20
-locations: 27886741 , timestamps 3775, runtime: 337358, mean runtime: 89.366358, Cases of exposures: 33
-
-Algorithm: ETA
-name: beijing 	 days: 6 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 200 minMBR: 20
-locations: 275745350 , timestamps 46971, runtime: 61478013, mean runtime: 1308.850418, Cases of exposures: 2319
-
-Algorithm: QGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 200 minMBR: 20
-locations: 27886741 , timestamps 3775, runtime: 340779, mean runtime: 90.272583, Cases of exposures: 33
-
-
-Algorithm: EGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
-locations: 100000000 , timestamps 100, runtime: 92963, mean runtime: 929.630000, Cases of exposures: 0
-
-Algorithm: EGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
-locations: 100000000 , timestamps 100, runtime: 47930, mean runtime: 479.300000, Cases of exposures: 0
-
-Algorithm: EGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 20000 minMBR: 20
-locations: 100000000 , timestamps 100, runtime: 67910, mean runtime: 679.100000, Cases of exposures: 0
-
-Algorithm: EGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 2  	 epsilon: 2.000000  	 initPatientNum: 20000 minMBR: 20
-locations: 100000000 , timestamps 100, runtime: 68463, mean runtime: 684.630000, Cases of exposures: 0
-
-Algorithm: EGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 1  	 epsilon: 2.000000  	 initPatientNum: 20000 minMBR: 20
-locations: 100000000 , timestamps 100, runtime: 58109, mean runtime: 581.090000, Cases of exposures: 980000
-
-
-Algorithm: QGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 2  	 epsilon: 2.000000  	 initPatientNum: 20000 minMBR: 20
-locations: 10000000 , timestamps 100, runtime: 108181, mean runtime: 1081.810000, Cases of exposures: 0
-
-Algorithm: EGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 2  	 epsilon: 2.000000  	 initPatientNum: 20000 minMBR: 20
-locations: 100000000 , timestamps 100, runtime: 107792, mean runtime: 1077.920000, Cases of exposures: 0
-
-Algorithm: EGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 2  	 epsilon: 2.000000  	 initPatientNum: 20000 minMBR: 20
-locations: 0 , timestamps 0, runtime: 0, mean runtime: NaN, Cases of exposures: 0
-
-Algorithm: EGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 2  	 epsilon: 2.000000  	 initPatientNum: 20000 minMBR: 20
-locations: 0 , timestamps 0, runtime: 0, mean runtime: NaN, Cases of exposures: 0
-
-Algorithm: EGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 2  	 epsilon: 2.000000  	 initPatientNum: 20000 minMBR: 20
-locations: 0 , timestamps 0, runtime: 0, mean runtime: NaN, Cases of exposures: 0
-
-Algorithm: EGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 2  	 epsilon: 2.000000  	 initPatientNum: 20000 minMBR: 20
-locations: 0 , timestamps 0, runtime: 0, mean runtime: NaN, Cases of exposures: 0
-
-Algorithm: EGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 2  	 epsilon: 2.000000  	 initPatientNum: 20000 minMBR: 20
-locations: 0 , timestamps 0, runtime: 0, mean runtime: NaN, Cases of exposures: 0
-
-Algorithm: EGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 2  	 epsilon: 2.000000  	 initPatientNum: 20000 minMBR: 20
-locations: 0 , timestamps 0, runtime: 0, mean runtime: NaN, Cases of exposures: 0
-
-
-
-Algorithm: EGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 20000 minMBR: 20
-locations: 100010 , timestamps 11, runtime: 144, mean runtime: 13.090909, Cases of exposures: 0
-
-Algorithm: EGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 20000 minMBR: 20
-locations: 100000 , timestamps 11, runtime: 137, mean runtime: 12.454545, Cases of exposures: 0
-
-Algorithm: EGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 20000 minMBR: 20
-locations: 100019 , timestamps 11, runtime: 138, mean runtime: 12.545455, Cases of exposures: 0
-
-Algorithm: EGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 20000 minMBR: 20
-locations: 100000 , timestamps 11, runtime: 132, mean runtime: 12.000000, Cases of exposures: 0
-
-Algorithm: EGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 20000 minMBR: 20
-locations: 100000 , timestamps 11, runtime: 138, mean runtime: 12.545455, Cases of exposures: 0
-
-Algorithm: EGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 20000 minMBR: 20
-locations: 1000000 , timestamps 11, runtime: 947, mean runtime: 86.090909, Cases of exposures: 321
-
-Algorithm: EGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 20000 minMBR: 20
-locations: 900000 , timestamps 10, runtime: 773, mean runtime: 77.300000, Cases of exposures: 313
-
-Algorithm: EGP
-name: beijing 	 days: 1 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 20000 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 733, mean runtime: 73.300000, Cases of exposures: 313
-
-Algorithm: QGP
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 200 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 21747, mean runtime: 2174.700000, Cases of exposures: 2
-
-Algorithm: ET
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 200 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 63611, mean runtime: 6361.100000, Cases of exposures: 2
-
-
-Algorithm: EGP
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 457, mean runtime: 45.700000, Cases of exposures: 41
-
-Algorithm: EGP
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 438, mean runtime: 43.800000, Cases of exposures: 41
-
-Algorithm: EGP
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
-locations: 10000000 , timestamps 10, runtime: 6786, mean runtime: 678.600000, Cases of exposures: 655
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
-locations: 10000000 , timestamps 10, runtime: 6625, mean runtime: 662.500000, Cases of exposures: 665
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
-locations: 10000000 , timestamps 10, runtime: 7136, mean runtime: 713.600000, Cases of exposures: 665
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 20000 minMBR: 20
-locations: 10000000 , timestamps 10, runtime: 12773, mean runtime: 1277.300000, Cases of exposures: 4989
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 20000 minMBR: 20
-locations: 10000000 , timestamps 10, runtime: 12462, mean runtime: 1246.200000, Cases of exposures: 4989
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 20000 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 926, mean runtime: 92.600000, Cases of exposures: 319
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 50000 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 1388, mean runtime: 138.800000, Cases of exposures: 506
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 50000 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 1408, mean runtime: 140.800000, Cases of exposures: 506
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 50000 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 1398, mean runtime: 139.800000, Cases of exposures: 506
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 50000 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 1757, mean runtime: 175.700000, Cases of exposures: 7315
-
-Algorithm: EGP
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 50000 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 1239, mean runtime: 123.900000, Cases of exposures: 497
-
-Algorithm: EGP
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 50000 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 1249, mean runtime: 124.900000, Cases of exposures: 506
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 50000 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 1246, mean runtime: 124.600000, Cases of exposures: 506
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 50000 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 1296, mean runtime: 129.600000, Cases of exposures: 506
-
-Algorithm: EGP
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 50000 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 1143, mean runtime: 114.300000, Cases of exposures: 497
-
-Algorithm: EGP1
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 50000 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 1313, mean runtime: 131.300000, Cases of exposures: 506
-
-Algorithm: EGP1
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 50000 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 1222, mean runtime: 122.200000, Cases of exposures: 506
-
-Algorithm: EGP
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 500000 minMBR: 20
-locations: 10000000 , timestamps 10, runtime: 35933, mean runtime: 3593.300000, Cases of exposures: 38003
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 500000 minMBR: 20
-locations: 10000000 , timestamps 10, runtime: 46630, mean runtime: 4663.000000, Cases of exposures: 38281
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 50000 minMBR: 20
-locations: 10000000 , timestamps 10, runtime: 28361, mean runtime: 2836.100000, Cases of exposures: 78826
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 50000 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 1712, mean runtime: 171.200000, Cases of exposures: 7336
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 50000 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 1751, mean runtime: 175.100000, Cases of exposures: 7336
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 50000 minMBR: 20
-locations: 10000000 , timestamps 10, runtime: 27421, mean runtime: 2742.100000, Cases of exposures: 78826
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 1.000000  	 initPatientNum: 50000 minMBR: 20
-locations: 10000000 , timestamps 10, runtime: 16491, mean runtime: 1649.100000, Cases of exposures: 42759
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 1.000000  	 initPatientNum: 50000 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 1535, mean runtime: 153.500000, Cases of exposures: 5083
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 1.000000  	 initPatientNum: 50000 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 1474, mean runtime: 147.400000, Cases of exposures: 5083
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 1.000000  	 initPatientNum: 50000 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 1478, mean runtime: 147.800000, Cases of exposures: 5067
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 1.000000  	 initPatientNum: 5000 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 731, mean runtime: 73.100000, Cases of exposures: 3494
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 1.000000  	 initPatientNum: 5000 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 748, mean runtime: 74.800000, Cases of exposures: 3494
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 1.000000  	 initPatientNum: 5000 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 759, mean runtime: 75.900000, Cases of exposures: 3494
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 1.000000  	 initPatientNum: 50000 minMBR: 20
-locations: 10000000 , timestamps 10, runtime: 16484, mean runtime: 1648.400000, Cases of exposures: 42456
-
-Algorithm: EGP#
-name: porto 	 sr: 15 	 k: 5  	 epsilon: 1.000000  	 initPatientNum: 6000 minMBR: 20
-locations: 100000 , timestamps 10, runtime: 234, mean runtime: 23.400000, Cases of exposures: 13
-
-Algorithm: EGP#
-name: porto 	 sr: 15 	 k: 5  	 epsilon: 1.000000  	 initPatientNum: 6000 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 2197, mean runtime: 219.700000, Cases of exposures: 143
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 1.000000  	 initPatientNum: 100000 minMBR: 20
-locations: 10000000 , timestamps 10, runtime: 21490, mean runtime: 2149.000000, Cases of exposures: 59070
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 1.000000  	 initPatientNum: 100000 minMBR: 20
-locations: 10000000 , timestamps 10, runtime: 21783, mean runtime: 2178.300000, Cases of exposures: 59070
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 1.000000  	 initPatientNum: 100000 minMBR: 20
-locations: 10000000 , timestamps 10, runtime: 21361, mean runtime: 2136.100000, Cases of exposures: 59070
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 1.000000  	 initPatientNum: 10000 minMBR: 20
-locations: 10000000 , timestamps 10, runtime: 9695, mean runtime: 969.500000, Cases of exposures: 13651
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 1.000000  	 initPatientNum: 10000 minMBR: 20
-locations: 10000000 , timestamps 10, runtime: 10161, mean runtime: 1016.100000, Cases of exposures: 13651
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 1.000000  	 initPatientNum: 10000 minMBR: 20
-locations: 10000000 , timestamps 10, runtime: 10056, mean runtime: 1005.600000, Cases of exposures: 13651
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 1.000000  	 initPatientNum: 1000 minMBR: 20
-locations: 10000000 , timestamps 10, runtime: 7159, mean runtime: 715.900000, Cases of exposures: 1685
-
-Algorithm: EGP#
-name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 1000 minMBR: 20
-locations: 10000000 , timestamps 10, runtime: 7282, mean runtime: 728.200000, Cases of exposures: 3750
-
-Algorithm: EGP#
-name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 6000 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 3635, mean runtime: 363.500000, Cases of exposures: 2909
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 5000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 5010, mean runtime: 250.5, cTime/fTime/sTime: 3.6/234.2/4.1, Cases of exposures: 3634
 
 Algorithm: EGP#
 name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 1000 minMBR: 20
-locations: 1000000 , timestamps 10, runtime: 1066, mean runtime: 106.600000, Cases of exposures: 162
+locations: 4000000 , timestamps 20, runtime: 3403, mean runtime: 170.2, cTime/fTime/sTime: 42.9/0.1/125.3, Cases of exposures: 605
+
+Algorithm: QGP
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 4000000 , timestamps 20, runtime: 2935, mean runtime: 146.8, cTime/fTime/sTime: 5.2/122.9/5.4, Cases of exposures: 605
+
+Algorithm: EGP#
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 8000000 , timestamps 20, runtime: 6921, mean runtime: 346.1, cTime/fTime/sTime: 81.5/0.0/260.4, Cases of exposures: 1287
+
+Algorithm: QGP
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 8000000 , timestamps 20, runtime: 6403, mean runtime: 320.2, cTime/fTime/sTime: 14.6/259.9/11.4, Cases of exposures: 1287
+
+Algorithm: EGP#
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 12000000 , timestamps 20, runtime: 17134, mean runtime: 856.7, cTime/fTime/sTime: 132.6/0.0/716.8, Cases of exposures: 13395
+
+Algorithm: QGP
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 12000000 , timestamps 20, runtime: 15388, mean runtime: 769.4, cTime/fTime/sTime: 23.2/663.6/22.5, Cases of exposures: 13395
+
+Algorithm: EGP#
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 16000000 , timestamps 20, runtime: 29649, mean runtime: 1482.5, cTime/fTime/sTime: 205.8/0.1/1264.3, Cases of exposures: 22599
+
+Algorithm: QGP
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 16000000 , timestamps 20, runtime: 26786, mean runtime: 1339.3, cTime/fTime/sTime: 32.2/1191.3/30.7, Cases of exposures: 22599
+
+Algorithm: EGP#
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 1531, mean runtime: 76.6, cTime/fTime/sTime: 19.2/0.1/56.2, Cases of exposures: 358
+
+Algorithm: QGP
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 1381, mean runtime: 69.1, cTime/fTime/sTime: 3.1/57.8/2.4, Cases of exposures: 358
+
+Algorithm: EGP#
+name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 1419, mean runtime: 71.0, cTime/fTime/sTime: 19.6/0.1/50.5, Cases of exposures: 39
+
+Algorithm: QGP
+name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 1300, mean runtime: 65.0, cTime/fTime/sTime: 3.0/53.4/2.5, Cases of exposures: 39
+
+Algorithm: EGP#
+name: porto 	 sr: 15 	 k: 15  	 epsilon: 2.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 1406, mean runtime: 70.3, cTime/fTime/sTime: 18.9/0.1/50.4, Cases of exposures: 8
+
+Algorithm: QGP
+name: porto 	 sr: 15 	 k: 15  	 epsilon: 2.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 1288, mean runtime: 64.4, cTime/fTime/sTime: 3.0/53.9/2.9, Cases of exposures: 8
+
+Algorithm: EGP#
+name: porto 	 sr: 15 	 k: 20  	 epsilon: 2.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 1418, mean runtime: 70.9, cTime/fTime/sTime: 19.5/0.1/50.5, Cases of exposures: 1
+
+Algorithm: QGP
+name: porto 	 sr: 15 	 k: 20  	 epsilon: 2.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 1289, mean runtime: 64.5, cTime/fTime/sTime: 2.9/54.1/2.4, Cases of exposures: 1
+
+Algorithm: EGP#
+name: porto 	 sr: 15 	 k: 25  	 epsilon: 2.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 1407, mean runtime: 70.4, cTime/fTime/sTime: 19.0/0.1/50.5, Cases of exposures: 0
+
+Algorithm: QGP
+name: porto 	 sr: 15 	 k: 25  	 epsilon: 2.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 1294, mean runtime: 64.7, cTime/fTime/sTime: 2.8/52.5/3.2, Cases of exposures: 0
+
+Algorithm: EGP#
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 4.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 6704, mean runtime: 335.2, cTime/fTime/sTime: 14.9/0.2/318.2, Cases of exposures: 12797
+
+Algorithm: QGP
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 4.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 1382, mean runtime: 69.1, cTime/fTime/sTime: 2.9/57.6/2.8, Cases of exposures: 358
+
+Algorithm: EGP#
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 6.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 14946, mean runtime: 747.3, cTime/fTime/sTime: 14.1/0.2/730.5, Cases of exposures: 35072
+
+Algorithm: QGP
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 6.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 1382, mean runtime: 69.1, cTime/fTime/sTime: 3.0/57.3/2.7, Cases of exposures: 358
+
+Algorithm: EGP#
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 8.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 21931, mean runtime: 1096.6, cTime/fTime/sTime: 13.0/0.1/1080.1, Cases of exposures: 54390
+
+Algorithm: QGP
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 8.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 1381, mean runtime: 69.1, cTime/fTime/sTime: 3.0/57.1/2.9, Cases of exposures: 358
+
+Algorithm: EGP#
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 10.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 29001, mean runtime: 1450.1, cTime/fTime/sTime: 11.4/0.1/1435.3, Cases of exposures: 66613
+
+Algorithm: QGP
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 10.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 2000000 , timestamps 20, runtime: 1376, mean runtime: 68.8, cTime/fTime/sTime: 3.0/56.7/3.3, Cases of exposures: 358
+
+Algorithm: EGP#
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 4124, mean runtime: 137.5, cTime/fTime/sTime: 90.1/0.1/46.8, Cases of exposures: 4001
+
+Algorithm: QGP
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 1000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 2805, mean runtime: 93.5, cTime/fTime/sTime: 9.1/61.7/4.8, Cases of exposures: 4001
+
+Algorithm: EGP#
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 4590, mean runtime: 153.0, cTime/fTime/sTime: 78.4/0.1/74.0, Cases of exposures: 6511
+
+Algorithm: QGP
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 3388, mean runtime: 112.9, cTime/fTime/sTime: 9.4/82.0/5.2, Cases of exposures: 6511
+
+Algorithm: EGP#
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 3000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 5525, mean runtime: 184.2, cTime/fTime/sTime: 81.1/0.1/102.4, Cases of exposures: 9265
+
+Algorithm: QGP
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 3000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 4158, mean runtime: 138.6, cTime/fTime/sTime: 10.1/107.9/4.8, Cases of exposures: 9265
+
+Algorithm: EGP#
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 4000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 5909, mean runtime: 197.0, cTime/fTime/sTime: 78.9/0.2/116.9, Cases of exposures: 11186
+
+Algorithm: QGP
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 4000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 4301, mean runtime: 143.4, cTime/fTime/sTime: 6.5/122.0/4.2, Cases of exposures: 11186
+
+Algorithm: EGP#
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 5000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 6355, mean runtime: 211.8, cTime/fTime/sTime: 77.9/0.2/132.5, Cases of exposures: 13023
+
+Algorithm: QGP
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 5000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 5141, mean runtime: 171.4, cTime/fTime/sTime: 10.5/139.6/4.7, Cases of exposures: 13023
+
+Algorithm: EGP#
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 4922, mean runtime: 164.1, cTime/fTime/sTime: 89.0/0.0/74.2, Cases of exposures: 6511
+
+Algorithm: QGP
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 3388, mean runtime: 112.9, cTime/fTime/sTime: 8.9/83.2/4.4, Cases of exposures: 6511
+
+Algorithm: EGP#
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 12000000 , timestamps 30, runtime: 10615, mean runtime: 353.8, cTime/fTime/sTime: 178.5/0.0/174.4, Cases of exposures: 9949
+
+Algorithm: QGP
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 12000000 , timestamps 30, runtime: 7723, mean runtime: 257.4, cTime/fTime/sTime: 18.9/194.6/8.3, Cases of exposures: 9949
+
+Algorithm: EGP#
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 18000000 , timestamps 30, runtime: 20459, mean runtime: 682.0, cTime/fTime/sTime: 326.6/0.1/354.5, Cases of exposures: 12587
+
+Algorithm: QGP
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 18000000 , timestamps 30, runtime: 12720, mean runtime: 424.0, cTime/fTime/sTime: 25.0/334.4/15.0, Cases of exposures: 12587
+
+Algorithm: EGP#
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 24000000 , timestamps 30, runtime: 30982, mean runtime: 1032.7, cTime/fTime/sTime: 420.0/0.0/611.4, Cases of exposures: 16607
+
+Algorithm: QGP
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 24000000 , timestamps 30, runtime: 19590, mean runtime: 653.0, cTime/fTime/sTime: 37.3/521.3/18.9, Cases of exposures: 16607
+
+Algorithm: EGP#
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 30000000 , timestamps 30, runtime: 36977, mean runtime: 1232.6, cTime/fTime/sTime: 485.1/0.1/746.1, Cases of exposures: 19419
+
+Algorithm: QGP
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 30000000 , timestamps 30, runtime: 24272, mean runtime: 809.1, cTime/fTime/sTime: 51.6/644.3/24.8, Cases of exposures: 19419
+
+Algorithm: EGP#
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 5084, mean runtime: 169.5, cTime/fTime/sTime: 94.3/0.2/74.5, Cases of exposures: 6511
+
+Algorithm: QGP
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 3493, mean runtime: 116.4, cTime/fTime/sTime: 10.5/81.3/4.9, Cases of exposures: 6511
+
+Algorithm: EGP#
+name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 4114, mean runtime: 137.1, cTime/fTime/sTime: 84.8/0.1/51.9, Cases of exposures: 4596
+
+Algorithm: QGP
+name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 3130, mean runtime: 104.3, cTime/fTime/sTime: 10.9/68.8/5.0, Cases of exposures: 4596
+
+Algorithm: EGP#
+name: beijing 	 sr: 10 	 k: 15  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 3594, mean runtime: 119.8, cTime/fTime/sTime: 81.9/0.1/37.2, Cases of exposures: 3572
+
+Algorithm: QGP
+name: beijing 	 sr: 10 	 k: 15  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 2800, mean runtime: 93.3, cTime/fTime/sTime: 10.2/59.3/4.1, Cases of exposures: 3572
+
+Algorithm: EGP#
+name: beijing 	 sr: 10 	 k: 20  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 3523, mean runtime: 117.4, cTime/fTime/sTime: 86.7/0.0/30.2, Cases of exposures: 2434
+
+Algorithm: QGP
+name: beijing 	 sr: 10 	 k: 20  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 2680, mean runtime: 89.3, cTime/fTime/sTime: 10.6/53.5/5.1, Cases of exposures: 2434
+
+Algorithm: EGP#
+name: beijing 	 sr: 10 	 k: 25  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 3151, mean runtime: 105.0, cTime/fTime/sTime: 80.6/0.0/24.1, Cases of exposures: 2265
+
+Algorithm: QGP
+name: beijing 	 sr: 10 	 k: 25  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 2560, mean runtime: 85.3, cTime/fTime/sTime: 10.9/48.9/4.5, Cases of exposures: 2265
+
+
+
+Algorithm: EGP#
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 4914, mean runtime: 163.8, cTime/fTime/sTime: 87.7/0.1/75.5, Cases of exposures: 6511
+
+Algorithm: QGP
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 3416, mean runtime: 113.9, cTime/fTime/sTime: 8.6/83.4/6.4, Cases of exposures: 6511
+
+Algorithm: EGP#
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 4.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 8348, mean runtime: 278.3, cTime/fTime/sTime: 74.1/0.1/203.1, Cases of exposures: 11722
+
+Algorithm: QGP
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 4.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 3272, mean runtime: 109.1, cTime/fTime/sTime: 8.6/80.5/5.0, Cases of exposures: 11722
+
+Algorithm: EGP#
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 6.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 12403, mean runtime: 413.4, cTime/fTime/sTime: 72.7/0.1/339.5, Cases of exposures: 14762
+
+Algorithm: QGP
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 6.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 2901, mean runtime: 96.7, cTime/fTime/sTime: 10.3/64.5/5.2, Cases of exposures: 14762
+
+Algorithm: EGP#
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 8.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 15796, mean runtime: 526.5, cTime/fTime/sTime: 47.7/0.1/477.4, Cases of exposures: 17351
+
+Algorithm: QGP
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 8.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 2678, mean runtime: 89.3, cTime/fTime/sTime: 9.7/57.1/4.9, Cases of exposures: 17351
+
+Algorithm: EGP#
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 10.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 20953, mean runtime: 698.4, cTime/fTime/sTime: 46.2/0.2/650.5, Cases of exposures: 19625
+
+Algorithm: QGP
+name: beijing 	 sr: 10 	 k: 5  	 epsilon: 10.000000  	 initPatientNum: 2000 minMBR: 20
+locations: 6000000 , timestamps 30, runtime: 2552, mean runtime: 85.1, cTime/fTime/sTime: 9.2/55.4/5.3, Cases of exposures: 19625
+
+
+Algorithm: EGP#
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 	 objectNum:200000 	 minMBR: 20 
+locations: 4000000 , timestamps 20, runtime: 6561, mean runtime: 328.1, cTime/fTime/sTime: 45.8/0.1/278.3, Cases of exposures: 3247
+
+Algorithm: QGP
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 	 this.objectNum: 200000
+locations: 4000000 , timestamps 20, runtime: 5710, mean runtime: 285.5, cTime/fTime/sTime: 6.4/254.5/7.8, Cases of exposures: 3247
+
+Algorithm: EGP#
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 4.000000  	 initPatientNum: 2000 	 objectNum:200000 	 minMBR: 20 
+locations: 4000000 , timestamps 20, runtime: 33254, mean runtime: 1662.7, cTime/fTime/sTime: 29.8/0.1/1626.8, Cases of exposures: 68381
+
+Algorithm: QGP
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 4.000000  	 initPatientNum: 2000 	 this.objectNum: 200000
+locations: 4000000 , timestamps 20, runtime: 15413, mean runtime: 770.7, cTime/fTime/sTime: 7.5/730.7/13.4, Cases of exposures: 68381
+
+Algorithm: EGP#
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 6.000000  	 initPatientNum: 2000 	 objectNum:200000 	 minMBR: 20 
+locations: 4000000 , timestamps 20, runtime: 55066, mean runtime: 2753.3, cTime/fTime/sTime: 27.6/0.1/2718.9, Cases of exposures: 122759
+
+Algorithm: QGP
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 6.000000  	 initPatientNum: 2000 	 this.objectNum: 200000
+locations: 4000000 , timestamps 20, runtime: 13046, mean runtime: 652.3, cTime/fTime/sTime: 9.0/609.8/14.3, Cases of exposures: 122759
+
+Algorithm: EGP#
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 8.000000  	 initPatientNum: 2000 	 objectNum:200000 	 minMBR: 20 
+locations: 4000000 , timestamps 20, runtime: 71737, mean runtime: 3586.9, cTime/fTime/sTime: 24.5/0.2/3555.3, Cases of exposures: 143877
+
+Algorithm: QGP
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 8.000000  	 initPatientNum: 2000 	 this.objectNum: 200000
+locations: 4000000 , timestamps 20, runtime: 11214, mean runtime: 560.7, cTime/fTime/sTime: 9.7/519.6/13.7, Cases of exposures: 143877
+
+Algorithm: EGP#
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 10.000000  	 initPatientNum: 2000 	 objectNum:200000 	 minMBR: 20 
+locations: 4000000 , timestamps 20, runtime: 95834, mean runtime: 4791.7, cTime/fTime/sTime: 23.6/0.1/4760.7, Cases of exposures: 155169
+
+Algorithm: QGP
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 10.000000  	 initPatientNum: 2000 	 this.objectNum: 200000
+locations: 4000000 , timestamps 20, runtime: 11372, mean runtime: 568.6, cTime/fTime/sTime: 9.9/526.4/14.0, Cases of exposures: 155169
+
+
+
+
+
+
+
+
+
+Algorithm: QGP
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 1000 	 this.objectNum: 200000
+locations: 4000000 , timestamps 20, runtime: 3106, mean runtime: 155.3, cTime/fTime/sTime: 6.3/129.8/5.5, Cases of exposures: 605
+
+Algorithm: AQGP
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 1000 	 this.objectNum: 200000
+locations: 4000000 , timestamps 20, runtime: 4689, mean runtime: 234.5, cTime/fTime/sTime: 6.9/203.7/7.6, Cases of exposures: 6063
+
+Algorithm: QGP
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 	 this.objectNum: 200000
+locations: 4000000 , timestamps 20, runtime: 5655, mean runtime: 282.8, cTime/fTime/sTime: 5.8/256.5/6.6, Cases of exposures: 3247
+
+Algorithm: AQGP
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 2000 	 this.objectNum: 200000
+locations: 4000000 , timestamps 20, runtime: 9286, mean runtime: 464.3, cTime/fTime/sTime: 7.1/430.9/9.4, Cases of exposures: 18708
+
+Algorithm: QGP
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 3000 	 this.objectNum: 200000
+locations: 4000000 , timestamps 20, runtime: 8602, mean runtime: 430.1, cTime/fTime/sTime: 6.8/399.2/8.4, Cases of exposures: 7275
+
+Algorithm: AQGP
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 3000 	 this.objectNum: 200000
+locations: 4000000 , timestamps 20, runtime: 13648, mean runtime: 682.4, cTime/fTime/sTime: 6.6/649.8/9.8, Cases of exposures: 29355
+
+Algorithm: QGP
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 4000 	 this.objectNum: 200000
+locations: 4000000 , timestamps 20, runtime: 12050, mean runtime: 602.5, cTime/fTime/sTime: 6.3/571.6/8.8, Cases of exposures: 13861
+
+Algorithm: AQGP
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 4000 	 this.objectNum: 200000
+locations: 4000000 , timestamps 20, runtime: 17411, mean runtime: 870.6, cTime/fTime/sTime: 7.7/833.8/11.5, Cases of exposures: 38307
+
+Algorithm: QGP
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 5000 	 this.objectNum: 200000
+locations: 4000000 , timestamps 20, runtime: 15179, mean runtime: 759.0, cTime/fTime/sTime: 7.3/727.0/8.9, Cases of exposures: 19955
+
+Algorithm: AQGP
+name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.000000  	 initPatientNum: 5000 	 this.objectNum: 200000
+locations: 4000000 , timestamps 20, runtime: 20352, mean runtime: 1017.6, cTime/fTime/sTime: 8.2/977.8/13.5, Cases of exposures: 45472

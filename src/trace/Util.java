@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import data_loader.Location;
+import loader.Location;
 
 public class Util {
 

@@ -12,8 +12,9 @@ package test;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import data_loader.Location;
-import data_loader.Stream;
+
+import loader.Location;
+import loader.Stream;
 import trace.ET;
 import trace.Settings;
 import trace.Util;

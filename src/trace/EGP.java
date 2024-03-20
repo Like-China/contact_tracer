@@ -14,9 +14,10 @@ package trace;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import data_loader.Location;
+
 import indexes.Distance;
 import indexes.GridIndex;
+import loader.Location;
 
 public class EGP {
 	// the distance threshold

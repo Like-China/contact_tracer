@@ -12,9 +12,10 @@ package test;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import data_loader.Location;
-import data_loader.Stream;
-import trace.QueryQGP;
+
+import loader.Location;
+import loader.Stream;
+import trace.QGP;
 import trace.Settings;
 import trace.Util;
 
@@ -23,7 +24,7 @@ public class QGPTester {
 	public static void main(String[] args) {
 		long start_time = System.currentTimeMillis();
 		// 1. create a Tracer object
-		QueryQGP tracer = new QueryQGP(Settings.epsilon, Settings.k);
+		QGP tracer = new QGP(Settings.epsilon, Settings.k);
 		// 2. init a batch of patient ids
 		tracer.patientIDs = Util.initPatientIds(Settings.objectNum, Settings.initPatientNum, Settings.isRandom);
 		System.out.println(
