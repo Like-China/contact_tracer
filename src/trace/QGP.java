@@ -59,7 +59,7 @@ public class QGP {
 	public void constructIndex(ArrayList<Location> batch) {
 		quadTree = new QuadTree(0, new MyRectangle(-1, Settings.lonRange[0], Settings.latRange[0],
 				Settings.lonRange[1] - Settings.lonRange[0] + 2 * epsilon / 10000,
-				Settings.latRange[1] - Settings.latRange[0] + 2 * epsilon / 10000));
+				Settings.latRange[1] - Settings.latRange[0] + 2 * epsilon / 10000), false);
 		// init infected grid cell set at current timestamp
 		areas = new HashSet<Integer>();
 		// each area and its covered non-query locations at current timestamp

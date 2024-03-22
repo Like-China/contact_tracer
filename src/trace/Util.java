@@ -213,7 +213,7 @@ public class Util {
 		for (int i = 0; i < num2.length; i++) {
 			num2[i] = i + 1;
 		}
-		Random r = new Random(1);
+		Random r = new Random(10);
 		int index = -1;
 		for (int i = 0; i < num1.length; i++) {
 			index = r.nextInt(num2.length - i);

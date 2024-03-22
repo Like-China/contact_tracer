@@ -93,6 +93,18 @@ public class Stream {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+		assert locBatch.size() == readObjNB: "lack of data";
 		return locBatch;
+	}
+
+	// read several batches of locations for multiple timestamps
+	public ArrayList<ArrayList<Location>> multibBatch(int readObjNB, int k) {
+		ArrayList<ArrayList<Location>> batches = new ArrayList<>();
+		for(int i=0;i<k;i++)
+		{
+			batches.add(this.batch(readObjNB));
+		}
+		// the current timestamp of loading locations
+		return batches;
 	}
 }

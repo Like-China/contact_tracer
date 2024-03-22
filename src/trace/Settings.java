@@ -19,7 +19,7 @@ public class Settings {
 	public static String dataPath = "/home/like/data/contact_tracer/" + name + ".txt";
 	// due to the rime-consuming of ET algorithm, we do not evalute all timestamps
 	// for ET. Rather, we set a smaller value of evaluted timestamps.
-	public static int maxTSNB = 30;
+	public static int maxTSNB = 20;
 
 	// the duration threshold
 	// Beijing: default 15, [5,10,15,20,25]
@@ -35,7 +35,7 @@ public class Settings {
 	// use pre-check or not
 	public static boolean prechecking = false;
 	// the hop interval in AGP algorithm
-	public static int m = 4;
+	public static int m = 2;
 	// the minimal number of grid cells that enables efficient MBR pre-checking
 	public static int minMBR = 20;
 	// the expand times of trajectory location data
@@ -44,8 +44,6 @@ public class Settings {
 			: new double[] { -8.735f - 0.0015f, -8.156f + 0.0015f };
 	public static double[] latRange = name == "beijing" ? new double[] { 39.83f - 0.001f, 40.03f + 0.001f }
 			: new double[] { 40.953f - 0.0015f, 41.307f + 0.0015f };
-
-	public 
 
 	public Settings() {
 		// TODO Auto-generated constructor stub

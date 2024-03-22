@@ -8,7 +8,6 @@
  */
 package evaluate;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -22,6 +21,7 @@ import trace.Util;
 import trace.EGP;
 import trace.AEGP;
 import trace.AQGP;
+import trace.AQGP1;
 
 class Sequence {
 	// the distance threshold
@@ -51,10 +51,6 @@ class Sequence {
 		// 3. start query
 		Stream stream = new Stream(Settings.dataPath);
 		ArrayList<Location> batch = stream.batch(this.objectNum);
-		if (batch.size() < this.objectNum) {
-			System.out.println("lacked data!!");
-			return;
-		}
 		while (batch != null && !batch.isEmpty()) {
 			locNum += batch.size();
 			if (tsNum % 4 == 0) {
@@ -102,10 +98,6 @@ class Sequence {
 		// 3. start query
 		Stream stream = new Stream(Settings.dataPath);
 		ArrayList<Location> batch = stream.batch(this.objectNum);
-		if (batch.size() < this.objectNum) {
-			System.out.println("lacked data!!");
-			return;
-		}
 		while (batch != null && !batch.isEmpty()) {
 			locNum += batch.size();
 			long startTime = System.currentTimeMillis();
@@ -144,51 +136,6 @@ class Sequence {
 		}
 	}
 
-	public void agp(HashSet<Integer> patientIDs) {
-		// 1. get all files and sort by days
-		File[] files = Util.orderByName(Settings.dataPath);
-		// 2. create a Tracer object
-		AEGP tracer = new AEGP(this.epsilon, this.k, Settings.name);
-		// 3. init a batch of patient ids
-		tracer.patientIDs = (HashSet<Integer>) patientIDs.clone();
-		long locNum = 0;
-		int tsNum = 0;
-		HashMap<Integer, ArrayList<Integer>> AGP_res = new HashMap<>();
-		// 4. start query
-		for (File f : files) {
-			Stream stream = new Stream(Settings.dataPath);
-			ArrayList<Location> batch = stream.batch(this.objectNum);
-			while (batch != null && !batch.isEmpty()) {
-				locNum += batch.size();
-				ArrayList<Integer> AGPCases = tracer.trace(batch, tsNum);
-				// add new cases of exposure
-				if (!AGPCases.isEmpty()) {
-					AGP_res.put(tsNum, AGPCases);
-				}
-				tsNum += 1;
-				batch = stream.batch(this.objectNum);
-			} // End 'While' Loop
-
-		} // End 'For' Loop
-
-		// show results
-		System.out.printf("%d locations, %d timestamps ", locNum, tsNum);
-		System.out.println("runtime:  " + tracer.D.runtime + " mean runtime:  " + (double) tracer.D.runtime / tsNum);
-		HashSet<Integer> AGPCases = new HashSet<>();
-		for (Integer key : AGP_res.keySet()) {
-			AGPCases.addAll(AGP_res.get(key));
-		}
-		System.out.println("Total cases of exposure: " + AGPCases.size());
-		String otherInfo = String.format("locations: %d , timestamps %d, runtime: %d, mean runtime: %f, calcCount: %d",
-				locNum, tsNum, tracer.D.runtime, (double) tracer.D.runtime / tsNum, tracer.D.calcCount);
-		String setInfo = String.format(
-				"name: %s \t sr: %d \t k: %d  \t epsilon: %f  \t initPatientNum: %d minMBR: %d",
-				Settings.name,
-				Settings.sr, this.k, this.epsilon, this.initPatientNum,
-				Settings.minMBR);
-		Util.writeFile("AGP", AGPCases.size(), setInfo, otherInfo);
-	}
-
 	public void qgp(HashSet<Integer> patientIDs) {
 		// 1. create a Tracer object
 		QGP tracer = new QGP(this.epsilon, this.k);
@@ -201,10 +148,6 @@ class Sequence {
 		// 3. start query
 		Stream stream = new Stream(Settings.dataPath);
 		ArrayList<Location> batch = stream.batch(this.objectNum);
-		if (batch.size() < this.objectNum) {
-			System.out.println("lacked data!!");
-			return;
-		}
 		while (batch != null && !batch.isEmpty()) {
 			locNum += batch.size();
 			long startTime = System.currentTimeMillis();
@@ -245,34 +188,30 @@ class Sequence {
 		long runtime = 0;
 		long locNum = 0;
 		int tsNum = 0;
-		HashMap<Integer, ArrayList<Integer>> QGPRes = new HashMap<>();
+		HashMap<Integer, HashSet<Integer>> QGPRes = new HashMap<>();
 		// 3. start query
 		Stream stream = new Stream(Settings.dataPath);
-		ArrayList<Location> batch = stream.batch(this.objectNum);
-		if (batch.size() < this.objectNum) {
-			System.out.println("lacked data!!");
-			return;
-		}
-		while (batch != null && !batch.isEmpty()) {
-			locNum += batch.size();
+		ArrayList<ArrayList<Location>> batches = stream.multibBatch(this.objectNum, this.k);
+		while (batches != null && !batches.isEmpty()) {
 			long startTime = System.currentTimeMillis();
-			ArrayList<Integer> QGPCases = new ArrayList<Integer>();
-			QGPCases = tracer.trace(batch, tsNum, m);
+			HashSet<Integer> QGPCases = tracer.trace(batches, tsNum, m);
 			if (!QGPCases.isEmpty())
-				QGPRes.put(tsNum, QGPCases);
+				QGPRes.put(tsNum * this.k, QGPCases);
 			long endTime = System.currentTimeMillis();
 			runtime += endTime - startTime;
 			tsNum += 1;
-			if (tsNum >= Settings.maxTSNB) {
+			locNum += this.k * batches.get(0).size();
+			if (tsNum * this.k >= Settings.maxTSNB) {
 				break;
 			}
-			batch = stream.batch(this.objectNum);
+			batches = stream.multibBatch(this.objectNum, this.k);
 		} // End 'While' Loop
 			// show results
 		HashSet<Integer> QGPCases = new HashSet<>();
 		for (Integer key : QGPRes.keySet()) {
 			QGPCases.addAll(QGPRes.get(key));
 		}
+		tsNum = tsNum * this.k;
 		String otherInfo = String.format(
 				"locations: %d , timestamps %d, runtime: %d, mean runtime: %3.1f, cTime/fTime/sTime: %3.1f/%3.1f/%3.1f",
 				locNum, tsNum, runtime, (double) runtime / tsNum, (double) tracer.cTime / tsNum,
@@ -344,7 +283,7 @@ public class SequenceTester {
 		// Beijing
 		long t1 = System.currentTimeMillis();
 		long t2 = System.currentTimeMillis();
-		for (Integer patientNum : new int[] { 1000, 2000, 3000, 4000, 5000 }) {
+		for (Integer patientNum : new int[] { 5000 }) {
 			new Sequence(Settings.k, Settings.epsilon, patientNum,
 					Settings.objectNum).run();
 		}
