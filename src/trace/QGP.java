@@ -39,12 +39,14 @@ public class QGP {
 	// grid cells that at least one patients in it
 	public HashSet<Integer> areas = new HashSet<>();
 	// the number of query grid cells of query locations
-	public int totalQueryNB = 0;
-	public int totalLeafNB = 0;
 	public ArrayList<Location> ordinrayLocations = new ArrayList<Location>();
+	// index construction time/filtering time/ search time
 	public long cTime = 0;
 	public long fTime = 0;
 	public long sTime = 0;
+	// updated cases of exposure
+	ArrayList<Integer> updateCE = new ArrayList<Integer>();
+	public int totalCheckNB = 0;
 
 	public QGP(double epsilon, int k) {
 		this.epsilon = epsilon;
@@ -57,11 +59,10 @@ public class QGP {
 	 * @param batch
 	 */
 	public void constructIndex(ArrayList<Location> batch) {
+		long t1 = System.currentTimeMillis();
 		quadTree = new QuadTree(0, new MyRectangle(-1, Settings.lonRange[0], Settings.latRange[0],
 				Settings.lonRange[1] - Settings.lonRange[0] + 2 * epsilon / 10000,
-				Settings.latRange[1] - Settings.latRange[0] + 2 * epsilon / 10000), false);
-		// init infected grid cell set at current timestamp
-		areas = new HashSet<Integer>();
+				Settings.latRange[1] - Settings.latRange[0] + 2 * epsilon / 10000), true);
 		// each area and its covered non-query locations at current timestamp
 		ordinrayLocations = new ArrayList<Location>();
 		for (Location l : batch) {
@@ -72,6 +73,7 @@ public class QGP {
 				quadTree.insert(l.infRec);
 			}
 		}
+		cTime += (System.currentTimeMillis() - t1);
 	}
 
 	/**
@@ -83,38 +85,27 @@ public class QGP {
 	 */
 	public ArrayList<Integer> trace(ArrayList<Location> batch) {
 		// 1. index construction
-		long t1 = System.currentTimeMillis();
 		constructIndex(batch);
-		long t2 = System.currentTimeMillis();
-		cTime += (t2 - t1);
-		ArrayList<Integer> updateCE = new ArrayList<Integer>();
 		// 2. for each leaf node of queryTree, find its intersection in dbTree
+		long t1 = System.currentTimeMillis();
 		for (Location ordinaryLocation : ordinrayLocations) {
-			t1 = System.currentTimeMillis();
-			totalQueryNB += 1;
-			HashSet<MyRectangle> returnObjects = new HashSet<>();
-			quadTree.retrieveByLocation(returnObjects, ordinaryLocation.lon, ordinaryLocation.lat, false, this.epsilon);
-			t2 = System.currentTimeMillis();
-			fTime += (t2 - t1);
-			t1 = System.currentTimeMillis();
+			ArrayList<MyRectangle> returnObjects = new ArrayList<>();
+			quadTree.retrieveByLocation(returnObjects, ordinaryLocation.lon, ordinaryLocation.lat, false,
+					this.epsilon);
 			if (returnObjects.size() > 0) {
 				// mark this location as detected
 				ordinaryLocation.isContact = true;
 				isContactMap.put(ordinaryLocation.id, true);
-				if (!objectMapDuration.containsKey(ordinaryLocation.id))
-					objectMapDuration.put(ordinaryLocation.id, 0);
-				int duration = objectMapDuration.get(ordinaryLocation.id) + 1;
-				objectMapDuration.put(ordinaryLocation.id, duration);
+				objectMapDuration.putIfAbsent(ordinaryLocation.id, 0);
+				int duration = objectMapDuration.compute(ordinaryLocation.id, (k, v) -> v + 1);
 				// new updated case of exposure
 				if (duration >= k) {
 					patientIDs.add(ordinaryLocation.id);
 					updateCE.add(ordinaryLocation.id);
 				}
-				// }
 			}
-			t2 = System.currentTimeMillis();
-			sTime += (t2 - t1);
 		}
+
 		// 3. reset infected duration of specific objects
 		for (Integer id : objectMapDuration.keySet()) {
 			if (!isContactMap.containsKey(id))
@@ -122,6 +113,8 @@ public class QGP {
 		}
 		// reset contact information to process next timestamp
 		isContactMap.clear();
+		totalCheckNB += quadTree.checkNB;
+		fTime += (System.currentTimeMillis() - t1);
 		return updateCE;
 	}
 

@@ -27,9 +27,8 @@ public class QuadTree {
     // the four subnodes
     public QuadTree[] nodes;
     public Distance D = new Distance();
-
-    public static int totalCheckNB = 0;
-
+    // the total number of checking operations (calclating the exact distance)
+    public static int checkNB = 0;
     public boolean isStatic;
 
     /*
@@ -221,7 +220,7 @@ public class QuadTree {
      * collide with. This method is what helps to reduce the number of pairs to
      * check collision against.
      */
-    public void retrieveByLocation(HashSet<MyRectangle> returnObjects, double x, double y, boolean isEarlyStop,
+    public void retrieveByLocation(ArrayList<MyRectangle> returnObjects, double x, double y, boolean isEarlyStop,
             double epsilon) {
         int index = getLocationIndex(x, y);
         // check if object is totally covered by the subnode
@@ -254,7 +253,7 @@ public class QuadTree {
                 }
                 double dis = D.distance(y, x, rec.getY() + rec.getWidth() / 2,
                         rec.getX() + rec.getHeight() / 2);
-                totalCheckNB += 1;
+                checkNB += 1;
                 if (dis <= epsilon) {
                     returnObjects.add(rec);
                     return;

@@ -21,7 +21,7 @@ import trace.Util;
 import trace.EGP;
 import trace.AEGP;
 import trace.AQGP;
-import trace.AQGP1;
+import trace.AQGP;
 
 class Sequence {
 	// the distance threshold
@@ -188,13 +188,13 @@ class Sequence {
 		long runtime = 0;
 		long locNum = 0;
 		int tsNum = 0;
-		HashMap<Integer, HashSet<Integer>> QGPRes = new HashMap<>();
+		HashMap<Integer, ArrayList<Integer>> QGPRes = new HashMap<>();
 		// 3. start query
 		Stream stream = new Stream(Settings.dataPath);
 		ArrayList<ArrayList<Location>> batches = stream.multibBatch(this.objectNum, this.k);
 		while (batches != null && !batches.isEmpty()) {
 			long startTime = System.currentTimeMillis();
-			HashSet<Integer> QGPCases = tracer.trace(batches, tsNum, m);
+			ArrayList<Integer> QGPCases = tracer.trace(batches, tsNum, m);
 			if (!QGPCases.isEmpty())
 				QGPRes.put(tsNum * this.k, QGPCases);
 			long endTime = System.currentTimeMillis();
@@ -242,11 +242,11 @@ class Sequence {
 		/**
 		 * EGP
 		 */
-		// t1 = System.currentTimeMillis();
-		// this.egp(patientIDs, true);
-		// t2 = System.currentTimeMillis();
-		// System.out.println("EGP time consuming: " + (t2 - t1));
-		// System.out.println();
+		t1 = System.currentTimeMillis();
+		this.egp(patientIDs, true);
+		t2 = System.currentTimeMillis();
+		System.out.println("EGP time consuming: " + (t2 - t1));
+		System.out.println();
 		/**
 		 * QGP
 		 */
@@ -282,13 +282,11 @@ public class SequenceTester {
 	public static void main(String args[]) {
 		// Beijing
 		long t1 = System.currentTimeMillis();
-		long t2 = System.currentTimeMillis();
-		for (Integer patientNum : new int[] { 5000 }) {
+		for (Integer patientNum : new int[] { 1000, 2000, 3000, 4000, 5000 }) {
 			new Sequence(Settings.k, Settings.epsilon, patientNum,
 					Settings.objectNum).run();
 		}
-		t2 = System.currentTimeMillis();
-		System.out.println(t2 - t1);
+		System.out.println("Total time cost:" + (System.currentTimeMillis() - t1));
 
 		// for (Integer objectNum : new int[] { 200000, 400000, 600000, 800000, 1000000
 		// }) {

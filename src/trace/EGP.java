@@ -77,6 +77,7 @@ public class EGP {
 	 * @param batch
 	 */
 	public void findInfectedArea(ArrayList<Location> batch) {
+		long t1 = System.currentTimeMillis();
 		// init infected grid cell set at current timestamp
 		areas = new HashSet<Integer>();
 		// each area and its covered non-query locations at current timestamp
@@ -116,6 +117,8 @@ public class EGP {
 		g.setPatientAreasLocations(patientAreasLocations);
 		g.ordinaryAreasMBR = ordinaryAreasMBR;
 		g.patientAreasMBR = patientAreasMBR;
+		long t2 = System.currentTimeMillis();
+		cTime += (t2 - t1);
 	}
 
 	/**
@@ -131,23 +134,16 @@ public class EGP {
 		// 1. get infected "areas"
 		// get each patient area and its covered locations "g.patientAreasLocations"
 		// get each ordinary area and its covered locations "g.ordinaryAreasLocations"
-		long t1 = System.currentTimeMillis();
 		findInfectedArea(batch);
 		totalQueryNB += areas.size();
-		long t2 = System.currentTimeMillis();
-		cTime += (t2 - t1);
 		ArrayList<Integer> updateCE = new ArrayList<Integer>();
-
 		// 2. for influenced grid cells of infected areas (include infected area
 		// itself), we check objects within them are infected or not
 
 		for (Integer areaID : areas) {
 			// 2.1 find influenced areas' ids
-			t1 = System.currentTimeMillis();
 			int[] nnIDs = g.getAffectAreas(areaID);
-			t2 = System.currentTimeMillis();
-			fTime += (t2 - t1);
-			t1 = System.currentTimeMillis();
+			long t1 = System.currentTimeMillis();
 			// 2.2 find query locations at infected area, and get its MBR
 			ArrayList<Location> patientLocations = g.patientAreasLocations.get(areaID);
 			// 2.3 check objects within these influenced area
@@ -303,32 +299,30 @@ public class EGP {
 				// after pre-checking, calculate remaining pairwise exact-distance among each
 				// two
 				// ordinary lcation and patient location
-				for (Location l1 : ordinaryLocations) {
-					if (l1.isContact)
+				for (Location ordinaryLocation : ordinaryLocations) {
+					if (ordinaryLocation.isContact)
 						continue;
-					for (Location l2 : patientLocations) {
+					for (Location patientLocation : patientLocations) {
 						totalCheckNB += 1;
-						double dis = D.distance(l1.lat, l1.lon, l2.lat, l2.lon);
+						double dis = D.distance(ordinaryLocation.lat, ordinaryLocation.lon, patientLocation.lat,
+								patientLocation.lon);
 						if (dis <= epsilon) {
 							// mark this location as detected
-							l1.isContact = true;
-							isContactMap.put(l1.id, true);
-							if (!objectMapDuration.containsKey(l1.id))
-								objectMapDuration.put(l1.id, 0);
-							int duration = objectMapDuration.get(l1.id) + 1;
-							objectMapDuration.put(l1.id, duration);
+							ordinaryLocation.isContact = true;
+							isContactMap.put(ordinaryLocation.id, true);
+							objectMapDuration.putIfAbsent(ordinaryLocation.id, 0);
+							int duration = objectMapDuration.compute(ordinaryLocation.id, (k, v) -> v + 1);
 							// new updated case of exposure
 							if (duration >= k) {
-								patientIDs.add(l1.id);
-								updateCE.add(l1.id);
+								patientIDs.add(ordinaryLocation.id);
+								updateCE.add(ordinaryLocation.id);
 							}
 							break;
 						}
 					}
 				}
 			}
-			t2 = System.currentTimeMillis();
-			sTime += (t2 - t1);
+			fTime += (System.currentTimeMillis() - t1);
 		} // End 2
 
 		// 3. reset infected duration of specific objects
