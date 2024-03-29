@@ -43,7 +43,6 @@ public class QGP {
 	// index construction time/filtering time/ search time
 	public long cTime = 0;
 	public long fTime = 0;
-	public long sTime = 0;
 	// updated cases of exposure
 	ArrayList<Integer> updateCE = new ArrayList<Integer>();
 	public int totalCheckNB = 0;

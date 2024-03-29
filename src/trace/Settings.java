@@ -32,12 +32,8 @@ public class Settings {
 	// initial number of query objects
 	public static int initPatientNum = (name.equals("beijing")) ? 2000 : 2000;
 	public static boolean isRandom = true;
-	// use pre-check or not
-	public static boolean prechecking = false;
 	// the hop interval in AGP algorithm
 	public static int m = 3;
-	// the minimal number of grid cells that enables efficient MBR pre-checking
-	public static int minMBR = 20;
 	// the expand times of trajectory location data
 	public static int expNB = 5;
 	public static double[] lonRange = name == "beijing" ? new double[] { 116.25f - 0.001f, 116.55f + 0.001f }

@@ -229,24 +229,6 @@ public class Util {
 		return patientIDs;
 	}
 
-	// sort files by name
-	public static File[] orderByName(String filePath) {
-		File file = new File(filePath);
-		File[] files = file.listFiles();
-		List<File> fileList = Arrays.asList(files);
-		Collections.sort(fileList, new Comparator<File>() {
-			@Override
-			public int compare(File o1, File o2) {
-				if (o1.isDirectory() && o2.isFile())
-					return -1;
-				if (o1.isFile() && o2.isDirectory())
-					return 1;
-				return o1.getName().compareTo(o2.getName());
-			}
-		});
-		return files;
-	}
-
 	// Write results log
 	public static void writeFile(String algorithm, int caseNum, String setInfo, String otherInfo) {
 		try {
@@ -266,23 +248,6 @@ public class Util {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	// lonlat to coordinate
-	public static double[] MillierConvertion(double lat, double lon) {
-		double L = 6381372 * Math.PI * 2;
-		double W = L;
-		double H = L / 2;
-		double mill = 2.3;
-		double x = lon * Math.PI / 180;
-		double y = lat * Math.PI / 180;
-		y = 1.25 * Math.log(Math.tan(0.25 * Math.PI + 0.4 * y));
-		x = (W / 2) + (W / (2 * Math.PI)) * x;
-		y = (H / 2) - (H / (2 * mill)) * y;
-		double[] result = new double[2];
-		result[0] = x;
-		result[1] = y;
-		return result;
 	}
 
 }
