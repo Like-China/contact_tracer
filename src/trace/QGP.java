@@ -90,8 +90,7 @@ public class QGP {
 		long t1 = System.currentTimeMillis();
 		for (Location ordinaryLocation : ordinrayLocations) {
 			ArrayList<MyRectangle> returnObjects = new ArrayList<>();
-			quadTree.retrieveByLocation(returnObjects, ordinaryLocation.lon, ordinaryLocation.lat, false,
-					this.epsilon);
+			quadTree.retrieveByLocation(returnObjects, ordinaryLocation.lon, ordinaryLocation.lat, this.epsilon);
 			if (returnObjects.size() > 0) {
 				// mark this location as detected
 				ordinaryLocation.isContact = true;

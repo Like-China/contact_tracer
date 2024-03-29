@@ -200,7 +200,7 @@ public class Util {
 	 * @param patientNum
 	 * @return Id
 	 */
-	public static HashSet<Integer> initPatientIds(int totalNum, int patientNum, boolean isRandom) {
+	public static HashSet<Integer> initPatientIds(int totalNum, int patientNum, boolean isRandom, int seed) {
 		HashSet<Integer> patientIDs = new HashSet<Integer>();
 		if (!isRandom) {
 			for (int i = 0; i < patientNum; i++) {
@@ -213,7 +213,7 @@ public class Util {
 		for (int i = 0; i < num2.length; i++) {
 			num2[i] = i + 1;
 		}
-		Random r = new Random(10);
+		Random r = new Random(seed);
 		int index = -1;
 		for (int i = 0; i < num1.length; i++) {
 			index = r.nextInt(num2.length - i);

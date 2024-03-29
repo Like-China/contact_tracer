@@ -220,12 +220,12 @@ public class QuadTree {
      * collide with. This method is what helps to reduce the number of pairs to
      * check collision against.
      */
-    public void retrieveByLocation(ArrayList<MyRectangle> returnObjects, double x, double y, boolean isEarlyStop,
+    public void retrieveByLocation(ArrayList<MyRectangle> returnObjects, double x, double y,
             double epsilon) {
         int index = getLocationIndex(x, y);
         // check if object is totally covered by the subnode
         if (index != -1 && nodes[0] != null) {
-            nodes[index].retrieveByLocation(returnObjects, x, y, isEarlyStop, epsilon);
+            nodes[index].retrieveByLocation(returnObjects, x, y, epsilon);
         }
         // index != -1 && nodes[0] != null covered by non-leaf
         // index != -1 && nodes[0] == null exactly covered by leaf nodes
@@ -236,7 +236,7 @@ public class QuadTree {
         if (index == -1 && nodes[0] != null) {
             for (QuadTree node : nodes) {
                 if (node.bounds.isCover(x, y)) {
-                    node.retrieveByLocation(returnObjects, x, y, isEarlyStop, epsilon);
+                    node.retrieveByLocation(returnObjects, x, y, epsilon);
                 }
             }
         }
@@ -247,10 +247,6 @@ public class QuadTree {
         while (iterator.hasNext()) {
             MyRectangle rec = iterator.next();
             if (rec.isCover(x, y)) {
-                if (isEarlyStop) {
-                    returnObjects.add(rec);
-                    return;
-                }
                 double dis = D.distance(y, x, rec.getY() + rec.getWidth() / 2,
                         rec.getX() + rec.getHeight() / 2);
                 checkNB += 1;

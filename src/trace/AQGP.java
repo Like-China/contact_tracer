@@ -48,14 +48,12 @@ public class AQGP extends QGP {
 		long t1 = System.currentTimeMillis();
 		for (Location ordinaryLocation : ordinrayLocations) {
 			ArrayList<MyRectangle> returnObjects = new ArrayList<>();
-			quadTree.retrieveByLocation(returnObjects, ordinaryLocation.lon, ordinaryLocation.lat, false,
-					this.epsilon);
+			quadTree.retrieveByLocation(returnObjects, ordinaryLocation.lon, ordinaryLocation.lat, this.epsilon);
 			if (returnObjects.size() > 0) {
 				candidate.add(ordinaryLocation.id);
 			}
 		}
-		long t2 = System.currentTimeMillis();
-		fTime += (t2 - t1);
+		fTime += (System.currentTimeMillis() - t1);
 		return candidate;
 	}
 
@@ -66,7 +64,7 @@ public class AQGP extends QGP {
 	 * @param batch a list of location at the same timesampe
 	 * @return updated cases of exposes
 	 */
-	public ArrayList<Integer> trace(ArrayList<ArrayList<Location>> batches, int ts, int m) {
+	public ArrayList<Integer> trace(ArrayList<ArrayList<Location>> batches, int m, boolean isApproxiamte) {
 		updateCE = new ArrayList<Integer>();
 		assert batches.size() == this.k : "Wrong size of batches!";
 		// 1. get candidate
@@ -88,24 +86,25 @@ public class AQGP extends QGP {
 		for (int i = 0; i < this.k; i++) {
 			// for the timestamp among t, t+k (not include t and t+k)
 			ArrayList<Location> batch = batches.get(i);
-			constructIndex(batch);
 			// for (Location ordinaryLocation : ordinrayLocations) {
 			Iterator<Integer> iterator = unionCandidate.iterator();
+			// long t1 = System.currentTimeMillis();
+			boolean isEarlyStop = (isApproxiamte && i != 0 && i % m != 0 && i != k - 1);
+			if (!isEarlyStop) {
+				constructIndex(batch);
+			}
 			long t1 = System.currentTimeMillis();
 			while (iterator.hasNext()) {
 				// for (int candidateId : unionCandidate) {
 				int candidateId = iterator.next();
 				Location ordinaryLocation = batch.get(candidateId);
 				ArrayList<MyRectangle> returnObjects = new ArrayList<>();
+				if (isEarlyStop) {
+					ordinaryLocation.isContact = true;
+				}
 				if (!ordinaryLocation.isContact) {
-					// if (ts != 0 && ts % m == 0) {
-					// quadTree.retrieveByLocation(returnObjects, ordinaryLocation.lon,
-					// ordinaryLocation.lat, true,
-					// this.epsilon);
-					// } else {
-					quadTree.retrieveByLocation(returnObjects, ordinaryLocation.lon, ordinaryLocation.lat, false,
-							this.epsilon);
-					// }
+					quadTree.retrieveByLocation(returnObjects, ordinaryLocation.lon,
+							ordinaryLocation.lat, this.epsilon);
 				}
 				if (ordinaryLocation.isContact || returnObjects.size() > 0) {
 					// mark this location as detected
