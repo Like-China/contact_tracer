@@ -35,17 +35,13 @@ public class EGP {
 	// timestamp or not
 	public HashMap<Integer, Boolean> isContactMap = new HashMap<Integer, Boolean>();
 	public GridIndex g;
-	// the minimal objects within a MBR, or we do not apply MBR for pre-checking
-	public int minMBR = Settings.minMBR;
 	// the total pre-checking number / valid pre-checking number
 	public int totalCheckNums = 0;
 	public int validCheckNums = 0;
 	public Distance D = new Distance();
-
+	// index construction time / filter & search time
 	public long cTime = 0;
 	public long fTime = 0;
-	public long sTime = 0;
-
 	public int totalQueryNB = 0;
 	public int totalCheckNB = 0;
 
@@ -130,7 +126,7 @@ public class EGP {
 	 * @param isPreCheck use prechecking or not
 	 * @return updated cases of exposes
 	 */
-	public ArrayList<Integer> trace(ArrayList<Location> batch, boolean isPreCheck) {
+	public ArrayList<Integer> trace(ArrayList<Location> batch) {
 		// 1. get infected "areas"
 		// get each patient area and its covered locations "g.patientAreasLocations"
 		// get each ordinary area and its covered locations "g.ordinaryAreasLocations"
@@ -164,141 +160,6 @@ public class EGP {
 				patientMBRVertexs[1] = new double[] { patientMBR[0], patientMBR[3] };
 				patientMBRVertexs[2] = new double[] { patientMBR[1], patientMBR[2] };
 				patientMBRVertexs[3] = new double[] { patientMBR[1], patientMBR[3] };
-				// start pre-checking if objects within MBR exceed specific number
-				// if the number of locations within this grid cell is small, then no
-				// pre-checking
-				if (isPreCheck && nn != areaID && patientLocations.size() * ordinaryLocations.size() >= minMBR) {
-					totalCheckNums += 1;
-					double[] ordinaryMBR = g.ordinaryAreasMBR.get(nn);
-					double[][] ordinaryMBRVertexs = new double[4][2];
-					ordinaryMBRVertexs[0] = new double[] { ordinaryMBR[0], ordinaryMBR[2] };
-					ordinaryMBRVertexs[1] = new double[] { ordinaryMBR[0], ordinaryMBR[3] };
-					ordinaryMBRVertexs[2] = new double[] { ordinaryMBR[1], ordinaryMBR[2] };
-					ordinaryMBRVertexs[3] = new double[] { ordinaryMBR[1], ordinaryMBR[3] };
-					double min_dist = 10000;
-					// double max_dist = -100;
-					// 4 vertexes * 4 vertexes calculation to get min distance between two MBRs\
-					// double m1 = Math.abs(ordinaryMBR[0]-patientMBR[0]);
-					// double m2 = Math.abs(ordinaryMBR[0]-patientMBR[1]);
-					// double m3 = Math.abs(ordinaryMBR[0]-patientMBR[0]);
-					// double m4 = Math.abs(ordinaryMBR[0]-patientMBR[0]);
-					if (ordinaryMBR[0] > patientMBR[1] && ordinaryMBR[3] < patientMBR[2]) {
-						// case 1: left-top
-						min_dist = D.distance(patientMBRVertexs[2][1], patientMBRVertexs[2][0],
-								ordinaryMBRVertexs[1][1],
-								ordinaryMBRVertexs[1][0]);
-						// max_dist = D.distance(patientMBRVertexs[1][1], patientMBRVertexs[1][0],
-						// ordinaryMBRVertexs[2][1],
-						// ordinaryMBRVertexs[2][0]);
-					} else if (ordinaryMBR[0] > patientMBR[1] && ordinaryMBR[2] > patientMBR[3]) {
-						// case 2: left-bottle
-						min_dist = D.distance(patientMBRVertexs[3][1], patientMBRVertexs[3][0],
-								ordinaryMBRVertexs[0][1],
-								ordinaryMBRVertexs[0][0]);
-						// max_dist = D.distance(patientMBRVertexs[0][1], patientMBRVertexs[0][0],
-						// ordinaryMBRVertexs[3][1],
-						// ordinaryMBRVertexs[3][0]);
-					} else if (ordinaryMBR[1] < patientMBR[0] && ordinaryMBR[3] < patientMBR[2]) {
-						// case 3: right-top
-						min_dist = D.distance(patientMBRVertexs[0][1], patientMBRVertexs[0][0],
-								ordinaryMBRVertexs[3][1],
-								ordinaryMBRVertexs[3][0]);
-						// max_dist = D.distance(patientMBRVertexs[3][1], patientMBRVertexs[3][0],
-						// ordinaryMBRVertexs[0][1],
-						// ordinaryMBRVertexs[0][0]);
-					} else if (ordinaryMBR[1] < patientMBR[0] && ordinaryMBR[2] > patientMBR[3]) {
-						// case 4: right-bottle
-						min_dist = D.distance(patientMBRVertexs[1][1], patientMBRVertexs[1][0],
-								ordinaryMBRVertexs[2][1],
-								ordinaryMBRVertexs[2][0]);
-						// max_dist = D.distance(patientMBRVertexs[2][1], patientMBRVertexs[2][0],
-						// ordinaryMBRVertexs[1][1],
-						// ordinaryMBRVertexs[1][0]);
-					} else if (ordinaryMBR[3] < patientMBR[2]) {
-						// case 5:top
-						double min_dist1 = D.distance(patientMBRVertexs[0][1], patientMBRVertexs[0][0],
-								ordinaryMBRVertexs[1][1],
-								ordinaryMBRVertexs[1][0]);
-						double min_dist2 = D.distance(patientMBRVertexs[2][1], patientMBRVertexs[2][0],
-								ordinaryMBRVertexs[3][1],
-								ordinaryMBRVertexs[3][0]);
-						min_dist = Math.min(min_dist1, min_dist2);
-						// double max_dist1 = D.distance(patientMBRVertexs[1][1],
-						// patientMBRVertexs[1][0], ordinaryMBRVertexs[2][1],
-						// ordinaryMBRVertexs[2][0]);
-						// double max_dist2 = D.distance(patientMBRVertexs[3][1],
-						// patientMBRVertexs[3][0], ordinaryMBRVertexs[0][1],
-						// ordinaryMBRVertexs[0][0]);
-						// max_dist = Math.min(max_dist1, max_dist2);
-					} else if (ordinaryMBR[2] > patientMBR[3]) {
-						// case 6: bottle
-						double min_dist1 = D.distance(patientMBRVertexs[1][1], patientMBRVertexs[1][0],
-								ordinaryMBRVertexs[0][1],
-								ordinaryMBRVertexs[0][0]);
-						double min_dist2 = D.distance(patientMBRVertexs[3][1], patientMBRVertexs[3][0],
-								ordinaryMBRVertexs[2][1],
-								ordinaryMBRVertexs[2][0]);
-						min_dist = Math.min(min_dist1, min_dist2);
-						// double max_dist1 = D.distance(patientMBRVertexs[2][1],
-						// patientMBRVertexs[2][0], ordinaryMBRVertexs[1][1],
-						// ordinaryMBRVertexs[1][0]);
-						// double max_dist2 = D.distance(patientMBRVertexs[0][1],
-						// patientMBRVertexs[0][0], ordinaryMBRVertexs[3][1],
-						// ordinaryMBRVertexs[3][0]);
-						// max_dist = Math.min(max_dist1, max_dist2);
-					} else if (ordinaryMBR[0] > patientMBR[1]) {
-						// case 7: ×óÃæ
-						double min_dist1 = D.distance(patientMBRVertexs[3][1], patientMBRVertexs[3][0],
-								ordinaryMBRVertexs[1][1],
-								ordinaryMBRVertexs[1][0]);
-						double min_dist2 = D.distance(patientMBRVertexs[2][1], patientMBRVertexs[2][0],
-								ordinaryMBRVertexs[0][1],
-								ordinaryMBRVertexs[0][0]);
-						min_dist = Math.min(min_dist1, min_dist2);
-						// double max_dist1 = D.distance(patientMBRVertexs[1][1],
-						// patientMBRVertexs[1][0], ordinaryMBRVertexs[2][1],
-						// ordinaryMBRVertexs[2][0]);
-						// double max_dist2 = D.distance(patientMBRVertexs[0][1],
-						// patientMBRVertexs[0][0], ordinaryMBRVertexs[3][1],
-						// ordinaryMBRVertexs[3][0]);
-						// max_dist = Math.min(max_dist1, max_dist2);
-					} else if (ordinaryMBR[1] < patientMBR[0]) {
-						// case 8: right
-						double min_dist1 = D.distance(patientMBRVertexs[1][1], patientMBRVertexs[1][0],
-								ordinaryMBRVertexs[3][1],
-								ordinaryMBRVertexs[3][0]);
-						double min_dist2 = D.distance(patientMBRVertexs[0][1], patientMBRVertexs[0][0],
-								ordinaryMBRVertexs[2][1],
-								ordinaryMBRVertexs[2][0]);
-						min_dist = Math.min(min_dist1, min_dist2);
-						// double max_dist1 = D.distance(patientMBRVertexs[2][1],
-						// patientMBRVertexs[2][0], ordinaryMBRVertexs[1][1],
-						// ordinaryMBRVertexs[1][0]);
-						// double max_dist2 = D.distance(patientMBRVertexs[1][1],
-						// patientMBRVertexs[1][0], ordinaryMBRVertexs[0][1],
-						// ordinaryMBRVertexs[0][0]);
-						// max_dist = Math.min(max_dist1, max_dist2);
-					} else {
-						for (double[] lonlat : patientMBRVertexs) {
-							for (double[] lonlat1 : ordinaryMBRVertexs) {
-								double dist = D.distance(lonlat[1], lonlat[0], lonlat1[1], lonlat1[0]);
-								// if(dist>max_dist) max_dist=dist;
-								if (dist < min_dist)
-									min_dist = dist;
-							}
-						}
-					}
-
-					// prune
-					if (min_dist > epsilon) {
-						validCheckNums += 1;
-						continue;
-					}
-				} // finish pre-checking
-
-				// after pre-checking, calculate remaining pairwise exact-distance among each
-				// two
-				// ordinary lcation and patient location
 				for (Location ordinaryLocation : ordinaryLocations) {
 					if (ordinaryLocation.isContact)
 						continue;

@@ -111,64 +111,6 @@ public class AEGP extends EGP {
 	}
 
 	/**
-	 * without applying pre-checking with MBR partition
-	 */
-	public ArrayList<Integer> EGP_trace(ArrayList<Location> batch) {
-		// generate infected areas at current timestamp "areas"
-		// get each patient area and its covered locations "g.patientAreasLocations"
-		// get each ordinary area and its covered locations "g.ordinaryAreasLocations"
-		constructIndex(batch);
-		ArrayList<Integer> updateCE = new ArrayList<Integer>();
-		// for influenced areas of infected areas (included the infected area itself),
-		// we check objects within influenced areas are infected or not
-		for (Integer areaID : areas) {
-			int[] nnIDs = g.getAffectAreas(areaID);
-			ArrayList<Location> patientLocations = g.patientAreasLocations.get(areaID);
-			for (int nn : nnIDs) {
-				if (nn == -1)
-					continue;
-				ArrayList<Location> ordinaryLocations = g.ordinaryAreasLocations.get(nn);
-				// calculate pairwise minimal distance
-				if (ordinaryLocations == null || ordinaryLocations.isEmpty())
-					continue;
-				for (Location ordinaryLocation : ordinaryLocations) {
-					if (ordinaryLocation.isContact)
-						continue;
-					for (Location patientLocation : patientLocations) {
-						double dis = D.distance(ordinaryLocation.lat, ordinaryLocation.lon, patientLocation.lat,
-								patientLocation.lon);
-						if (dis <= epsilon) {
-							// mark this location as detected
-							ordinaryLocation.isContact = true;
-							isContactMap.put(ordinaryLocation.id, true);
-							// initial a key value in the dictionary
-							if (!objectMapDuration.containsKey(ordinaryLocation.id)) {
-								objectMapDuration.put(ordinaryLocation.id, 0);
-							}
-							int duration = objectMapDuration.get(ordinaryLocation.id) + 1;
-							objectMapDuration.put(ordinaryLocation.id, duration);
-							// find new case of exposure
-							if (duration >= k) {
-								patientIDs.add(ordinaryLocation.id);
-								updateCE.add(ordinaryLocation.id);
-							}
-							break;
-						}
-					}
-				}
-			}
-		} // End 2
-
-		// reset infected duration for these objects not infected at current timestamp
-		for (Integer id : objectMapDuration.keySet()) {
-			if (!isContactMap.containsKey(id))
-				objectMapDuration.put(id, 0);
-		}
-		isContactMap.clear();
-		return updateCE;
-	}
-
-	/**
 	 * continuously search updated cases of exposes with ET algorithm
 	 * update patientIDs and return updated cases of exposes
 	 * for specific timestampe we run EGP
@@ -211,12 +153,10 @@ public class AEGP extends EGP {
 				// for (int candidateId : unionCandidate) {
 				int candidateId = iterator.next();
 				Location ordinaryLocation = batch.get(candidateId);
-
 				if (isEarlyStop) {
 					ordinaryLocation.isContact = true;
 				}
 				if (!ordinaryLocation.isContact) {
-
 					int[] nnIDs = g.getAffectAreas(ordinaryLocation.areaID);
 					for (int nn : nnIDs) {
 						if (nn == -1)
@@ -238,7 +178,6 @@ public class AEGP extends EGP {
 				}
 				if (ordinaryLocation.isContact) {
 					// mark this location as detected
-					ordinaryLocation.isContact = true;
 					isContactMap.put(ordinaryLocation.id, true);
 					objectMapDuration.putIfAbsent(ordinaryLocation.id, 0);
 					int duration = objectMapDuration.compute(ordinaryLocation.id, (k, v) -> v + 1);
