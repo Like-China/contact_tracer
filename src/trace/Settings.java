@@ -12,14 +12,14 @@ package trace;
 public class Settings {
 
 	// default parameters settings
-	public static String name = "beijing";
+	public static String name = "porto";
 	// sampling interval
 	public static int sr = (name.equals("beijing")) ? 10 : 15;
 	// data path
 	public static String dataPath = "/home/like/data/contact_tracer/" + name + ".txt";
 	// due to the rime-consuming of ET algorithm, we do not evalute all timestamps
 	// for ET. Rather, we set a smaller value of evaluted timestamps.
-	public static int maxTSNB = 40;
+	public static int maxTSNB = 20;
 
 	// the duration threshold
 	// Beijing: default 15, [5,10,15,20,25]
@@ -35,7 +35,7 @@ public class Settings {
 	// the hop interval in AGP algorithm
 	public static int m = 3;
 	// the expand times of trajectory location data
-	public static int expNB = 5;
+	public static int expNB = 3;
 	public static double[] lonRange = name == "beijing" ? new double[] { 116.25f - 0.001f, 116.55f + 0.001f }
 			: new double[] { -8.735f - 0.0015f, -8.156f + 0.0015f };
 	public static double[] latRange = name == "beijing" ? new double[] { 39.83f - 0.001f, 40.03f + 0.001f }

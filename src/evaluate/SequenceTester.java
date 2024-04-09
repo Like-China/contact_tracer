@@ -42,8 +42,11 @@ class Sequence {
 	public int exactCases = 0;
 	public int EGPappCases = 0;
 	public int QGPappCases = 0;
+	// mean precision of approximation of EGP and QGP
+	public double AQGPPrecision = 0;
+	public double AEGPPrecision = 0;
 
-	public void initTime() {
+	public void init() {
 		egpTime = 0;
 		qgpTime = 0;
 		aqgpExactTime = 0;
@@ -60,6 +63,8 @@ class Sequence {
 		exactCases = 0;
 		EGPappCases = 0;
 		QGPappCases = 0;
+		AQGPPrecision = 0;
+		AEGPPrecision = 0;
 	}
 
 	public Sequence(int k, float epsilon, int initPatientNum,
@@ -110,10 +115,10 @@ class Sequence {
 		String otherInfo = String.format("locations: %d, timestamps %d, runtime: %d, mean runtime: %3.1f",
 				locNum, tsNum, runtime, (double) runtime / tsNum);
 		etTime += runtime / tsNum;
-		System.out.println(otherInfo + " total cases of exposure: " + ETCases.size());
+		System.out.println(otherInfo + ", total cases: " + ETCases.size());
 	}
 
-	public void egp(HashSet<Integer> patientIDs, boolean prechecking) {
+	public HashSet<Integer> egp(HashSet<Integer> patientIDs, boolean prechecking) {
 		// 1. create a Tracer object
 		EGP tracer = new EGP(this.epsilon, this.k);
 		// 3. init a batch of patient ids
@@ -153,11 +158,11 @@ class Sequence {
 		egpTime += runtime / tsNum;
 		egpcTime += tracer.cTime / tsNum;
 		egpfTime += tracer.fTime / tsNum;
-
-		System.out.println(otherInfo + " total cases of exposure: " + EGPCases.size());
+		System.out.println(otherInfo + ", total cases: " + EGPCases.size());
+		return EGPCases;
 	}
 
-	public void aegpExact(HashSet<Integer> patientIDs, int m) {
+	public HashSet<Integer> aegpExact(HashSet<Integer> patientIDs, int m) {
 		// 1. create a Tracer object
 		AEGP tracer = new AEGP(this.epsilon, this.k);
 		// 2. init a batch of patient ids
@@ -197,10 +202,11 @@ class Sequence {
 		aegpExactcTime += tracer.cTime / tsNum;
 		aegpExactfTime += tracer.fTime / tsNum;
 
-		System.out.println(otherInfo + " total cases of exposure: " + AEGPCases.size());
+		System.out.println(otherInfo + ", total cases: " + AEGPCases.size());
+		return AEGPCases;
 	}
 
-	public void aegpApp(HashSet<Integer> patientIDs, int m) {
+	public HashSet<Integer> aegpApp(HashSet<Integer> patientIDs, int m) {
 		// 1. create a Tracer object
 		AEGP tracer = new AEGP(this.epsilon, this.k);
 		// 2. init a batch of patient ids
@@ -237,13 +243,14 @@ class Sequence {
 				(double) tracer.fTime / tsNum);
 
 		aegpAppTime += runtime / tsNum;
-		aegpAppTime += tracer.cTime / tsNum;
+		aegpAppcTime += tracer.cTime / tsNum;
 		aegpAppfTime += tracer.fTime / tsNum;
 		EGPappCases += AEGPCases.size();
-		System.out.println(otherInfo + " total cases of exposure: " + AEGPCases.size());
+		System.out.println(otherInfo + ", total cases: " + AEGPCases.size());
+		return AEGPCases;
 	}
 
-	public void qgp(HashSet<Integer> patientIDs) {
+	public HashSet<Integer> qgp(HashSet<Integer> patientIDs) {
 		// 1. create a Tracer object
 		QGP tracer = new QGP(this.epsilon, this.k);
 		// 2. init a batch of patient ids
@@ -283,11 +290,12 @@ class Sequence {
 		qgpTime += runtime / tsNum;
 		qgpcTime += tracer.cTime / tsNum;
 		qgpfTime += tracer.fTime / tsNum;
-		System.out.println(otherInfo + " total cases of exposure: " + QGPCases.size());
+		System.out.println(otherInfo + ", total cases: " + QGPCases.size());
 		exactCases += QGPCases.size();
+		return QGPCases;
 	}
 
-	public void aqgpApp(HashSet<Integer> patientIDs, int m) {
+	public HashSet<Integer> aqgpApp(HashSet<Integer> patientIDs, int m) {
 		// 1. create a Tracer object
 		AQGP tracer = new AQGP(this.epsilon, this.k);
 		// 2. init a batch of patient ids
@@ -327,11 +335,12 @@ class Sequence {
 		aqgpAppTime += runtime / tsNum;
 		aqgpAppcTime += tracer.cTime / tsNum;
 		aqgpAppfTime += tracer.fTime / tsNum;
-		System.out.println(otherInfo + " total cases of exposure: " + QGPCases.size());
+		System.out.println(otherInfo + ", total cases: " + QGPCases.size());
 		QGPappCases += QGPCases.size();
+		return QGPCases;
 	}
 
-	public void aqgpExact(HashSet<Integer> patientIDs, int m) {
+	public HashSet<Integer> aqgpExact(HashSet<Integer> patientIDs, int m) {
 		// 1. create a Tracer object
 		AQGP tracer = new AQGP(this.epsilon, this.k);
 		// 2. init a batch of patient ids
@@ -370,7 +379,8 @@ class Sequence {
 		aqgpExactTime += runtime / tsNum;
 		aqgpExactcTime += tracer.cTime / tsNum;
 		aqgpExactfTime += tracer.fTime / tsNum;
-		System.out.println(otherInfo + " total cases of exposure: " + QGPCases.size());
+		System.out.println(otherInfo + ", total cases: " + QGPCases.size());
+		return QGPCases;
 	}
 
 	public void run(int evaluateNB) {
@@ -381,7 +391,7 @@ class Sequence {
 				Settings.sr, this.k, this.epsilon, this.initPatientNum,
 				this.objectNum, Settings.isRandom);
 		System.out.println(setInfo);
-		initTime();
+		init();
 		for (int n = 0; n < evaluateNB; n++) {
 			// init a set of patients
 			HashSet<Integer> patientIDs = Util.initPatientIds(this.objectNum, this.initPatientNum, Settings.isRandom,
@@ -392,7 +402,7 @@ class Sequence {
 			 * EGP
 			 */
 			t1 = System.currentTimeMillis();
-			this.egp(patientIDs, true);
+			HashSet<Integer> exactRes = this.egp(patientIDs, true);
 			t2 = System.currentTimeMillis();
 			System.out.println("EGP time consuming: " + (t2 - t1));
 			System.out.println();
@@ -408,7 +418,7 @@ class Sequence {
 			 * AEGP-App
 			 */
 			t1 = System.currentTimeMillis();
-			this.aegpApp(patientIDs, Settings.m);
+			HashSet<Integer> egpAppRes = this.aegpApp(patientIDs, Settings.m);
 			t2 = System.currentTimeMillis();
 			System.out.println("AEGP-App time consuming: " + (t2 - t1));
 			System.out.println();
@@ -432,7 +442,7 @@ class Sequence {
 			 * AQGP-App
 			 */
 			t1 = System.currentTimeMillis();
-			this.aqgpApp(patientIDs, Settings.m);
+			HashSet<Integer> qgpAppRes = this.aqgpApp(patientIDs, Settings.m);
 			t2 = System.currentTimeMillis();
 			System.out.println("AQGP-App time consuming: " + (t2 - t1));
 			System.out.println();
@@ -445,6 +455,8 @@ class Sequence {
 				t2 = System.currentTimeMillis();
 				System.out.println("eta time_consuming: " + (t2 - t1));
 			}
+			AEGPPrecision += Util.precision(exactRes, egpAppRes);
+			AQGPPrecision += Util.precision(exactRes, qgpAppRes);
 		}
 		// output evaluation results
 		String otherInfo = String.format(
@@ -454,6 +466,7 @@ class Sequence {
 		Util.writeFile("EGP" + "\t individual experimetal number: " + Settings.expNB,
 				exactCases / evaluateNB, setInfo,
 				otherInfo);
+
 		otherInfo = String.format(
 				"mean eruntime: %3.1f, cTime/fTime: %3.1f/%3.1f",
 				(double) aegpExactTime / evaluateNB, (double) aegpExactcTime / evaluateNB,
@@ -461,13 +474,15 @@ class Sequence {
 		Util.writeFile("AEGP-Exact" + "\t individual experimetal number: " +
 				Settings.expNB, exactCases / evaluateNB,
 				setInfo, otherInfo);
+
 		otherInfo = String.format(
-				"mean runtime: %3.1f, cTime/fTime: %3.1f/%3.1f",
+				"mean runtime: %3.1f, cTime/fTime: %3.1f/%3.1f Precision: %3.1f",
 				(double) aegpAppTime / evaluateNB, (double) aegpAppcTime / evaluateNB,
-				(double) aegpAppfTime / evaluateNB);
+				(double) aegpAppfTime / evaluateNB, AEGPPrecision / evaluateNB);
 		Util.writeFile("AEGP-App" + "\t individual experimetal number: " +
 				Settings.expNB, EGPappCases / evaluateNB, setInfo,
 				otherInfo);
+
 		otherInfo = String.format(
 				"mean runtime: %3.1f, cTime/fTime: %3.1f/%3.1f",
 				(double) qgpTime / evaluateNB, (double) qgpcTime / evaluateNB,
@@ -475,6 +490,7 @@ class Sequence {
 		Util.writeFile("QGP" + "\t individual experimetal number: " + Settings.expNB,
 				exactCases / evaluateNB, setInfo,
 				otherInfo);
+
 		otherInfo = String.format(
 				"mean runtime: %3.1f, cTime/fTime: %3.1f/%3.1f",
 				(double) aqgpExactTime / evaluateNB, (double) aqgpExactcTime / evaluateNB,
@@ -482,15 +498,15 @@ class Sequence {
 		Util.writeFile("AQGP-Exact" + "\t individual experimetal number: " +
 				Settings.expNB, exactCases / evaluateNB,
 				setInfo, otherInfo);
+
 		otherInfo = String.format(
-				"mean runtime: %3.1f, cTime/fTime: %3.1f/%3.1f/%3.1f",
+				"mean runtime: %3.1f, cTime/fTime: %3.1f/%3.1f Precision: %3.1f",
 				(double) aqgpAppTime / evaluateNB, (double) aqgpAppcTime / evaluateNB,
-				(double) aqgpAppfTime / evaluateNB);
+				(double) aqgpAppfTime / evaluateNB, AQGPPrecision / evaluateNB);
 		Util.writeFile("AQGP-App" + "\t individual experimetal number: " +
 				Settings.expNB, QGPappCases / evaluateNB, setInfo,
 				otherInfo);
 		System.out.println();
-
 	}
 }
 
@@ -499,24 +515,24 @@ public class SequenceTester {
 	public static void main(String args[]) {
 		// Beijing
 		long t1 = System.currentTimeMillis();
-		for (Integer patientNum : new int[] { 1000, 2000, 3000, 4000, 5000 }) {
-			new Sequence(Settings.k, Settings.epsilon, patientNum,
-					Settings.objectNum).run(Settings.expNB);
-		}
-		System.out.println("Total time cost:" + (System.currentTimeMillis() - t1));
+		// for (Integer patientNum : new int[] { 1000, 2000, 3000, 4000, 5000 }) {
+		// 	new Sequence(Settings.k, Settings.epsilon, patientNum,
+		// 			Settings.objectNum).run(Settings.expNB);
+		// }
+		// System.out.println("Total time cost:" + (System.currentTimeMillis() - t1));
 
-		for (Integer objectNum : new int[] { 200000, 400000, 600000, 800000, 1000000
-		}) {
-			new Sequence(Settings.k, Settings.epsilon, Settings.initPatientNum,
-					objectNum).run(Settings.expNB);
-		}
-		System.out.println("Total time cost:" + (System.currentTimeMillis() - t1));
+		// for (Integer objectNum : new int[] { 200000, 400000, 600000, 800000, 1000000
+		// }) {
+		// 	new Sequence(Settings.k, Settings.epsilon, Settings.initPatientNum,
+		// 			objectNum).run(Settings.expNB);
+		// }
+		// System.out.println("Total time cost:" + (System.currentTimeMillis() - t1));
 
-		for (Integer k : new int[] { 5, 10, 15, 20, 25 }) {
-			new Sequence(k, Settings.epsilon, Settings.initPatientNum,
-					Settings.objectNum).run(Settings.expNB);
-		}
-		System.out.println("Total time cost:" + (System.currentTimeMillis() - t1));
+		// for (Integer k : new int[] { 5, 10, 15, 20, 25 }) {
+		// 	new Sequence(k, Settings.epsilon, Settings.initPatientNum,
+		// 			Settings.objectNum).run(Settings.expNB);
+		// }
+		// System.out.println("Total time cost:" + (System.currentTimeMillis() - t1));
 
 		for (Float epsilon : new float[] { 2f, 4f, 6f, 8f, 10f }) {
 			new Sequence(Settings.k, epsilon, Settings.initPatientNum,

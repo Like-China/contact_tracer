@@ -26,9 +26,6 @@ public class GridIndex {
 	// the map from cell id to the query locations within this grid cell
 	public HashMap<Integer, ArrayList<Location>> patientAreasLocations = new HashMap<Integer, ArrayList<Location>>();
 	// MBR: minLon, maxLon, minLat, maxLat
-	// MBR of all non-query/query locations within a grid cell
-	public HashMap<Integer, double[]> ordinaryAreasMBR = new HashMap<>();
-	public HashMap<Integer, double[]> patientAreasMBR = new HashMap<>();
 
 	public HashMap<Integer, ArrayList<Location>> getPatientAreasLocations() {
 		return patientAreasLocations;

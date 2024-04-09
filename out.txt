@@ -1,92 +1,845 @@
 
-Algorithm: EGP individual experimetal number: 5
+Algorithm: EGP	 individual experimetal number: 3
 **name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 1000/200000 	 isRandom queries: true**
-mean runtime: 124.2, cTime/fTime/sTime: 85.2/38.2/0.0, Cases of exposures: 3023
+mean runtime: 67.3, cTime/fTime: 44.7/22.3, Cases of exposures: 2104
 
-Algorithm: QGP individual experimetal number: 5
+Algorithm: AEGP-Exact	 individual experimetal number: 3
 **name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 1000/200000 	 isRandom queries: true**
-mean runtime: 77.4, cTime/fTime/sTime: 12.4/64.6/0.0, Cases of exposures: 3023
+mean eruntime: 59.3, cTime/fTime: 51.3/7.3, Cases of exposures: 2104
 
-Algorithm: AQGP-Exact individual experimetal number: 5
+Algorithm: AEGP-App	 individual experimetal number: 3
 **name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 1000/200000 	 isRandom queries: true**
-mean runtime: 27.2, cTime/fTime/sTime: 10.8/15.8/0.0, Cases of exposures: 3023
+mean runtime: 30.7, cTime/fTime: 25.0/5.0 Precision: 98.9, Cases of exposures: 2128
 
-Algorithm: AQGP-App individual experimetal number: 5
+Algorithm: QGP	 individual experimetal number: 3
 **name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 1000/200000 	 isRandom queries: true**
-mean runtime: 19.0, cTime/fTime/sTime: 5.2/13.2/0.0, Cases of exposures: 3106
+mean runtime: 55.7, cTime/fTime: 8.7/46.3, Cases of exposures: 2104
 
-Algorithm: EGP individual experimetal number: 5
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 1000/200000 	 isRandom queries: true**
+mean runtime: 23.3, cTime/fTime: 11.3/11.7, Cases of exposures: 2104
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 1000/200000 	 isRandom queries: true**
+mean runtime: 16.0, cTime/fTime: 5.7/10.0 Precision: 98.9, Cases of exposures: 2128
+
+Algorithm: EGP	 individual experimetal number: 3
 **name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
-mean runtime: 155.4, cTime/fTime/sTime: 90.2/64.6/0.0, Cases of exposures: 5448
+mean runtime: 81.3, cTime/fTime: 41.7/38.3, Cases of exposures: 3775
 
-Algorithm: QGP individual experimetal number: 5
+Algorithm: AEGP-Exact	 individual experimetal number: 3
 **name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
-mean runtime: 102.6, cTime/fTime/sTime: 13.6/88.2/0.0, Cases of exposures: 5448
+mean eruntime: 64.7, cTime/fTime: 50.7/13.3, Cases of exposures: 3775
 
-Algorithm: AQGP-Exact individual experimetal number: 5
+Algorithm: AEGP-App	 individual experimetal number: 3
 **name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
-mean runtime: 35.0, cTime/fTime/sTime: 11.2/23.4/0.0, Cases of exposures: 5448
+mean runtime: 35.3, cTime/fTime: 25.7/9.3 Precision: 99.1, Cases of exposures: 3810
 
-Algorithm: AQGP-App individual experimetal number: 5
+Algorithm: QGP	 individual experimetal number: 3
 **name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
-mean runtime: 26.6, cTime/fTime/sTime: 6.0/19.8/0.0, Cases of exposures: 5572
+mean runtime: 79.0, cTime/fTime: 11.7/66.3, Cases of exposures: 3775
 
-Algorithm: EGP individual experimetal number: 5
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 27.7, cTime/fTime: 11.0/16.3, Cases of exposures: 3775
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 19.3, cTime/fTime: 5.0/14.0 Precision: 99.1, Cases of exposures: 3810
+
+Algorithm: EGP	 individual experimetal number: 3
 **name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 3000/200000 	 isRandom queries: true**
-mean runtime: 196.8, cTime/fTime/sTime: 106.2/89.0/0.0, Cases of exposures: 7753
+mean runtime: 100.7, cTime/fTime: 43.0/57.0, Cases of exposures: 5502
 
-Algorithm: QGP individual experimetal number: 5
+Algorithm: AEGP-Exact	 individual experimetal number: 3
 **name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 3000/200000 	 isRandom queries: true**
-mean runtime: 125.6, cTime/fTime/sTime: 14.4/111.0/0.0, Cases of exposures: 7753
+mean eruntime: 76.3, cTime/fTime: 53.7/22.3, Cases of exposures: 5502
 
-Algorithm: AQGP-Exact individual experimetal number: 5
+Algorithm: AEGP-App	 individual experimetal number: 3
 **name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 3000/200000 	 isRandom queries: true**
-mean runtime: 45.0, cTime/fTime/sTime: 12.2/31.8/0.0, Cases of exposures: 7753
+mean runtime: 40.7, cTime/fTime: 25.7/14.0 Precision: 99.2, Cases of exposures: 5549
 
-Algorithm: AQGP-App individual experimetal number: 5
+Algorithm: QGP	 individual experimetal number: 3
 **name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 3000/200000 	 isRandom queries: true**
-mean runtime: 32.6, cTime/fTime/sTime: 6.4/25.4/0.0, Cases of exposures: 7928
+mean runtime: 95.7, cTime/fTime: 12.0/83.3, Cases of exposures: 5502
 
-Algorithm: EGP individual experimetal number: 5
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 3000/200000 	 isRandom queries: true**
+mean runtime: 35.0, cTime/fTime: 11.3/22.7, Cases of exposures: 5502
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 3000/200000 	 isRandom queries: true**
+mean runtime: 24.3, cTime/fTime: 5.3/18.3 Precision: 99.2, Cases of exposures: 5548
+
+Algorithm: EGP	 individual experimetal number: 3
 **name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 4000/200000 	 isRandom queries: true**
-mean runtime: 218.8, cTime/fTime/sTime: 109.8/107.4/0.0, Cases of exposures: 9597
+mean runtime: 120.0, cTime/fTime: 47.7/71.0, Cases of exposures: 6810
 
-Algorithm: QGP individual experimetal number: 5
+Algorithm: AEGP-Exact	 individual experimetal number: 3
 **name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 4000/200000 	 isRandom queries: true**
-mean runtime: 142.0, cTime/fTime/sTime: 15.0/127.0/0.0, Cases of exposures: 9597
+mean eruntime: 75.0, cTime/fTime: 47.3/27.0, Cases of exposures: 6810
 
-Algorithm: AQGP-Exact individual experimetal number: 5
+Algorithm: AEGP-App	 individual experimetal number: 3
 **name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 4000/200000 	 isRandom queries: true**
-mean runtime: 50.6, cTime/fTime/sTime: 12.0/37.8/0.0, Cases of exposures: 9597
+mean runtime: 45.0, cTime/fTime: 26.3/18.3 Precision: 99.2, Cases of exposures: 6865
 
-Algorithm: AQGP-App individual experimetal number: 5
+Algorithm: QGP	 individual experimetal number: 3
 **name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 4000/200000 	 isRandom queries: true**
-mean runtime: 37.2, cTime/fTime/sTime: 6.4/30.0/0.0, Cases of exposures: 9812
+mean runtime: 113.7, cTime/fTime: 13.3/99.3, Cases of exposures: 6810
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 4000/200000 	 isRandom queries: true**
+mean runtime: 41.3, cTime/fTime: 13.0/28.0, Cases of exposures: 6810
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 4000/200000 	 isRandom queries: true**
+mean runtime: 29.7, cTime/fTime: 6.0/23.0 Precision: 99.2, Cases of exposures: 6865
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 5000/200000 	 isRandom queries: true**
+mean runtime: 133.7, cTime/fTime: 48.0/84.3, Cases of exposures: 8078
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 5000/200000 	 isRandom queries: true**
+mean eruntime: 86.7, cTime/fTime: 52.3/33.3, Cases of exposures: 8078
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 5000/200000 	 isRandom queries: true**
+mean runtime: 47.0, cTime/fTime: 24.3/22.0 Precision: 99.0, Cases of exposures: 8157
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 5000/200000 	 isRandom queries: true**
+mean runtime: 130.7, cTime/fTime: 14.7/115.7, Cases of exposures: 8078
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 5000/200000 	 isRandom queries: true**
+mean runtime: 45.0, cTime/fTime: 12.0/32.3, Cases of exposures: 8078
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 5000/200000 	 isRandom queries: true**
+mean runtime: 33.3, cTime/fTime: 6.3/26.3 Precision: 99.1, Cases of exposures: 8156
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 90.0, cTime/fTime: 50.3/38.7, Cases of exposures: 3775
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean eruntime: 60.7, cTime/fTime: 46.7/13.0, Cases of exposures: 3775
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 35.0, cTime/fTime: 25.0/9.3 Precision: 99.1, Cases of exposures: 3810
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 84.0, cTime/fTime: 13.3/70.3, Cases of exposures: 3775
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 30.3, cTime/fTime: 12.7/17.0, Cases of exposures: 3775
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 21.3, cTime/fTime: 6.0/15.0 Precision: 99.1, Cases of exposures: 3810
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/400000 	 isRandom queries: true**
+mean runtime: 196.0, cTime/fTime: 116.7/78.3, Cases of exposures: 4805
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/400000 	 isRandom queries: true**
+mean eruntime: 183.3, cTime/fTime: 157.3/25.0, Cases of exposures: 4805
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/400000 	 isRandom queries: true**
+mean runtime: 76.3, cTime/fTime: 57.7/18.3 Precision: 99.0, Cases of exposures: 4854
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/400000 	 isRandom queries: true**
+mean runtime: 155.7, cTime/fTime: 22.0/133.3, Cases of exposures: 4805
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/400000 	 isRandom queries: true**
+mean runtime: 52.3, cTime/fTime: 18.3/33.0, Cases of exposures: 4805
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/400000 	 isRandom queries: true**
+mean runtime: 39.0, cTime/fTime: 9.0/29.0 Precision: 99.0, Cases of exposures: 4854
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/600000 	 isRandom queries: true**
+mean runtime: 299.7, cTime/fTime: 183.7/115.3, Cases of exposures: 5706
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/600000 	 isRandom queries: true**
+mean eruntime: 293.7, cTime/fTime: 258.3/34.3, Cases of exposures: 5706
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/600000 	 isRandom queries: true**
+mean runtime: 152.7, cTime/fTime: 125.0/27.0 Precision: 99.2, Cases of exposures: 5752
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/600000 	 isRandom queries: true**
+mean runtime: 235.3, cTime/fTime: 29.3/206.0, Cases of exposures: 5706
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/600000 	 isRandom queries: true**
+mean runtime: 77.7, cTime/fTime: 27.0/49.7, Cases of exposures: 5706
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/600000 	 isRandom queries: true**
+mean runtime: 61.0, cTime/fTime: 17.0/43.7 Precision: 99.2, Cases of exposures: 5750
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/800000 	 isRandom queries: true**
+mean runtime: 406.0, cTime/fTime: 233.3/171.3, Cases of exposures: 6069
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/800000 	 isRandom queries: true**
+mean eruntime: 363.0, cTime/fTime: 311.3/51.0, Cases of exposures: 6069
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/800000 	 isRandom queries: true**
+mean runtime: 204.3, cTime/fTime: 163.7/40.0 Precision: 98.8, Cases of exposures: 6143
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/800000 	 isRandom queries: true**
+mean runtime: 334.7, cTime/fTime: 42.3/291.7, Cases of exposures: 6069
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/800000 	 isRandom queries: true**
+mean runtime: 102.0, cTime/fTime: 36.7/64.7, Cases of exposures: 6069
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/800000 	 isRandom queries: true**
+mean runtime: 83.7, cTime/fTime: 20.7/62.7 Precision: 98.8, Cases of exposures: 6142
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/1000000 	 isRandom queries: true**
+mean runtime: 493.0, cTime/fTime: 287.3/204.7, Cases of exposures: 6821
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/1000000 	 isRandom queries: true**
+mean eruntime: 428.3, cTime/fTime: 366.0/61.7, Cases of exposures: 6821
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/1000000 	 isRandom queries: true**
+mean runtime: 234.7, cTime/fTime: 182.7/51.3 Precision: 99.0, Cases of exposures: 6892
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/1000000 	 isRandom queries: true**
+mean runtime: 417.0, cTime/fTime: 43.7/373.0, Cases of exposures: 6821
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/1000000 	 isRandom queries: true**
+mean runtime: 123.7, cTime/fTime: 38.3/84.3, Cases of exposures: 6821
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/1000000 	 isRandom queries: true**
+mean runtime: 101.7, cTime/fTime: 23.7/77.7 Precision: 99.0, Cases of exposures: 6891
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 116.3, cTime/fTime: 50.3/64.7, Cases of exposures: 5576
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean eruntime: 95.7, cTime/fTime: 62.7/32.3, Cases of exposures: 5576
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 74.7, cTime/fTime: 45.3/28.3 Precision: 98.8, Cases of exposures: 5643
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 103.7, cTime/fTime: 13.7/89.7, Cases of exposures: 5576
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 54.3, cTime/fTime: 14.3/39.3, Cases of exposures: 5576
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 5  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 48.0, cTime/fTime: 10.3/36.7 Precision: 98.8, Cases of exposures: 5642
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 93.7, cTime/fTime: 53.3/39.0, Cases of exposures: 3775
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean eruntime: 61.3, cTime/fTime: 47.3/13.0, Cases of exposures: 3775
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 35.0, cTime/fTime: 24.7/9.3 Precision: 99.1, Cases of exposures: 3810
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 87.0, cTime/fTime: 15.3/71.0, Cases of exposures: 3775
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 32.7, cTime/fTime: 14.3/18.0, Cases of exposures: 3775
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 21.0, cTime/fTime: 6.0/14.7 Precision: 99.1, Cases of exposures: 3810
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 15  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 80.3, cTime/fTime: 51.3/28.0, Cases of exposures: 2488
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 15  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean eruntime: 65.0, cTime/fTime: 53.3/11.3, Cases of exposures: 2488
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 15  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 31.0, cTime/fTime: 23.0/7.3 Precision: 67.3, Cases of exposures: 3695
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 15  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 76.0, cTime/fTime: 13.7/62.0, Cases of exposures: 2488
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 15  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 24.7, cTime/fTime: 11.0/13.3, Cases of exposures: 2488
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 15  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 15.3, cTime/fTime: 4.3/10.0 Precision: 67.3, Cases of exposures: 3695
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 20  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 71.7, cTime/fTime: 52.7/18.0, Cases of exposures: 2317
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 20  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean eruntime: 46.7, cTime/fTime: 41.7/4.0, Cases of exposures: 2317
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 20  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 27.3, cTime/fTime: 24.0/3.0 Precision: 99.7, Cases of exposures: 2323
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 20  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 73.3, cTime/fTime: 18.0/54.7, Cases of exposures: 2317
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 20  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 18.0, cTime/fTime: 10.7/6.7, Cases of exposures: 2317
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 20  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 11.3, cTime/fTime: 5.3/5.3 Precision: 99.7, Cases of exposures: 2323
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 25  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 87.7, cTime/fTime: 68.0/18.7, Cases of exposures: 0
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 25  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean eruntime: 50.3, cTime/fTime: 45.7/4.0, Cases of exposures: 0
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 25  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 28.0, cTime/fTime: 24.7/2.7 Precision: 0.0, Cases of exposures: 2258
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 25  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 67.7, cTime/fTime: 13.3/54.3, Cases of exposures: 0
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 25  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 17.3, cTime/fTime: 11.3/6.0, Cases of exposures: 0
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 25  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 9.0, cTime/fTime: 4.0/5.0 Precision: 0.0, Cases of exposures: 2258
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 90.3, cTime/fTime: 50.0/39.0, Cases of exposures: 3775
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean eruntime: 62.0, cTime/fTime: 48.0/13.3, Cases of exposures: 3775
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 34.0, cTime/fTime: 24.3/9.3 Precision: 99.1, Cases of exposures: 3810
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 87.0, cTime/fTime: 14.3/72.7, Cases of exposures: 3775
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 30.0, cTime/fTime: 12.3/17.0, Cases of exposures: 3775
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 21.3, cTime/fTime: 6.0/15.0 Precision: 99.1, Cases of exposures: 3810
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 4.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 149.7, cTime/fTime: 46.3/102.0, Cases of exposures: 6975
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 4.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean eruntime: 83.7, cTime/fTime: 47.0/36.3, Cases of exposures: 6975
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 4.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 49.7, cTime/fTime: 23.7/25.0 Precision: 99.5, Cases of exposures: 7008
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 4.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 93.0, cTime/fTime: 15.0/77.3, Cases of exposures: 6975
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 4.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 35.3, cTime/fTime: 12.0/23.0, Cases of exposures: 6975
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 4.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 25.0, cTime/fTime: 6.3/18.0 Precision: 99.5, Cases of exposures: 7007
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 6.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 225.7, cTime/fTime: 46.7/177.7, Cases of exposures: 9767
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 6.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean eruntime: 111.7, cTime/fTime: 43.3/67.3, Cases of exposures: 9767
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 6.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 67.3, cTime/fTime: 22.0/44.3 Precision: 99.5, Cases of exposures: 9813
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 6.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 86.0, cTime/fTime: 13.7/71.7, Cases of exposures: 9767
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 6.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 36.0, cTime/fTime: 11.7/23.7, Cases of exposures: 9767
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 6.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 24.7, cTime/fTime: 6.0/18.0 Precision: 99.5, Cases of exposures: 9813
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 8.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 307.0, cTime/fTime: 36.0/270.3, Cases of exposures: 11959
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 8.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean eruntime: 142.0, cTime/fTime: 32.0/109.3, Cases of exposures: 11959
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 8.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 85.7, cTime/fTime: 16.0/69.3 Precision: 99.7, Cases of exposures: 11993
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 8.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 79.0, cTime/fTime: 14.0/64.3, Cases of exposures: 11959
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 8.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 34.3, cTime/fTime: 11.0/22.3, Cases of exposures: 11959
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 8.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 25.3, cTime/fTime: 8.0/16.7 Precision: 99.7, Cases of exposures: 11991
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 10.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 413.7, cTime/fTime: 32.7/379.7, Cases of exposures: 13551
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 10.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean eruntime: 184.3, cTime/fTime: 30.3/153.3, Cases of exposures: 13551
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 10.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 115.0, cTime/fTime: 15.7/99.0 Precision: 99.6, Cases of exposures: 13610
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 10.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 75.0, cTime/fTime: 14.0/60.7, Cases of exposures: 13551
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 10.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 33.3, cTime/fTime: 12.0/20.3, Cases of exposures: 13551
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 10.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 22.0, cTime/fTime: 6.0/15.0 Precision: 99.6, Cases of exposures: 13610
 
 
-2024/3/29 16:25
+Algorithm: EGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 1000/200000 	 isRandom queries: true**
+mean runtime: 129.7, cTime/fTime: 26.0/101.3, Cases of exposures: 36
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 1000/200000 	 isRandom queries: true**
+mean eruntime: 64.3, cTime/fTime: 31.0/31.7, Cases of exposures: 36
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 1000/200000 	 isRandom queries: true**
+mean runtime: 44.0, cTime/fTime: 15.0/27.7 Precision: 52.8, Cases of exposures: 71
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 1000/200000 	 isRandom queries: true**
+mean runtime: 121.3, cTime/fTime: 9.0/111.3, Cases of exposures: 36
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 1000/200000 	 isRandom queries: true**
+mean runtime: 42.3, cTime/fTime: 10.0/30.3, Cases of exposures: 36
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 1000/200000 	 isRandom queries: true**
+mean runtime: 35.0, cTime/fTime: 5.0/28.0 Precision: 53.2, Cases of exposures: 70
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 214.0, cTime/fTime: 25.0/185.7, Cases of exposures: 68
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean eruntime: 97.0, cTime/fTime: 29.3/64.7, Cases of exposures: 68
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 72.3, cTime/fTime: 15.0/54.7 Precision: 34.8, Cases of exposures: 197
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 200.0, cTime/fTime: 8.7/191.0, Cases of exposures: 68
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 73.0, cTime/fTime: 11.7/58.3, Cases of exposures: 68
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 60.3, cTime/fTime: 5.0/52.7 Precision: 35.8, Cases of exposures: 192
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 3000/200000 	 isRandom queries: true**
+mean runtime: 295.3, cTime/fTime: 25.0/266.0, Cases of exposures: 105
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 3000/200000 	 isRandom queries: true**
+mean eruntime: 139.7, cTime/fTime: 30.3/104.7, Cases of exposures: 105
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 3000/200000 	 isRandom queries: true**
+mean runtime: 104.3, cTime/fTime: 15.3/84.0 Precision: 23.4, Cases of exposures: 445
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 3000/200000 	 isRandom queries: true**
+mean runtime: 277.0, cTime/fTime: 9.3/267.3, Cases of exposures: 105
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 3000/200000 	 isRandom queries: true**
+mean runtime: 108.0, cTime/fTime: 11.3/91.7, Cases of exposures: 105
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 3000/200000 	 isRandom queries: true**
+mean runtime: 89.7, cTime/fTime: 5.0/80.0 Precision: 24.4, Cases of exposures: 429
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 4000/200000 	 isRandom queries: true**
+mean runtime: 379.7, cTime/fTime: 26.0/349.7, Cases of exposures: 147
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 4000/200000 	 isRandom queries: true**
+mean eruntime: 185.3, cTime/fTime: 30.3/149.3, Cases of exposures: 147
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 4000/200000 	 isRandom queries: true**
+mean runtime: 137.7, cTime/fTime: 15.0/116.3 Precision: 16.4, Cases of exposures: 883
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 4000/200000 	 isRandom queries: true**
+mean runtime: 352.3, cTime/fTime: 9.7/342.0, Cases of exposures: 147
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 4000/200000 	 isRandom queries: true**
+mean runtime: 146.0, cTime/fTime: 11.7/128.3, Cases of exposures: 147
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 4000/200000 	 isRandom queries: true**
+mean runtime: 122.3, cTime/fTime: 6.0/109.0 Precision: 17.2, Cases of exposures: 840
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 5000/200000 	 isRandom queries: true**
+mean runtime: 452.0, cTime/fTime: 26.3/421.0, Cases of exposures: 193
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 5000/200000 	 isRandom queries: true**
+mean eruntime: 233.3, cTime/fTime: 31.0/193.7, Cases of exposures: 193
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 5000/200000 	 isRandom queries: true**
+mean runtime: 171.3, cTime/fTime: 15.3/147.3 Precision: 13.1, Cases of exposures: 1456
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 5000/200000 	 isRandom queries: true**
+mean runtime: 418.7, cTime/fTime: 10.0/407.7, Cases of exposures: 193
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 5000/200000 	 isRandom queries: true**
+mean runtime: 184.3, cTime/fTime: 11.7/164.0, Cases of exposures: 193
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 5000/200000 	 isRandom queries: true**
+mean runtime: 153.0, cTime/fTime: 5.3/136.3 Precision: 14.0, Cases of exposures: 1364
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 215.0, cTime/fTime: 25.7/186.3, Cases of exposures: 68
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean eruntime: 96.7, cTime/fTime: 29.7/64.7, Cases of exposures: 68
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 72.7, cTime/fTime: 14.7/55.3 Precision: 34.8, Cases of exposures: 197
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 200.0, cTime/fTime: 8.7/190.7, Cases of exposures: 68
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 72.7, cTime/fTime: 12.0/58.0, Cases of exposures: 68
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 60.3, cTime/fTime: 5.0/52.7 Precision: 35.8, Cases of exposures: 192
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/400000 	 isRandom queries: true**
+mean runtime: 430.7, cTime/fTime: 58.0/366.7, Cases of exposures: 109
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/400000 	 isRandom queries: true**
+mean eruntime: 207.0, cTime/fTime: 57.0/141.0, Cases of exposures: 109
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/400000 	 isRandom queries: true**
+mean runtime: 159.7, cTime/fTime: 28.0/122.3 Precision: 30.0, Cases of exposures: 359
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/400000 	 isRandom queries: true**
+mean runtime: 415.7, cTime/fTime: 19.0/395.7, Cases of exposures: 109
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/400000 	 isRandom queries: true**
+mean runtime: 161.0, cTime/fTime: 17.7/132.7, Cases of exposures: 109
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/400000 	 isRandom queries: true**
+mean runtime: 140.7, cTime/fTime: 8.7/121.3 Precision: 31.0, Cases of exposures: 347
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/600000 	 isRandom queries: true**
+mean runtime: 672.3, cTime/fTime: 97.0/566.7, Cases of exposures: 180
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/600000 	 isRandom queries: true**
+mean eruntime: 349.0, cTime/fTime: 93.0/235.7, Cases of exposures: 180
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/600000 	 isRandom queries: true**
+mean runtime: 283.0, cTime/fTime: 49.3/211.3 Precision: 27.9, Cases of exposures: 640
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/600000 	 isRandom queries: true**
+mean runtime: 654.0, cTime/fTime: 29.7/624.0, Cases of exposures: 180
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/600000 	 isRandom queries: true**
+mean runtime: 268.3, cTime/fTime: 24.7/219.0, Cases of exposures: 180
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/600000 	 isRandom queries: true**
+mean runtime: 252.0, cTime/fTime: 12.7/211.0 Precision: 29.8, Cases of exposures: 598
 
 
 
+Algorithm: EGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 288.0, cTime/fTime: 26.3/258.3, Cases of exposures: 2532
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean eruntime: 255.3, cTime/fTime: 35.3/209.3, Cases of exposures: 2532
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 398.3, cTime/fTime: 26.7/343.3 Precision: 11.4, Cases of exposures: 21981
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 256.7, cTime/fTime: 10.0/246.3, Cases of exposures: 2532
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 186.7, cTime/fTime: 13.7/163.7, Cases of exposures: 2532
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 5  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 339.7, cTime/fTime: 10.3/299.3 Precision: 13.0, Cases of exposures: 19305
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 214.0, cTime/fTime: 25.0/186.3, Cases of exposures: 68
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean eruntime: 98.3, cTime/fTime: 30.7/65.0, Cases of exposures: 68
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 72.0, cTime/fTime: 14.0/54.7 Precision: 34.8, Cases of exposures: 197
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 196.0, cTime/fTime: 9.3/186.3, Cases of exposures: 68
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 72.0, cTime/fTime: 10.7/58.7, Cases of exposures: 68
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 60.7, cTime/fTime: 5.0/52.7 Precision: 35.8, Cases of exposures: 192
 
 
 
-Algorithm: EGP	 individual experimetal number: 5
-**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 1000/200000 	 isRandom queries: true**
-mean runtime: 122.8, cTime/fTime: 84.4/37.8, Cases of exposures: 3023
+Algorithm: EGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 218.7, cTime/fTime: 26.0/189.3, Cases of exposures: 68
 
-Algorithm: AEGP-Exact	 individual experimetal number: 5
-**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 1000/200000 	 isRandom queries: true**
-mean eruntime: 63.6, cTime/fTime: 50.0/12.8, Cases of exposures: 3023
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean eruntime: 100.0, cTime/fTime: 30.7/66.0, Cases of exposures: 68
 
-Algorithm: AEGP-App	 individual experimetal number: 5
-**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 1000/200000 	 isRandom queries: true**
-mean runtime: 60.8, cTime/fTime: 0.0/9.2, Cases of exposures: 3109
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 72.3, cTime/fTime: 14.0/55.0 Precision: 34.8, Cases of exposures: 197
 
-Algorithm: QGP	 individual experimetal number: 5
-**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 1000/200000 	 isRandom queries: true**
-mean runtime: 76.6, cTime/fTime: 12.8/63.0, Cases of exposures: 3023
+Algorithm: QGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 198.7, cTime/fTime: 8.7/189.3, Cases of exposures: 68
 
-Algorithm: AQGP-Exact	 individual experimetal number: 5
-**name: beijing 	 sr: 10 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 1000/200000 	 isRandom queries: true**
-mean runtime: 27.6, cTime/fTime: 11.2/15.8, Cases of exposures: 3023
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 72.7, cTime/fTime: 10.7/59.0, Cases of exposures: 68
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 2.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 60.3, cTime/fTime: 5.0/52.7 Precision: 35.8, Cases of exposures: 192
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 4.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 402.0, cTime/fTime: 19.0/379.3, Cases of exposures: 514
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 4.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean eruntime: 294.3, cTime/fTime: 22.7/253.7, Cases of exposures: 514
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 4.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 276.3, cTime/fTime: 11.0/241.3 Precision: 6.4, Cases of exposures: 8012
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 4.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 180.0, cTime/fTime: 8.7/171.0, Cases of exposures: 514
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 4.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 137.3, cTime/fTime: 10.7/101.7, Cases of exposures: 514
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 4.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 139.3, cTime/fTime: 6.0/98.3 Precision: 6.8, Cases of exposures: 7542
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 6.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 780.3, cTime/fTime: 17.0/757.3, Cases of exposures: 5058
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 6.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean eruntime: 883.7, cTime/fTime: 20.3/805.3, Cases of exposures: 5058
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 6.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 797.7, cTime/fTime: 10.0/714.7 Precision: 15.4, Cases of exposures: 32654
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 6.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 190.0, cTime/fTime: 9.0/180.7, Cases of exposures: 5058
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 6.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 243.3, cTime/fTime: 11.3/142.3, Cases of exposures: 5058
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 6.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 242.0, cTime/fTime: 5.7/127.7 Precision: 15.7, Cases of exposures: 32018
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 8.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 1596.7, cTime/fTime: 15.7/1574.7, Cases of exposures: 20104
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 8.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean eruntime: 2351.0, cTime/fTime: 18.7/2222.3, Cases of exposures: 20104
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 8.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 1580.3, cTime/fTime: 9.7/1454.3 Precision: 35.7, Cases of exposures: 56349
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 8.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 211.7, cTime/fTime: 9.3/201.3, Cases of exposures: 20104
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 8.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 360.7, cTime/fTime: 12.3/179.3, Cases of exposures: 20104
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 8.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 324.0, cTime/fTime: 5.3/140.3 Precision: 36.1, Cases of exposures: 55721
+
+Algorithm: EGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 10.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 3045.0, cTime/fTime: 15.0/3023.0, Cases of exposures: 34999
+
+Algorithm: AEGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 10.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean eruntime: 4749.3, cTime/fTime: 19.0/4580.7, Cases of exposures: 34999
+
+Algorithm: AEGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 10.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 2650.7, cTime/fTime: 9.7/2494.0 Precision: 45.9, Cases of exposures: 76320
+
+Algorithm: QGP	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 10.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 219.7, cTime/fTime: 10.0/209.3, Cases of exposures: 34999
+
+Algorithm: AQGP-Exact	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 10.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 441.7, cTime/fTime: 12.0/200.0, Cases of exposures: 34999
+
+Algorithm: AQGP-App	 individual experimetal number: 3
+**name: porto 	 sr: 15 	 k: 10  	 epsilon: 10.0  	 init/objectNB: 2000/200000 	 isRandom queries: true**
+mean runtime: 367.0, cTime/fTime: 6.0/145.0 Precision: 46.1, Cases of exposures: 75854

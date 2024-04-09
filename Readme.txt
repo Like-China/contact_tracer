@@ -20,9 +20,78 @@ test of of ETA, EGP and AGP
 
 sequenceTester.java 
 paramater settings are defined by Settings.java
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 run sequenceTester.main() for method evaluation
 
-
+2024/4/7 K的设定和M的设定必须是整除关系，需要添加更多判断条件
 
 
 

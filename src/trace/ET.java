@@ -24,16 +24,12 @@ public class ET {
 	// patient ids that consist of already infected objects and new discoverd cases
 	// of exposure
 	public HashSet<Integer> patientIDs;
-	// grid cells that at least one patients in it
-	public HashSet<Integer> areas;
 	// the map from moving object to its conduct duration with query objects
 	public HashMap<Integer, Integer> objectMapDuration = new HashMap<Integer, Integer>();
 	// record each object contacts with at least one query object at current
 	// timestamp or not
 	public HashMap<Integer, Boolean> isContact = new HashMap<Integer, Boolean>();
 	public Distance D = new Distance();
-	public int totalQueryNB = 0;
-	public int totalCheckNB = 0;
 
 	public ET(double epsilon, int k) {
 		this.epsilon = epsilon;
@@ -64,7 +60,6 @@ public class ET {
 		// 2. calculate exact distance among each two query and non-query locations
 		for (Location l1 : otherLocations) {
 			for (Location l2 : queryLocations) {
-				totalCheckNB += 1;
 				double dis = D.distance(l1.lat, l1.lon, l2.lat, l2.lon);
 				if (dis <= epsilon) {
 					if (!objectMapDuration.containsKey(l1.id))

@@ -182,15 +182,16 @@ public class Util {
 	}
 
 	// calculate accuracy
-	public static double accuracy(HashSet<Integer> accu_id, HashSet<Integer> appro_id) {
-		Integer correct_num = 0;
-
-		for (Integer id : accu_id) {
-			if (appro_id.contains(id)) {
-				correct_num += 1;
+	public static double precision(HashSet<Integer> exactRes, HashSet<Integer> appRes) {
+		double TP = 0, TN = 0, FP = 0, FN = 0;
+		for (int appId : appRes) {
+			if (exactRes.contains(appId)) {
+				TP += 1;
+			} else {
+				FP += 1;
 			}
 		}
-		return (double) correct_num * 100 / appro_id.size();
+		return TP * 100 / (TP + FP);
 	}
 
 	/**
