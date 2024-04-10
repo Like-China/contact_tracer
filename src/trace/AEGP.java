@@ -121,24 +121,28 @@ public class AEGP extends EGP {
 	 */
 	public ArrayList<Integer> trace(ArrayList<ArrayList<Location>> batches, int m, boolean isApproxiamte) {
 		ArrayList<Integer> updateCE = new ArrayList<Integer>();
-		assert batches.size() == this.k : "Wrong size of batches!";
+		int curBatchSize = batches.size();
+		assert curBatchSize != 0 : "Wrong size of batches!";
 		// 1. get candidate
 		ArrayList<Location> head = batches.get(0);
-		ArrayList<Location> tail = batches.get(this.k - 1);
 		ArrayList<Integer> headCandidate = getCandidate(head, true, null);
-		Iterator<Integer> headCandidateIter = headCandidate.iterator();
-		while (headCandidateIter.hasNext()) {
-			int id = headCandidateIter.next();
-			if (objectMapDuration.get(id) == null || objectMapDuration.get(id) < 1) {
-				headCandidateIter.remove();
+		ArrayList<Integer> tailCandidate = new ArrayList<>();
+		if (curBatchSize == this.k) {
+			ArrayList<Location> tail = batches.get(curBatchSize - 1);
+			Iterator<Integer> headCandidateIter = headCandidate.iterator();
+			while (headCandidateIter.hasNext()) {
+				int id = headCandidateIter.next();
+				if (objectMapDuration.get(id) == null || objectMapDuration.get(id) < 1) {
+					headCandidateIter.remove();
+				}
 			}
+			tailCandidate = getCandidate(tail, false, headCandidate);
 		}
-		ArrayList<Integer> tailCandidate = getCandidate(tail, false, headCandidate);
 		ArrayList<Integer> unionCandidate = new ArrayList<>(headCandidate);
 		unionCandidate.removeAll(tailCandidate);
 		unionCandidate.addAll(tailCandidate);
 		// 2. for each ordinary location, find its intersection in query quadtree
-		for (int i = 0; i < this.k; i++) {
+		for (int i = 0; i < curBatchSize; i++) {
 			// for the timestamp among t, t+k (not include t and t+k)
 			ArrayList<Location> batch = batches.get(i);
 			// for (Location ordinaryLocation : ordinrayLocations) {

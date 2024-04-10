@@ -237,13 +237,15 @@ public class Util {
 			writeName.createNewFile();
 			try (FileWriter writer = new FileWriter(writeName, true);
 					BufferedWriter out = new BufferedWriter(writer)) {
+				if (setInfo.length() > 0) {
+					out.newLine();
+					out.newLine();
+					out.write(setInfo);
+				}
 				out.write("\nAlgorithm: " + algorithm);
-				out.newLine();
-				out.write(setInfo);
 				out.newLine();
 				out.write(otherInfo);
 				out.write(", Cases of exposures: " + caseNum);
-				out.newLine();
 				out.flush();
 			}
 		} catch (IOException e) {

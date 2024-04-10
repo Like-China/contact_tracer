@@ -14,6 +14,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 
+import trace.Settings;
+
 /*
 Given a txt file with Line infromation: id date time lon lat timestamp
 example: 00053 2008-02-08 00:00:00 116.410720 39.990820 0
@@ -93,16 +95,20 @@ public class Stream {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		assert locBatch.size() == readObjNB: "lack of data";
+		assert locBatch.size() == readObjNB : "lack of data";
 		return locBatch;
 	}
 
 	// read several batches of locations for multiple timestamps
+	public int loadTS = 0;
+
 	public ArrayList<ArrayList<Location>> multibBatch(int readObjNB, int k) {
 		ArrayList<ArrayList<Location>> batches = new ArrayList<>();
-		for(int i=0;i<k;i++)
-		{
-			batches.add(this.batch(readObjNB));
+		for (int i = 0; i < k; i++) {
+			if (loadTS < Settings.maxTSNB) {
+				batches.add(this.batch(readObjNB));
+			}
+			loadTS += 1;
 		}
 		// the current timestamp of loading locations
 		return batches;

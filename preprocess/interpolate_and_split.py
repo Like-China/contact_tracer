@@ -171,7 +171,7 @@ if __name__ == "__main__":
     # the  sampling interval
     sr = 15  
     # the number of reading trj-file (Porto has 1704695 raw MOs Beijing is 10347)
-    max_read_num = 500000 #1704695
+    max_read_num = 1000000
     save_path = "/home/like/data/contact_tracer/"
     if name == "beijing":
         load_path = "/home/like/data/taxi_log_2008_by_id/"
@@ -182,7 +182,7 @@ if __name__ == "__main__":
     start_time = time.time()
     P = Interpolation(name, load_path, save_path, max_read_num, sr)
     
-    cut_length = 20
+    cut_length = 100
     max_obj_num = 1000000
     P.padding_all(cut_length, max_obj_num)
     P.write(cut_length, max_obj_num)

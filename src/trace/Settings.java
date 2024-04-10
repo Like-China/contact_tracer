@@ -20,11 +20,8 @@ public class Settings {
 	// due to the rime-consuming of ET algorithm, we do not evalute all timestamps
 	// for ET. Rather, we set a smaller value of evaluted timestamps.
 	public static int maxTSNB = 20;
-
-	// the duration threshold
-	// Beijing: default 15, [5,10,15,20,25]
-	// Porto: [5,7,9,11], default 5
-	public static int k = (name.equals("beijing")) ? 10 : 10;
+	// the contact duration threshold
+	public static int k = 10;
 	// distance threshold, default 2, ranges [2,4,6,8,10]
 	public static float epsilon = 2f;
 	// initial number of all objects
@@ -33,9 +30,9 @@ public class Settings {
 	public static int initPatientNum = (name.equals("beijing")) ? 2000 : 2000;
 	public static boolean isRandom = true;
 	// the hop interval in AGP algorithm
-	public static int m = 3;
+	public static int m = 2;
 	// the expand times of trajectory location data
-	public static int expNB = 3;
+	public static int expNB = 4;
 	public static double[] lonRange = name == "beijing" ? new double[] { 116.25f - 0.001f, 116.55f + 0.001f }
 			: new double[] { -8.735f - 0.0015f, -8.156f + 0.0015f };
 	public static double[] latRange = name == "beijing" ? new double[] { 39.83f - 0.001f, 40.03f + 0.001f }
